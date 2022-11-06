@@ -1,0 +1,10 @@
+<button class="primary-button" onclick="@OnClickFunction">@Text</button>
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = "Button";
+
+    [Parameter] 
+    public Action<string> OnClickFunction { get; set; }
+
+}
