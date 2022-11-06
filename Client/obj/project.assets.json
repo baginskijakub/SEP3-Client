@@ -1767,11 +1767,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kuba/RiderProjects/BlazorApp1/Client/Client.csproj",
+      "projectUniqueName": "/Users/kuba/Documents/GitHub/SEP3-Client/Client/Client.csproj",
       "projectName": "Client",
-      "projectPath": "/Users/kuba/RiderProjects/BlazorApp1/Client/Client.csproj",
+      "projectPath": "/Users/kuba/Documents/GitHub/SEP3-Client/Client/Client.csproj",
       "packagesPath": "/Users/kuba/.nuget/packages/",
-      "outputPath": "/Users/kuba/RiderProjects/BlazorApp1/Client/obj/",
+      "outputPath": "/Users/kuba/Documents/GitHub/SEP3-Client/Client/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/kuba/.nuget/NuGet/NuGet.Config"

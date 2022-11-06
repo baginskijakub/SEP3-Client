@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XQFoFXAE2NxBfdJKCiZApbFkPdhWrVEQW4ylCGLIovHSZHwe+xG9AJKX278mfnO2zoZWfQNVhiJHCWngPUuhWw==",
+  "dgSpecHash": "9j0lsrHoQ6E0OerUC6iEbOYBXtSGgspgOY9Klv06WE30kcVwpGwPYb3wWvla50Y/EaMvAPQ/OsRD+EkLy7HhkQ==",
   "success": true,
-  "projectFilePath": "/Users/kuba/RiderProjects/BlazorApp1/Client/Client.csproj",
+  "projectFilePath": "/Users/kuba/Documents/GitHub/SEP3-Client/Client/Client.csproj",
   "expectedPackageFiles": [
     "/Users/kuba/.nuget/packages/microsoft.aspnetcore.authorization/6.0.10/microsoft.aspnetcore.authorization.6.0.10.nupkg.sha512",
     "/Users/kuba/.nuget/packages/microsoft.aspnetcore.components/6.0.10/microsoft.aspnetcore.components.6.0.10.nupkg.sha512",
