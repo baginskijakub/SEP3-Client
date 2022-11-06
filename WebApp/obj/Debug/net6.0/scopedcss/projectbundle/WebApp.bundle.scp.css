@@ -1,0 +1,255 @@
+/* /Pages/Home.razor.rz.scp.css */
+.home-page-wrapper[b-mwezi9xtxa]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 52px;
+    height: calc(100vh - 80px);
+}
+
+.home-page-titles[b-mwezi9xtxa]{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.buttons-container[b-mwezi9xtxa]{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+}
+
+.title-primary[b-mwezi9xtxa]{
+    font-family: 'PP Mori SemiBold';
+    font-size: 96px;
+    line-height: 101px;
+
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.title-secondary[b-mwezi9xtxa]{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+/* /Shared/Components/Buttons/NavButton.razor.rz.scp.css */
+.nav-button[b-3rpybphj65]{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 15px;
+    /* identical to box height */
+    text-decoration: none;
+    color: #EEEFFB;
+}
+
+.nav-button .active[b-3rpybphj65]{
+    text-decoration: none;
+}
+/* /Shared/Components/Buttons/PrimaryButton.razor.rz.scp.css */
+.primary-button[b-a19ez2bdc4]{
+    padding: 13px 40px 12px;
+    background: #EEEFFB;
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #1A1A1A;
+    border: none;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+}
+
+.primary-button:hover[b-a19ez2bdc4]{
+    opacity: 0.7;
+}
+
+.primary-button-small[b-a19ez2bdc4]{
+    padding: 6px 16px;
+    background: #EEEFFB;
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #1A1A1A;
+    border: none;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+    
+}
+
+.primary-button-small:hover[b-a19ez2bdc4]{
+    opacity: 0.7;
+}
+/* /Shared/Components/Buttons/SecondaryButton.razor.rz.scp.css */
+@font-face {
+    font-family: PP Mori Regular;
+    src: url('./fonts/PPMori-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: PP Mori SemiBold;
+    src: url('./fonts/PPMori-SemiBold.otf') format("opentype");
+}
+
+.secondary-button[b-pv0mw4gf7r]{
+    padding: 13px 40px 12px;
+    background: linear-gradient(90deg, #4A5EB0 0%, #4542CF 100%);
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #EEEFFB;
+    border: none;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+}
+
+.secondary-button:hover[b-pv0mw4gf7r]{
+    opacity: 0.7;
+}
+
+.secondary-button-small[b-pv0mw4gf7r]{
+    padding: 6px 16px;
+    background: linear-gradient(90deg, #4A5EB0 0%, #4542CF 100%);
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #EEEFFB;
+    border: none;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+}
+
+.secondary-button-small:hover[b-pv0mw4gf7r]{
+    opacity: 0.7;
+}
+/* /Shared/Components/Ride/Ride.razor.rz.scp.css */
+.ride-wrapper[b-65lottstiw]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    gap: 150px;
+    width: 900px;
+    height: 150px;
+    background: linear-gradient(180deg, rgba(17, 19, 38, 0.4) 0%, #111326 100%);
+    border: 1px solid #2A2D53;
+    border-radius: 8px;
+}
+
+.ride-wrapper > img[b-65lottstiw]{
+    border: 1px solid #4D4F5E;
+    border-radius: 10px;
+}
+
+.ride-inner[b-65lottstiw]{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    height: 100%;
+}
+
+.ride-destination[b-65lottstiw]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.ride-destination h5[b-65lottstiw]{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+.select-ride-button[b-65lottstiw]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 10px;
+
+    width: 34px;
+    height: 134px;
+
+    background: #161A33;
+    border: 1px solid #2A2D53;
+    border-radius: 4px;
+}
+/* /Shared/MainLayout.razor.rz.scp.css */
+.page[b-iymxgj1jkn] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(68.79% 68.79% at 50% -17.11%, #14152E 0%, #000312 100%);
+    height: 100vh;
+}
+
+main[b-iymxgj1jkn] {
+    flex: 1;
+}
+/* /Shared/Navbar.razor.rz.scp.css */
+.nav-wrapper-outer[b-ehe4e231qz]{
+    width: 100%;
+    background: rgba(2, 5, 20, 0.3);
+    backdrop-filter: blur(4px);
+    padding:  16px 40px 0px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-wrapper[b-ehe4e231qz]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #23253A;
+    width: calc(100% - 80px)
+}
+
+.nav-inner[b-ehe4e231qz]{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    gap: 32px;
+    height: 100%;
+}
+
+.nav-logo[b-ehe4e231qz]{
+    font-family: 'PP Mori Regular';
+    font-size: 24px;
+    line-height: 25px;
+    margin: 0px;
+    color: #EEEFFB;
+}

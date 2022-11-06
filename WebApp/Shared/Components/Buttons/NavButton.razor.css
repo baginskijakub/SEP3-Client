@@ -1,0 +1,13 @@
+.nav-button{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 15px;
+    /* identical to box height */
+    text-decoration: none;
+    color: #EEEFFB;
+}
+
+.nav-button .active{
+    text-decoration: none;
+}

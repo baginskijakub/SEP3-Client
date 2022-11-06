@@ -1,0 +1,43 @@
+@font-face {
+    font-family: PP Mori Regular;
+    src: url('./fonts/PPMori-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: PP Mori SemiBold;
+    src: url('./fonts/PPMori-SemiBold.otf') format("opentype");
+}
+
+.secondary-button[b-pv0mw4gf7r]{
+    padding: 13px 40px 12px;
+    background: linear-gradient(90deg, #4A5EB0 0%, #4542CF 100%);
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #EEEFFB;
+    border: none;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+}
+
+.secondary-button:hover[b-pv0mw4gf7r]{
+    opacity: 0.7;
+}
+
+.secondary-button-small[b-pv0mw4gf7r]{
+    padding: 6px 16px;
+    background: linear-gradient(90deg, #4A5EB0 0%, #4542CF 100%);
+    border-radius: 64px;
+    font-family: "PP Mori SemiBold";
+    color: #EEEFFB;
+    border: none;
+    font-size: 12px;
+    line-height: 13px;
+    letter-spacing: 0.02em;
+    transition: all 0.2s cubic-bezier(.82,.14,.1,.77);
+}
+
+.secondary-button-small:hover[b-pv0mw4gf7r]{
+    opacity: 0.7;
+}

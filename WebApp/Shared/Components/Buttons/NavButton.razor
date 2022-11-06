@@ -1,5 +1,13 @@
-<h3>NavButton</h3>
+
+
+    <a class="nav-button" href="@Path">@Text</a>
+
+
 
 @code {
-    
+    [Parameter]
+    public string Text { get; set; } = "Button";
+
+    [Parameter]
+    public string Path { get; set; } = "/";
 }

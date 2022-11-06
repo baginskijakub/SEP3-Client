@@ -1,0 +1,59 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = browser
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = true
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = WebApp
+build_property.RootNamespace = WebApp
+build_property.ProjectDir = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/FindRides.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmluZFJpZGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-mwezi9xtxa
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/NavButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9OYXZCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-3rpybphj65
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/PrimaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9QcmltYXJ5QnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-a19ez2bdc4
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/SecondaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9TZWNvbmRhcnlCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-pv0mw4gf7r
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/Ride.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-65lottstiw
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-iymxgj1jkn
+
+[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdmJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-ehe4e231qz

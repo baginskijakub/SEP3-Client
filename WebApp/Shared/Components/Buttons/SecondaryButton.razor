@@ -1,4 +1,12 @@
-<button class="primary-button" onclick="@OnClickFunction">@Text</button>
+@if (@Size == "Big")
+{
+    <button class="secondary-button" onclick="@OnClickFunction">@Text</button>
+}
+else
+{
+    <button class="secondary-button-small" onclick="@OnClickFunction">@Text</button>
+}
+
 
 @code {
     [Parameter]
@@ -6,5 +14,8 @@
 
     [Parameter] 
     public Action<string> OnClickFunction { get; set; }
+
+    [Parameter]
+    public string Size { get; set; } = "Big";
 
 }

@@ -1,4 +1,16 @@
-<h3>Navbar</h3>
+@using WebApp.Shared.Components.Buttons
+<div class="nav-wrapper-outer">
+    <div class="nav-wrapper">
+        <div class="nav-inner">
+            <h4 class="nav-logo">Lift</h4>
+            <NavButton Text="How does it work?"></NavButton>
+        </div>
+        <div class="nav-inner">
+            <NavButton Text="Login"></NavButton>
+            <PrimaryButton Text="Get Started" Size="Small"></PrimaryButton>
+        </div>
+    </div>
+</div>
 
 @code {
     

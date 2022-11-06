@@ -1,0 +1,47 @@
+.home-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 52px;
+    height: calc(100vh - 80px);
+}
+
+.home-page-titles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.buttons-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+}
+
+.title-primary{
+    font-family: 'PP Mori SemiBold';
+    font-size: 96px;
+    line-height: 101px;
+
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.title-secondary{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}

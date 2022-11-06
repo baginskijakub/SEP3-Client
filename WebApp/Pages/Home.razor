@@ -1,4 +1,17 @@
-<h3>Home</h3>
+@page "/"
+@using WebApp.Shared.Components.Buttons
+
+<div class="home-page-wrapper">
+    <div class="home-page-titles">
+        <h1 class="title-primary">Your ride starts here</h1>
+        <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
+    </div>
+    <div class="buttons-container">
+        <SecondaryButton Text="Find a ride"></SecondaryButton>
+        <PrimaryButton Text="I'm a driver"></PrimaryButton>
+    </div>
+</div>
+
 
 @code {
     

@@ -1,0 +1,61 @@
+.ride-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    gap: 150px;
+    width: 900px;
+    height: 150px;
+    background: linear-gradient(180deg, rgba(17, 19, 38, 0.4) 0%, #111326 100%);
+    border: 1px solid #2A2D53;
+    border-radius: 8px;
+}
+
+.ride-wrapper > img{
+    border: 1px solid #4D4F5E;
+    border-radius: 10px;
+}
+
+.ride-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 16px;
+    height: 100%;
+}
+
+.ride-destination{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.ride-destination h5{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    letter-spacing: 0.02em;
+    font-size: 16px;
+    line-height: 17px;
+}
+
+.select-ride-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    gap: 10px;
+
+    width: 34px;
+    height: 134px;
+
+    background: #161A33;
+    border: 1px solid #2A2D53;
+    border-radius: 4px;
+}
