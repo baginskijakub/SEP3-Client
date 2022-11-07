@@ -1,6 +1,10 @@
-@page "/RideCompletion"
+@page "/RideCompletion/{rideId:int}"
+//not sure if ^ works
 @using WebApp.Shared.Components.Buttons
 @using WebApp.Shared.Components.Ride
+@using HttpClients.ClientInterfaces
+@using Ride = Domain.Models.Ride
+@inject IRideService rideService
 
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
@@ -20,10 +24,18 @@
         <SecondaryButton Text="Send to driver" hasArrow="true"></SecondaryButton>
     </div>
         <div>
-            <RideDetailed></RideDetailed>
+           <RideDetailed Time="@ride.dateTime.ToString()" Driver="@ride.driver" RideId="@ride.id" StartLocation="@ride.startLocation.city" EndLocation="@ride.destination.city"></RideDetailed>
         </div>
 </div>
 
 @code {
+    [Parameter]
+    public int RideId { get; set; }
+    public Ride ride { get; set; }
     
+    protected override async void OnParametersSet()
+    {
+
+        ride = await rideService.GetRideById(RideId);
+    }
 }

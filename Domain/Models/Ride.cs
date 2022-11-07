@@ -2,7 +2,10 @@
 
 public class Ride
 {
-    private Location startLocation { get; set; }
-    private Location destination { get; set; }
-    private DateTime dateTime { get; set; }
+    public Location startLocation { get; set; }
+    public Location destination { get; set; }
+    public DateTime dateTime { get; set; }
+    
+    public int id { get; set; }
+    public string driver { get; set; }
 }

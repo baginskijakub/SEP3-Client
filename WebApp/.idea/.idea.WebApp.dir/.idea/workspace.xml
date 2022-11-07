@@ -6,60 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="19907c39-5620-445a-8532-ee275311e244" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/FindRides.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/RideCompletion.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/RideCompletion.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/RideDetails.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/RideDetails.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/Components/Buttons/TeritaryButton.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/Components/Buttons/TeritaryButton.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/Components/Ride/RideDetailed.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared/Components/Ride/RideDetailed.razor.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Pages/FindRides.razor.rz.scp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/TeritaryButton.razor.rz.scp.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Ride/RideDetailed.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.idea.BlazorWASM/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.idea.BlazorWASM/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/FindRides.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/FindRides.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Home.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Home.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Buttons/PrimaryButton.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Buttons/PrimaryButton.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Buttons/PrimaryButton.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Buttons/PrimaryButton.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Buttons/SecondaryButton.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Buttons/SecondaryButton.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Buttons/SecondaryButton.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Buttons/SecondaryButton.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Ride/Ride.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Ride/Ride.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Components/Ride/Ride.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Components/Ride/Ride.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/MainLayout.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/Navbar.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/Navbar.razor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/WebApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/WebApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/WebApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/WebApp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.dll.gz" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.dll.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.pdb.gz" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/WebApp.pdb.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/blazor.boot.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net6.0/wwwroot/_framework/blazor.boot.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/WebApp.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/blazor.boot.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/blazor.boot.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/build-gz/5VPvaxNg.gz" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/build-gz/5VPvaxNg.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/build-gz/BivTZgyG.gz" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/build-gz/BivTZgyG.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/ref/WebApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/ref/WebApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/refint/WebApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/refint/WebApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Pages/Home.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Pages/Home.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/PrimaryButton.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/PrimaryButton.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/SecondaryButton.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/SecondaryButton.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Ride/Ride.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Components/Ride/Ride.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Navbar.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/Shared/Navbar.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/bundle/WebApp.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/bundle/WebApp.styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/projectbundle/WebApp.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net6.0/scopedcss/projectbundle/WebApp.bundle.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/obj/staticwebassets.pack.sentinel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/icons/map-placeholder.png" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/icons/map-placeholder.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,15 +29,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "list.type.of.created.stylesheet": "CSS",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApp">
     <configuration name="WebApp" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApp.csproj" />
@@ -132,7 +79,8 @@
       <option name="presentableId" value="Default" />
       <updated>1667808690317</updated>
       <workItem from="1667808709724" duration="16000" />
-      <workItem from="1667810870888" duration="4711000" />
+      <workItem from="1667810870888" duration="4919000" />
+      <workItem from="1667831770671" duration="26000" />
     </task>
     <servers />
   </component>

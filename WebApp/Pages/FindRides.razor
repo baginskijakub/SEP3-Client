@@ -1,18 +1,35 @@
 @page "/FindRides"
 @using WebApp.Shared.Components.Ride
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using Ride = Domain.Models.Ride
+@inject IRideService rideService
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
         <h1 class="title-primary">Your ride starts here</h1>
         <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
     </div>
     <div class="find-rides-rides-container">
-            <Ride></Ride>
-            <Ride></Ride>
-            <Ride></Ride>
+            @foreach (Ride ride in rides)
+            {
+                <Ride Time="@ride.dateTime.ToString()" Driver="@ride.driver" RideId="@ride.id" StartLocation="@ride.startLocation.city" EndLocation="@ride.destination.city"></Ride>
+            }
     </div>
 
 </div>
 
 @code {
+    List<Ride> rides = new List<Ride>();
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            rides = await rideService.GetAllRidesAsync();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
     
 }

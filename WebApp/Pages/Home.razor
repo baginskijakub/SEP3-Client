@@ -1,5 +1,6 @@
 @page "/"
 @using WebApp.Shared.Components.Buttons
+@inject NavigationManager navigationManager
 
 <div class="home-page-wrapper">
     <div class="home-page-titles">
@@ -7,12 +8,16 @@
         <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
     </div>
     <div class="buttons-container">
-        <SecondaryButton Text="Find a ride"></SecondaryButton>
+        <SecondaryButton Text="Find a ride" OnClickFunction="@navigateToRides"></SecondaryButton>
         <PrimaryButton Text="I'm a driver"></PrimaryButton>
     </div>
 </div>
 
 
 @code {
-    
+
+    private void navigateToRides()
+    {
+        navigationManager.NavigateTo("/FindRides");
+    }
 }

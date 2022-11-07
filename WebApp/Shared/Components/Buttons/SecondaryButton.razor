@@ -1,6 +1,6 @@
 @if (@Size == "Big")
 {
-    <button class="secondary-button" onclick="@OnClickFunction">
+    <button class="secondary-button" @onclick="@InvokeOnClick">
                 @if (hasArrow)
                 {
                     if (arrowSide == "Left")
@@ -22,7 +22,7 @@
 }
 else
 {
-    <button class="secondary-button-small" onclick="@OnClickFunction">
+    <button class="secondary-button-small" @onclick="@InvokeOnClick">
         @if (hasArrow)
         {
             if (arrowSide == "Left")
@@ -49,7 +49,12 @@ else
     public string Text { get; set; } = "Button";
 
     [Parameter] 
-    public Action<string> OnClickFunction { get; set; }
+    public Action OnClickFunction { get; set; }
+
+    private void InvokeOnClick()
+    {
+        OnClickFunction.Invoke();
+    }
 
     [Parameter]
     public string Size { get; set; } = "Big";
