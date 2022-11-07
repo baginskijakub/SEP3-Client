@@ -1,10 +1,46 @@
 @if (Size == "Big")
 {
-    <button class="primary-button" onclick="@OnClickFunction">@Text</button>
+    <button class="primary-button" onclick="@OnClickFunction">
+                @if (hasArrow)
+                {
+                    if (arrowSide == "Left")
+                    {
+                        <img class="left-arrow" src="icons/arrow.svg" alt="arrow"/>
+                        @Text
+                    }
+                    else
+                    {
+                        @Text
+                        <img class="right-arrow" src="icons/arrow.svg" alt="arrow"/>
+                    }
+                }
+                        else
+                        {
+                            @Text
+                        }
+    </button>
 }
 else
 {
-    <button class="primary-button-small" onclick="@OnClickFunction">@Text</button>
+    <button class="primary-button-small" onclick="@OnClickFunction">
+                @if (hasArrow)
+                {
+                    if (arrowSide == "Left")
+                    {
+                        <img class="left-arrow" src="icons/arrow.svg" alt="arrow"/>
+                        @Text
+                    }
+                    else
+                    {
+                        @Text
+                        <img class="right-arrow" src="icons/arrow.svg" alt="arrow"/>
+                    }
+                }
+                        else
+                        {
+                            @Text
+                        }
+    </button>
 }
 
 
@@ -17,5 +53,11 @@ else
     
     [Parameter]
     public string Size { get; set; } = "Big";
+    
+    [Parameter]
+    public bool hasArrow { get; set; }
+    
+    [Parameter]
+    public string? arrowSide { get; set; }
 
 }

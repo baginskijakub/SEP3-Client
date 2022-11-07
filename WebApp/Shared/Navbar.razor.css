@@ -1,11 +1,13 @@
 .nav-wrapper-outer{
     width: 100%;
     background: rgba(2, 5, 20, 0.3);
-    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     padding:  16px 40px 0px 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
 }
 
 .nav-wrapper{

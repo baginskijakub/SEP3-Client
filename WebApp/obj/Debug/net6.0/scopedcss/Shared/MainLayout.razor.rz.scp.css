@@ -2,10 +2,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: radial-gradient(68.79% 68.79% at 50% -17.11%, #14152E 0%, #000312 100%);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 main[b-iymxgj1jkn] {

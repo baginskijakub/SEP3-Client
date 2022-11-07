@@ -818,3 +818,8 @@
 /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Shared/Navbar.razor.rz.scp.css
 /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Pages/Home.razor.rz.scp.css
 /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Shared/Components/Ride/Ride.razor.rz.scp.css
+/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Pages/FindRides.razor.rz.scp.css
+/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Shared/Components/Buttons/TeritaryButton.razor.rz.scp.css
+/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Shared/Components/Ride/RideDetailed.razor.rz.scp.css
+/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Pages/RideDetails.razor.rz.scp.css
+/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/obj/Debug/net6.0/scopedcss/Pages/RideCompletion.razor.rz.scp.css

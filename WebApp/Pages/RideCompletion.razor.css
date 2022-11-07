@@ -1,0 +1,81 @@
+.find-rides-page-wrapper{
+    margin-top: 144px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 96px;
+    margin-bottom: 96px;
+}
+
+.home-page-titles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+}
+
+.title-primary{
+    font-family: 'PP Mori SemiBold';
+    font-size: 96px;
+    line-height: 101px;
+
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.title-secondary{
+    font-family: 'PP Mori SemiBold';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 21px;
+    background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.ride-completion-input-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 12px;
+    gap: 18px;
+    background: linear-gradient(180deg, rgba(17, 19, 38, 0.4) 0%, #111326 100%);
+    border: 1px solid #2A2D53;
+    border-radius: 8px;
+}
+
+.ride-completion-input-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 6px;
+}
+
+.ride-completion-input{
+    padding: 8px;
+    background: #1A1D3D;
+    border: 1px solid #2A2D53;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: "PP Mori Regular";
+}
+
+.ride-completion-input:focus{
+    outline: none;
+    border: 1px solid #4A5EB0;
+}
+
+.caption{
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 4px;
+}

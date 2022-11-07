@@ -1,29 +1,23 @@
-.home-page-wrapper[b-mwezi9xtxa]{
+.find-rides-page-wrapper[b-72ckdcwi84]{
+    margin-top: 144px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 52px;
-    height: calc(100vh - 80px);
+    gap: 96px;
+    margin-bottom: 96px;
 }
 
-.home-page-titles[b-mwezi9xtxa]{
+.home-page-titles[b-72ckdcwi84]{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0;
+    padding: 0px;
     gap: 12px;
 }
 
-.buttons-container[b-mwezi9xtxa]{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 20px;
-}
-
-.title-primary[b-mwezi9xtxa]{
+.title-primary[b-72ckdcwi84]{
     font-family: 'PP Mori SemiBold';
     font-size: 96px;
     line-height: 101px;
@@ -34,7 +28,7 @@
     text-fill-color: transparent;
 }
 
-.title-secondary[b-mwezi9xtxa]{
+.title-secondary[b-72ckdcwi84]{
     font-family: 'PP Mori SemiBold';
     font-style: normal;
     font-weight: 600;
@@ -44,4 +38,10 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
+}
+
+.find-rides-rides-container[b-72ckdcwi84]{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

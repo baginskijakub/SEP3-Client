@@ -1,0 +1,27 @@
+@page "/RideDetails"
+@using WebApp.Shared.Components.Ride
+@using WebApp.Shared.Components.Buttons
+
+<div class="find-rides-page-wrapper">
+    <div class="home-page-titles">
+        <div class="primary-titles">
+            <h1 class="title-primary">Are you sure</h1>
+            <h1 class="title-primary">that you want to procced?</h1>
+        </div>
+        <h5 class="title-secondary">Please make sure that details of the ride work for you.</h5>
+    </div>
+    <div>
+        <RideDetailed></RideDetailed>
+    </div>
+    <div class="outro-container">
+        <h3>Everything all right?</h3>
+        <div class="buttons-container">
+            <TeritaryButton Text="Back to rides" hasArrow="true" arrowSide="Left"></TeritaryButton>
+            <SecondaryButton Text="Proceed" hasArrow="true" arrowSide="Right"></SecondaryButton>
+        </div>
+    </div>
+</div>
+
+@code {
+    
+}

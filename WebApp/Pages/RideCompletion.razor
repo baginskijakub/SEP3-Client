@@ -1,0 +1,29 @@
+@page "/RideCompletion"
+@using WebApp.Shared.Components.Buttons
+@using WebApp.Shared.Components.Ride
+
+<div class="find-rides-page-wrapper">
+    <div class="home-page-titles">
+        <h1 class="title-primary">You’re almost there</h1>
+        <h5 class="title-secondary">Please insert your data so the driver can contact you.</h5>
+    </div>
+
+    <div class="ride-completion-input-wrapper">
+        <div class="ride-completion-input-inner">
+            <p class="caption">Name</p>
+            <input class="ride-completion-input" type="text" placeholder="Insert your name" autocomplete="off"/>
+        </div>
+        <div class="ride-completion-input-inner">
+            <p class="caption">Phone number</p>
+            <input class="ride-completion-input" type="text" placeholder="Insert your phone number" autocomplete="off"/>
+        </div>
+        <SecondaryButton Text="Send to driver" hasArrow="true"></SecondaryButton>
+    </div>
+        <div>
+            <RideDetailed></RideDetailed>
+        </div>
+</div>
+
+@code {
+    
+}

@@ -1,13 +1,14 @@
-.home-page-wrapper[b-mwezi9xtxa]{
+.find-rides-page-wrapper[b-aq9oehf01x]{
+    margin-top: 96px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 52px;
-    height: calc(100vh - 80px);
+    gap: 72px;
 }
 
-.home-page-titles[b-mwezi9xtxa]{
+.home-page-titles[b-aq9oehf01x]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,18 +16,19 @@
     gap: 12px;
 }
 
-.buttons-container[b-mwezi9xtxa]{
+.primary-titles[b-aq9oehf01x]{
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 0px;
-    gap: 20px;
 }
 
-.title-primary[b-mwezi9xtxa]{
+
+.title-primary[b-aq9oehf01x]{
     font-family: 'PP Mori SemiBold';
-    font-size: 96px;
-    line-height: 101px;
+    font-size: 52px;
+    line-height: 55px;
 
     background: linear-gradient(180deg, #EEEFFB 0%, rgba(238, 239, 251, 0.36) 100%);
     -webkit-background-clip: text;
@@ -34,7 +36,7 @@
     text-fill-color: transparent;
 }
 
-.title-secondary[b-mwezi9xtxa]{
+.title-secondary[b-aq9oehf01x]{
     font-family: 'PP Mori SemiBold';
     font-style: normal;
     font-weight: 600;
@@ -44,4 +46,28 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-fill-color: transparent;
+}
+
+.outro-container[b-aq9oehf01x]{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+}
+
+.outro-container > h3[b-aq9oehf01x]{
+    font-family: 'PP Mori SemiBold';
+    font-size: 20px;
+    line-height: 21px;
+    color: #B3BBCE;
+}
+
+.buttons-container[b-aq9oehf01x]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
 }

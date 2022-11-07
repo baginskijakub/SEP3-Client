@@ -1,17 +1,35 @@
 <div class="ride-wrapper">
     <div class="ride-inner">
-        <p class="caption">Tomorrow 2:45 PM</p>
+        <p class="caption">@Time</p>
         <div class="ride-destination">
-            <h5>Aarhus</h5>
+            <h5>@StartLocation</h5>
             <img src="icons/arrow.svg"/>
-            <h5>Horsens</h5>
+            <h5>@EndLocation</h5>
         </div>
-        <p class="caption">Tomasz</p>
+        <p class="caption">@Driver</p>
     </div>
     <img class="" src="icons/map-placeholder.png"/>
     <button class="select-ride-button"><img src="icons/arrow.svg"/></button>
 </div>
 
 @code {
+    [Parameter]
+    public string StartLocation { get; set; } = "Start";
     
+    [Parameter]
+    public string EndLocation { get; set; } = "End";
+    
+    [Parameter]
+    public string Time { get; set; } = "Time";
+    
+    [Parameter]
+    public string Driver { get; set; } = "Driver";
+    
+    [Parameter]
+    public int RideId { get; set; }
+    
+    
+    
+    
+
 }
