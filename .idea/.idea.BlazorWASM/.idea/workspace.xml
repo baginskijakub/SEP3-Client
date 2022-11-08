@@ -8,7 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d76b20a4-0544-428b-91d6-fe2afcc6cbd0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorWASM/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorWASM/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Models/DateTime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Models/DateTime.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Models/Driver.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Models/Driver.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HttpClient/ClientInterfaces/IRideService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HttpClient/ClientInterfaces/IRideService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HttpClient/Implementations/RideHttpClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HttpClient/Implementations/RideHttpClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +154,7 @@
       <workItem from="1667831807415" duration="3442000" />
       <workItem from="1667839748777" duration="1403000" />
       <workItem from="1667906926535" duration="8545000" />
+      <workItem from="1667932458658" duration="304000" />
     </task>
     <servers />
   </component>

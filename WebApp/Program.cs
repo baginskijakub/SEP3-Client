@@ -1,7 +1,9 @@
+using System.Net.Http;
 using HttpClients.ClientInterfaces;
 using HttpClients.Implementations;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using WebApp;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
