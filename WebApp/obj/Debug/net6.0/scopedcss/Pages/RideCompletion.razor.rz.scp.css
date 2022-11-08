@@ -1,4 +1,4 @@
-.find-rides-page-wrapper[b-03p21zzcg4]{
+.find-rides-page-wrapper[b-yiubf36423]{
     margin-top: 144px;
     width: 100%;
     display: flex;
@@ -9,7 +9,7 @@
     margin-bottom: 96px;
 }
 
-.home-page-titles[b-03p21zzcg4]{
+.home-page-titles[b-yiubf36423]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@
     gap: 12px;
 }
 
-.title-primary[b-03p21zzcg4]{
+.title-primary[b-yiubf36423]{
     font-family: 'PP Mori SemiBold';
     font-size: 96px;
     line-height: 101px;
@@ -28,7 +28,7 @@
     text-fill-color: transparent;
 }
 
-.title-secondary[b-03p21zzcg4]{
+.title-secondary[b-yiubf36423]{
     font-family: 'PP Mori SemiBold';
     font-style: normal;
     font-weight: 600;
@@ -40,7 +40,7 @@
     text-fill-color: transparent;
 }
 
-.ride-completion-input-wrapper[b-03p21zzcg4]{
+.ride-completion-input-wrapper[b-yiubf36423]{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -52,7 +52,7 @@
     border-radius: 8px;
 }
 
-.ride-completion-input-inner[b-03p21zzcg4]{
+.ride-completion-input-inner[b-yiubf36423]{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -60,7 +60,7 @@
     gap: 6px;
 }
 
-.ride-completion-input[b-03p21zzcg4]{
+.ride-completion-input[b-yiubf36423]{
     padding: 8px;
     background: #1A1D3D;
     border: 1px solid #2A2D53;
@@ -69,12 +69,12 @@
     font-family: "PP Mori Regular";
 }
 
-.ride-completion-input:focus[b-03p21zzcg4]{
+.ride-completion-input:focus[b-yiubf36423]{
     outline: none;
     border: 1px solid #4A5EB0;
 }
 
-.caption[b-03p21zzcg4]{
+.caption[b-yiubf36423]{
     font-size: 14px;
     line-height: 16px;
     margin-left: 4px;

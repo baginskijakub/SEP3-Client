@@ -15,16 +15,16 @@ public class RideHttpClient : IRideService
         this.client = client;
     }
 
-    public async Task<List<Ride?>> GetAllRidesAsync()
+    public async Task<List<Ride>> GetAllRidesAsync()
     {
-        HttpResponseMessage response = await client.GetAsync("/rides");
+        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/rides");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(content);
         }
 
-        List<Ride?> rides = JsonSerializer.Deserialize<List<Ride?>>(content, new JsonSerializerOptions
+        List<Ride> rides = JsonSerializer.Deserialize<List<Ride>>(content, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         })!;
@@ -33,7 +33,7 @@ public class RideHttpClient : IRideService
     
     public async Task<Ride?> GetRideById(int id)
     {
-        HttpResponseMessage response = await client.GetAsync("/rides");
+        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/rides");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
@@ -47,8 +47,9 @@ public class RideHttpClient : IRideService
         
         foreach (var ride in rides)
         {
-            if (ride.id == id)
+            if (ride.Id == id)
             {
+                Console.WriteLine("es");
                 return ride;
             }
         }
@@ -60,10 +61,13 @@ public class RideHttpClient : IRideService
 
     public async Task JoinRide(JoinRideDto dto)
     {
-        HttpResponseMessage response = await client.PostAsJsonAsync("/rides", dto);
+        
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", dto);
+        Console.WriteLine(response);
         if (!response.IsSuccessStatusCode)
         {
             string content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(content);
             throw new Exception(content);
         }
         

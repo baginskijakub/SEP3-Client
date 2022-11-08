@@ -1,3 +1,5 @@
+@inject NavigationManager navigationManager
+
 <div class="ride-wrapper">
     <div class="ride-inner">
         <p class="caption">@Time</p>
@@ -9,7 +11,7 @@
         <p class="caption">@Driver</p>
     </div>
     <img class="" src="icons/map-placeholder.png"/>
-    <button class="select-ride-button"><img src="icons/arrow.svg"/></button>
+    <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg"/></button>
 </div>
 
 @code {
@@ -28,7 +30,10 @@
     [Parameter]
     public int RideId { get; set; }
     
-    
+    public void InvokeOnClick()
+    {
+        navigationManager.NavigateTo($"/RideDetails/{RideId}");
+    }
     
     
 

@@ -1,4 +1,4 @@
-.find-rides-page-wrapper[b-aq9oehf01x]{
+.find-rides-page-wrapper[b-cqrldpr9vo]{
     margin-top: 96px;
     width: 100%;
     display: flex;
@@ -8,7 +8,7 @@
     gap: 72px;
 }
 
-.home-page-titles[b-aq9oehf01x]{
+.home-page-titles[b-cqrldpr9vo]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,7 @@
     gap: 12px;
 }
 
-.primary-titles[b-aq9oehf01x]{
+.primary-titles[b-cqrldpr9vo]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,7 +25,7 @@
 }
 
 
-.title-primary[b-aq9oehf01x]{
+.title-primary[b-cqrldpr9vo]{
     font-family: 'PP Mori SemiBold';
     font-size: 52px;
     line-height: 55px;
@@ -36,7 +36,7 @@
     text-fill-color: transparent;
 }
 
-.title-secondary[b-aq9oehf01x]{
+.title-secondary[b-cqrldpr9vo]{
     font-family: 'PP Mori SemiBold';
     font-style: normal;
     font-weight: 600;
@@ -48,7 +48,7 @@
     text-fill-color: transparent;
 }
 
-.outro-container[b-aq9oehf01x]{
+.outro-container[b-cqrldpr9vo]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,14 +56,14 @@
     gap: 20px;
 }
 
-.outro-container > h3[b-aq9oehf01x]{
+.outro-container > h3[b-cqrldpr9vo]{
     font-family: 'PP Mori SemiBold';
     font-size: 20px;
     line-height: 21px;
     color: #B3BBCE;
 }
 
-.buttons-container[b-aq9oehf01x]{
+.buttons-container[b-cqrldpr9vo]{
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ijmemx2zJ1dFwAyw3XWONk2mONWA7sfKrI8x0jmsDDX9+EnId36HMgkM45VYCBjqxcENLFyb0WKtusR1Y0lxTA==",
+  "dgSpecHash": "eoIhcd4jid0ZNpqQg94IPw4bQl2mLmePs1lR0iVQqn1+pVYCsI5YPEuTGODDM+LDp1W7URWIoqIHPAK+7NABfQ==",
   "success": true,
-  "projectFilePath": "/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/HttpClient.csproj",
+  "projectFilePath": "C:\\Users\\Tomek\\RiderProjects\\SEP3-Client\\HttpClient\\HttpClient.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
