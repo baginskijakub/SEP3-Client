@@ -4,7 +4,7 @@ namespace Domain.Models;
 
 public class DateTime
 {
-    public long epoch { get; set; }
+    private long epoch { get; set; }
     private int year { get; set; }
     private int month { get; set; }
     private int day { get; set; }

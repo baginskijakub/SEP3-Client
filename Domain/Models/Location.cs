@@ -2,10 +2,10 @@
 
 public class Location
 {
-    public string country { get; set; }
-    public string city { get; set; }
-    public string streetName { get; set; }
-    public int zipCode { get; set; }
-    public long coordinatesX { get; set; }
-    public long coordinatesY { get; set; }
+    public string Country { get; set; }
+    public string City { get; set; }
+    public string StreetName { get; set; }
+    public int ZipCode { get; set; }
+    public long CoordinatesX { get; set; }
+    public long CoordinatesY { get; set; }
 }

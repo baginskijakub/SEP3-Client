@@ -5,35 +5,34 @@ namespace Domain.Models;
 
 public class Driver
 {
-    public string name { get; set; }
-    public Location startLocation { get; set; }
-    public List<Ride> rides { get; set; }
+    public string Name { get; set; }
+    public List<Ride> Rides { get; set; }
 
     public Driver(string name)
     {
-        this.name = name;
-        rides = new List<Ride>();
+        Name = name;
+        Rides = new List<Ride>();
     }
 
     public void addRide(Ride ride)
     {
-        rides.Add(ride);
+        Rides.Add(ride);
     }
 
     public void removeRide(Ride ride)
     {
-        rides.Remove(ride);
+        Rides.Remove(ride);
     }
 
     public List<Ride> getRidesByStartLocation(Location startLocation)
     {
         List<Ride> ridesByStartLocation = new List<Ride>();
         
-        for (int i = 0; i < rides.Count; i++)
+        for (int i = 0; i < Rides.Count; i++)
         {
-            if (startLocation.Equals(rides[i].startLocation))
+            if (startLocation.Equals(Rides[i].StartLocation))
             {
-                ridesByStartLocation.Add(rides[i]);
+                ridesByStartLocation.Add(Rides[i]);
             }
         }
 
@@ -44,11 +43,11 @@ public class Driver
     {
         List<Ride> ridesByDestination = new List<Ride>();
 
-        for (int i = 0; i < rides.Count; i++)
+        for (int i = 0; i < Rides.Count; i++)
         {
-            if (destination.Equals(rides[i].destination))
+            if (destination.Equals(Rides[i].Destination))
             {
-                ridesByDestination.Add(rides[i]);
+                ridesByDestination.Add(Rides[i]);
             }
         }
 
@@ -59,11 +58,11 @@ public class Driver
     {
         List<Ride> ridesByDate = new List<Ride>();
 
-        for (int i = 0; i < rides.Count; i++)
+        for (int i = 0; i < Rides.Count; i++)
         {
-            if (epochStart.Equals(rides[i].startDate))
+            if (epochStart.Equals(Rides[i].StartDate))
             {
-                ridesByDate.Add(rides[i]);
+                ridesByDate.Add(Rides[i]);
             }
         }
 

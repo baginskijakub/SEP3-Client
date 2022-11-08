@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\Domain.csproj": {
+    "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\migle\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\migle\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

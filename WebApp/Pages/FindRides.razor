@@ -12,7 +12,7 @@
     <div class="find-rides-rides-container">
             @foreach (Ride ride in rides)
             {
-                <Ride Time="@ride.dateTime.ToString()" Driver="@ride.driver" RideId="@ride.id" StartLocation="@ride.startLocation.city" EndLocation="@ride.destination.city"></Ride>
+                <Ride Time="@ride.StartDate.ToString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
             }
     </div>
 

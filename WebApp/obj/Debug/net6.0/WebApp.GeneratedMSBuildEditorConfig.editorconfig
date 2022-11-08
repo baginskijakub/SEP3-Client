@@ -11,65 +11,65 @@ build_property.EnableTrimAnalyzer = true
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = WebApp
 build_property.RootNamespace = WebApp
-build_property.ProjectDir = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp/
+build_property.ProjectDir = C:\Users\Bartek\RiderProjects\SEP3-Client\WebApp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/kuba/Documents/GitHub/SEP3-Client/WebApp
+build_property.MSBuildProjectDirectory = C:\Users\Bartek\RiderProjects\SEP3-Client\WebApp
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/App.razor]
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/_Imports.razor]
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/FindRides.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmluZFJpZGVzLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-72ckdcwi84
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Pages/FindRides.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmluZFJpZGVzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-yyp47ngs7h
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-mwezi9xtxa
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-wdyoy0r9sr
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/RideCompletion.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmlkZUNvbXBsZXRpb24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-03p21zzcg4
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Pages/RideCompletion.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmlkZUNvbXBsZXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-yiubf36423
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Pages/RideDetails.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmlkZURldGFpbHMucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-aq9oehf01x
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Pages/RideDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmlkZURldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-cqrldpr9vo
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/NavButton.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9OYXZCdXR0b24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-3rpybphj65
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Buttons/NavButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQnV0dG9uc1xOYXZCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-kq7mbwmgzf
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/PrimaryButton.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9QcmltYXJ5QnV0dG9uLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-a19ez2bdc4
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Buttons/PrimaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQnV0dG9uc1xQcmltYXJ5QnV0dG9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-x7kwsex6jb
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/SecondaryButton.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9TZWNvbmRhcnlCdXR0b24ucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-pv0mw4gf7r
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Buttons/SecondaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQnV0dG9uc1xTZWNvbmRhcnlCdXR0b24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-it8stfof1j
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Buttons/TeritaryButton.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvQnV0dG9ucy9UZXJpdGFyeUJ1dHRvbi5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-fw765wigv7
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Buttons/TeritaryButton.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcQnV0dG9uc1xUZXJpdGFyeUJ1dHRvbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fb38exuuxp
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/Ride.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = b-65lottstiw
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Ride/Ride.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcUmlkZVxSaWRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-djwqmyxbjc
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Components/Ride/RideDetailed.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL0NvbXBvbmVudHMvUmlkZS9SaWRlRGV0YWlsZWQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-zkn7wo5pa4
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Components/Ride/RideDetailed.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbXBvbmVudHNcUmlkZVxSaWRlRGV0YWlsZWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-oulvqvxykq
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = b-iymxgj1jkn
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-snfefjgk3b
 
-[/Users/kuba/Documents/GitHub/SEP3-Client/WebApp/Shared/Navbar.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdmJhci5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = b-ehe4e231qz
+[C:/Users/Bartek/RiderProjects/SEP3-Client/WebApp/Shared/Navbar.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdmJhci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-9tudee3j43

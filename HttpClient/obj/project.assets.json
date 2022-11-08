@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/kuba/.nuget/packages/": {}
+    "C:\\Users\\Bartek\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/HttpClient.csproj",
+      "projectUniqueName": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\HttpClient\\HttpClient.csproj",
       "projectName": "HttpClient",
-      "projectPath": "/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/HttpClient.csproj",
-      "packagesPath": "/Users/kuba/.nuget/packages/",
-      "outputPath": "/Users/kuba/Documents/GitHub/SEP3-Client/HttpClient/obj/",
+      "projectPath": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\HttpClient\\HttpClient.csproj",
+      "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\HttpClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/kuba/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -51,8 +51,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/kuba/Documents/GitHub/SEP3-Client/Domain/Domain.csproj": {
-              "projectPath": "/Users/kuba/Documents/GitHub/SEP3-Client/Domain/Domain.csproj"
+            "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Bartek\\RiderProjects\\SEP3-Client\\Domain\\Domain.csproj"
             }
           }
         }
@@ -82,7 +82,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/Users/kuba/.dotnet/sdk/6.0.402/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

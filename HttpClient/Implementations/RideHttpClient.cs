@@ -47,7 +47,7 @@ public class RideHttpClient : IRideService
         
         foreach (var ride in rides)
         {
-            if (ride.id == id)
+            if (ride.Id == id)
             {
                 return ride;
             }
