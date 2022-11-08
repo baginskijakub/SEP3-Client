@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B9bjfUzyfdACk60WYklGNViCuqggLALmMfALIqQoigDltAL1WJx0ekDIm+PpzFAeF1bads32KUBmDcIdw+QpqA==",
+  "dgSpecHash": "SlWU1mSfFhI5oWA58YtV315i0JRbPIqoEur966zpBfn+9gJum0TUxGC/mhgjnajcf5uSp/A22u4Fr0dxFvyGwQ==",
   "success": true,
-  "projectFilePath": "/Users/kuba/Documents/GitHub/SEP3-Client/Domain/Domain.csproj",
+  "projectFilePath": "C:\\Users\\migle\\RiderProjects\\SEP3\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

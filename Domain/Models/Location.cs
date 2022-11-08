@@ -6,5 +6,6 @@ public class Location
     public string city { get; set; }
     public string streetName { get; set; }
     public int zipCode { get; set; }
-    public long coordinates { get; set; }
+    public long coordinatesX { get; set; }
+    public long coordinatesY { get; set; }
 }
