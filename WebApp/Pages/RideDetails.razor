@@ -19,7 +19,7 @@
     <div>
         @if (ride != null)
         {
-                    <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
         }
     </div>
     <div class="outro-container">
@@ -32,8 +32,10 @@
 </div>
 
 @code {
+
     [Parameter]
     public int RideId { get; set; }
+
     public Ride? ride { get; set; }
     
     protected override async Task OnInitializedAsync()
