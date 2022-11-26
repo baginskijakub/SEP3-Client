@@ -87,12 +87,12 @@ public class RideHttpClient : IRideService
             throw new Exception(result);
         }
 
-        Ride ride = JsonSerializer.Deserialize<Ride>(result, new JsonSerializerOptions(
+        Ride? ride = JsonSerializer.Deserialize<Ride>(result, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
-        })!;
+        });
 
-        return ride;
+        return ride!;
     }
     
 }
