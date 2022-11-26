@@ -1,0 +1,32 @@
+@using WebApp.Shared.Components.Buttons
+
+<div class="rideCreation-wrapper">
+    <p class="rideCreation-title">Ride information</p>
+    <div class="form-button-wrapper">
+       <div class="form-wrapper">
+               <div class="input-wrapper">
+                   <label class="input-label" for="name">Name</label>
+                   <input class="input" id="name" type="text" placeholder="Insert your name"/>
+               </div>
+               <div class="input-wrapper">
+                   <label class="input-label" for="date">Date</label>
+                   <input class="input" id="date" type="text" placeholder="01/12/2022"/>
+               </div>
+               <div class="input-wrapper">
+                   <label class="input-label" for="time">Time</label>
+                   <input class="input" id="time" type="text" placeholder="17:45"/>
+               </div>
+               <div class="input-wrapper">
+                   <label class="input-label" for="capacity">Capacity</label>
+                   <input class="input" id="capacity" type="text" placeholder="Insert capacity of the car"/>
+               </div>
+               
+           </div>
+            <SecondaryButton Text="Continue" OnClickFunction="@(() => {})"></SecondaryButton> 
+    </div>
+    
+</div>
+
+@code {
+    
+}

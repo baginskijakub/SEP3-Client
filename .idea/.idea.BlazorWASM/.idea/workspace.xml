@@ -7,8 +7,13 @@
     <projectFile profileName="WebApp">WebApp/WebApp.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d76b20a4-0544-428b-91d6-fe2afcc6cbd0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/WebApp/.idea/.idea.WebApp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/.idea/.idea.WebApp.dir/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d76b20a4-0544-428b-91d6-fe2afcc6cbd0" name="Changes" comment="Last fix in main branch">
+      <change afterPath="$PROJECT_DIR$/WebApp/Pages/CreateRide.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApp/Pages/CreateRide.razor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApp/Shared/Components/Ride/RideCreation.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebApp/Shared/Components/Ride/RideCreation.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorWASM/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorWASM/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp/Properties/launchSettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
