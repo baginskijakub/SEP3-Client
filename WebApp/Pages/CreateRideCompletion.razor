@@ -1,5 +1,6 @@
 @page "/CreateRide/{rideId:int}"
 @using Domain.Models
+@using WebApp.Shared.Components
 @using HttpClients.ClientInterfaces
 @inject IRideService rideService;
 @using WebApp.Shared.Components.Ride
@@ -17,6 +18,7 @@
     {
         <Ride Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
     }
+    <Footer></Footer>
 </div>
 
 @code {

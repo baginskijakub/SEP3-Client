@@ -1,4 +1,6 @@
 @page "/RideDetails/{rideId:int}"
+@using WebApp.Shared.Components
+
 @inject NavigationManager navigationManager
 //not sure if ^ works
 
@@ -30,7 +32,7 @@
         </div>
     </div>
 </div>
-
+<Footer></Footer>
 @code {
 
     [Parameter]

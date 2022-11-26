@@ -1,6 +1,7 @@
 @page "/RideCompletion/{rideId:int}"
 //not sure if ^ works
 @using WebApp.Shared.Components.Buttons
+@using WebApp.Shared.Components
 @using WebApp.Shared.Components.Ride
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
@@ -27,9 +28,10 @@
     <div>
         @if (ride != null)
         {
-                    <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
         }
     </div>
+    <Footer></Footer>
 </div>
 
 @code {
