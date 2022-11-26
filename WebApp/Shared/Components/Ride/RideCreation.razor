@@ -1,32 +1,225 @@
 @using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@using Domain.Models
+@using WebApp.Pages
+@using DateTime = System.DateTime
+@inject IRideService rideService;
+@inject NavigationManager navigationManager;
 
 <div class="rideCreation-wrapper">
-    <p class="rideCreation-title">Ride information</p>
+    <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
-       <div class="form-wrapper">
-               <div class="input-wrapper">
-                   <label class="input-label" for="name">Name</label>
-                   <input class="input" id="name" type="text" placeholder="Insert your name"/>
-               </div>
-               <div class="input-wrapper">
-                   <label class="input-label" for="date">Date</label>
-                   <input class="input" id="date" type="text" placeholder="01/12/2022"/>
-               </div>
-               <div class="input-wrapper">
-                   <label class="input-label" for="time">Time</label>
-                   <input class="input" id="time" type="text" placeholder="17:45"/>
-               </div>
-               <div class="input-wrapper">
-                   <label class="input-label" for="capacity">Capacity</label>
-                   <input class="input" id="capacity" type="text" placeholder="Insert capacity of the car"/>
-               </div>
-               
-           </div>
-            <SecondaryButton Text="Continue" OnClickFunction="@(() => {})"></SecondaryButton> 
+        <div class="form-wrapper">
+            @switch (State)
+            {
+                case "Ride information":
+                    <div class="input-wrapper">
+                        <label class="input-label" for="name">Name</label>
+                        <input class="input" id="name" type="text" placeholder="Insert your name" @bind="name"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="date">Date</label>
+                        <input class="input" id="date" type="text" placeholder="01/12/2022" @bind="date"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="time">Time</label>
+                        <input class="input" id="time" type="text" placeholder="17:45" @bind="time"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="capacity">Capacity</label>
+                        <input class="input" id="capacity" type="text" placeholder="Insert capacity of the car" @bind="capacity"/>
+                    </div>
+                    break;
+                case "Start location":
+                    <div class="input-wrapper">
+                        <label class="input-label" for="country">Country</label>
+                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="city">City</label>
+                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="startCity"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="street">Street</label>
+                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="startStreet"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="zip">Zip code</label>
+                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="startZip"/>
+                    </div>
+                    break;
+                case "Destination":
+                    <div class="input-wrapper">
+                        <label class="input-label" for="country">Country</label>
+                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="destinationCountry"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="city">City</label>
+                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="destinationCity"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="street">Street</label>
+                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="destinationStreet"/>
+                    </div>
+                    <div class="input-wrapper">
+                        <label class="input-label" for="zip">Zip code</label>
+                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="destinationZip"/>
+                    </div>
+                    break;
+            }
+            
+
+        </div>
+        @if (State == "Destination")
+        {
+            <SecondaryButton Text="Create" OnClickFunction="@ChangeState"></SecondaryButton>
+        }
+        else
+        {
+            <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
+        }
     </div>
     
 </div>
 
 @code {
+    [Parameter] 
+    public string State { get; set; }
+
+    private string? name;
+    private string? date;
+    private string? time;
+    private string? capacity;
     
+    private string? startCountry;
+    private string? startCity;
+    private string? startStreet;
+    private string? startZip;
+    
+    private string? destinationCountry;
+    private string? destinationCity;
+    private string? destinationStreet;
+    private string? destinationZip;
+
+    private void Reset(string state)
+    {
+        switch (state)
+        {
+            case "Ride information":
+                name = null;
+                date = null;
+                time = null;
+                capacity = null;
+                break;
+            case "Start location":
+                startCity = null;
+                startCountry = null;
+                startStreet = null;
+                startZip = null;
+                break;
+            case "Destination":
+                destinationCity = null;
+                destinationCountry = null;
+                destinationStreet = null;
+                destinationZip = null;
+                break;
+        }
+    }
+
+    private void ChangeState()
+    {
+        try
+        {
+            switch (State)
+                    {
+                        case "Ride information":
+                            if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time) ||
+                                String.IsNullOrEmpty(name) || Int32.Parse(capacity) <= 0)
+                            {
+                                Reset(State);
+                                throw new Exception("Fill correctly form");
+                            }
+                            string[] dateArr = date.Split('/');
+                            if (dateArr.Length != 3)
+                            {
+                                Reset(State);
+
+                                throw new Exception("Incorrect date");
+
+                            }
+
+                            string[] timeArr = time.Split(':');
+
+                            if (timeArr.Length != 2)
+                            {
+                                Reset(State);
+
+                                throw new Exception("Incorrect time");
+
+                            }
+                            
+                            DateTime today = DateTime.Now;
+                            DateTime userDate = new DateTime(Int32.Parse(dateArr[2]), Int32.Parse(dateArr[1]),Int32.Parse(dateArr[0]),
+                                Int32.Parse(timeArr[0]),Int32.Parse(timeArr[1]),0  );
+                            if (DateTime.Compare(userDate, today) <= 0)
+                            {
+
+                                Reset(State);
+                                throw new Exception("Incorrect date and time");
+
+                            }
+                            State = "Start location";
+                            break;
+                        case "Start location":
+                            if (String.IsNullOrEmpty(startCity) || String.IsNullOrEmpty(startCountry) ||
+                                String.IsNullOrEmpty(startStreet) || String.IsNullOrEmpty(startZip))
+                            {
+                                Reset(State);
+
+                                throw new Exception("Fill correctly form");
+                            }
+                            State = "Destination";
+                            break;
+                        case "Destination":
+                            if (String.IsNullOrEmpty(destinationCity) || String.IsNullOrEmpty(destinationCountry) ||
+                                String.IsNullOrEmpty(destinationStreet) || String.IsNullOrEmpty(destinationZip))
+                            {
+                                Reset(State);
+
+                                throw new Exception("Fill correctly form");
+                            }
+                            Location startLocation = new Location()
+                            {
+                                City = startCity, CoordinatesX = 22,
+                                CoordinatesY = 33, Country = startCountry, StreetName = startStreet, ZipCode = startZip
+                            };
+                            Location destination = new Location()
+                            {
+                                City = destinationCity, CoordinatesX = 22,
+                                CoordinatesY = 33, Country = destinationCountry, StreetName = destinationStreet, ZipCode = destinationZip
+                            };
+                            RideCreationDto dto = new RideCreationDto()
+                            {
+                                Capacity = Int32.Parse(capacity), Date = date
+                                , StartLocation = startLocation, Destination =destination, DriversName = name, Time = time
+                            };
+                            Console.WriteLine(dto.StartLocation.ZipCode);
+                           //Ride ride = rideService.CreateRide(dto)
+                            // navigationManager.NavigateTo($"/CreateRide/{ride.Id}");
+                            break;
+                    }
+            StateHasChanged();
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            StateHasChanged();
+        }
+        
+    }
+
+    
+
 }
