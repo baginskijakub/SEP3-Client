@@ -76,4 +76,23 @@ public class RideHttpClient : IRideService
         }
         
     }
+    
+    public async Task<Ride> CreateRide(RideCreationDto creationDto)
+    {
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", creationDto);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine(result);
+            throw new Exception(result);
+        }
+
+        Ride ride = JsonSerializer.Deserialize<Ride>(result, new JsonSerializerOptions(
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+
+        return ride;
+    }
+    
 }

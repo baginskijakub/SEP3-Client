@@ -12,4 +12,6 @@ public interface IRideService
     Task JoinRide(JoinRideDto dto);
 
     Task<Ride?> GetRideById(int id);
+
+    Task<Ride> CreateRide(RideCreationDto creationDto);
 }
