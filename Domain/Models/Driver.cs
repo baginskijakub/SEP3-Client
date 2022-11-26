@@ -15,17 +15,17 @@ public class Driver
         Rides = new List<Ride>();
     }
 
-    public void addRide(Ride ride)
+    public void AddRide(Ride ride)
     {
         Rides.Add(ride);
     }
 
-    public void removeRide(Ride ride)
+    public void RemoveRide(Ride ride)
     {
         Rides.Remove(ride);
     }
 
-    public List<Ride> getRidesByStartLocation(Location startLocation)
+    public List<Ride> GetRidesByStartLocation(Location startLocation)
     {
         List<Ride> ridesByStartLocation = new List<Ride>();
         
@@ -40,7 +40,7 @@ public class Driver
         return ridesByStartLocation;
     }
 
-    public List<Ride> getRidesByDestination(Location destination)
+    public List<Ride> GetRidesByDestination(Location destination)
     {
         List<Ride> ridesByDestination = new List<Ride>();
 
@@ -55,7 +55,7 @@ public class Driver
         return ridesByDestination;
     }
 
-    public List<Ride> getRidesByDate(long epochStart)
+    public List<Ride> GetRidesByDate(long epochStart)
     {
         List<Ride> ridesByDate = new List<Ride>();
 
