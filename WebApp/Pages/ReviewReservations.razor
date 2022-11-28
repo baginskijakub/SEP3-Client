@@ -1,0 +1,36 @@
+@page "/ReviewReservations"
+@using WebApp.Shared.Components.Ride
+@using Ride = Domain.Models.Ride
+@using Domain.Models
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using System.ComponentModel.Design
+@using WebApp.Shared.Components.Reservation
+@inject IRideService reservation;
+
+<div class="review-reservations-wrapper">
+    <Reservation passengerName="Tomasz" startLocation="Horsens" endLocation="Copenhagen" Time="Tomorrow 15:00" didAccept="true"></Reservation>
+</div>
+
+@code {
+    [Parameter]
+    public int rideId { get; set; }
+    private Ride? ride { get; set; }
+    List<Ride> rides = new List<Ride>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            ride = await rideService.GetRideById(rideId);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+    
+    }
+}

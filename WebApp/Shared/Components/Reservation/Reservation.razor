@@ -1,0 +1,50 @@
+@using WebApp.Shared.Components.Buttons
+
+<div class="reservation-wrapper">
+    <div class="reservation-left">
+        <h3>@passengerName</h3>
+        <div class="ride-destination">
+            <h5>@startLocation</h5>
+            <img src="icons/arrow.svg"/>
+            <h5>@endLocation</h5>
+        </div>
+        <p>@Time</p>
+    </div>
+    <div class="reservation-right">
+        <img src="icons/map-placeholder.png">
+        <div class="buttons-container">
+            @if (didAccept == null)
+            {
+                <SecondaryButton Text="Reject"></SecondaryButton>
+                <SecondaryButton Text="Accept"> </SecondaryButton>
+            }
+            else if(didAccept == true)
+            {
+                <SecondaryButton Text="Undo Accept"></SecondaryButton>
+            }
+            else
+            {
+                <SecondaryButton Text="Undo Reject"></SecondaryButton>
+            }
+        </div>
+    </div>
+</div>
+
+@code 
+{
+    [Parameter]
+    public String passengerName { get; set; }
+    [Parameter]
+    public String startLocation { get; set; }
+    [Parameter]
+    public String endLocation { get; set; }
+    [Parameter]
+    public String Time { get; set; }
+    [Parameter]
+    public bool? didAccept { get; set; }
+
+    [Parameter] public int id { get; set; }
+    
+    
+
+}
