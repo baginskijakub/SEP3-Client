@@ -56,3 +56,8 @@
     color: #B3BBCE;
 
 }
+
+.createRideCompletion-wrapper .ride-wrapper .select-ride-button
+{
+    display: none;
+}
