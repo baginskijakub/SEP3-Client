@@ -9,7 +9,7 @@
     </div>
     <div class="buttons-container">
         <SecondaryButton Text="Find a ride" OnClickFunction="@navigateToRides"></SecondaryButton>
-        <PrimaryButton Text="I'm a driver" OnClickFunction="@navigateToCreateRide"></PrimaryButton>
+        <PrimaryButton Text="I'm a driver" OnClickFunction="@navigateToDriver"></PrimaryButton>
     </div>
 </div>
 
@@ -21,9 +21,9 @@
         navigationManager.NavigateTo("/FindRides");
     }
 
-    private void navigateToCreateRide()
+    private void navigateToDriver()
     {
-        navigationManager.NavigateTo("/CreateRide");
+        navigationManager.NavigateTo("/DriverView");
         ;
     }
 }

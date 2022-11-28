@@ -48,7 +48,7 @@
     align-items: center;
     padding: 4px 5px 4px 9px;
     gap: 29px;
-    
+
 
     background: rgba(40, 42, 63, 0.87);
     border: 1px solid #343548;
@@ -75,7 +75,7 @@
     align-items: flex-start;
     padding: 6px 8px;
     gap: 10px;
-    
+
     background: #343549;
     border-radius: 17px;
 }
