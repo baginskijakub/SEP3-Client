@@ -1,0 +1,47 @@
+@page "/DriverView"
+@using WebApp.Shared.Components.Buttons
+@inject NavigationManager navManager
+
+<div class="driver-page-wrapper">
+<div class="driver-container">
+    
+    <div class="driver-wrapper">
+        <div class="driver-inner">
+            <img src="icons/account_circle.svg"/>
+            <h3>Bartosz Wiacek</h3>
+            
+        </div>
+        <span class="divider"/>
+        <p>Functionality</p>
+    </div>
+
+    <div class="driver-wrapper">
+        <h3>Create a ride</h3>
+        <span class="divider"/>
+        <p>Let our users know that you are taking a ride so they can join!</p>
+        <SecondaryButton Text="Create" OnClickFunction="@navigateToCreateRide"/>
+    </div>
+    
+    <div class="driver-wrapper">
+        <h3>Manage rides</h3>
+        <span class="divider"/>
+        <p>Accept or reject rides that other users have requested.</p>
+        <SecondaryButton Text="View" OnClickFunction="@navigateToViewReservations"/>
+    </div>
+</div>
+</div>
+
+
+
+@code {
+
+    private void navigateToCreateRide()
+    {
+        navManager.NavigateTo("/CreateRide");
+    }
+
+    private void navigateToViewReservations()
+    {
+        navManager.NavigateTo("/ReviewReservations");
+    }
+}
