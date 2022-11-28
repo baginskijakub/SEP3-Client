@@ -79,7 +79,7 @@ public class RideHttpClient : IRideService
     
     public async Task<Ride> CreateRide(RideCreationDto creationDto)
     {
-        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", creationDto);
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides/create", creationDto);
         string result = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
