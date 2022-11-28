@@ -1,4 +1,6 @@
+using System.Net.Http.Json;
 using System.Text.Json;
+using Domain.DTOs;
 using Domain.Models;
 using HttpClients.ClientInterfaces;
 
@@ -15,7 +17,7 @@ public class ReservationHttpClient : IReservationService
     
     public async Task<List<Reservation>> getReservationsToAccept()
     {
-        HttpResponseMessage response = await client.getReservationsToAccept();
+        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/reservations");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
@@ -30,9 +32,10 @@ public class ReservationHttpClient : IReservationService
         
     }
 
-    public async Task<Reservation> acceptPassenger(int reservationId, bool didAccept)
+    public async Task<Reservation> acceptPassenger(AcceptReservationDto dto)
     {
-        HttpResponseMessage response = await client.acceptPassanger(reservationId, didAccept);
+        
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/reservations", dto);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {

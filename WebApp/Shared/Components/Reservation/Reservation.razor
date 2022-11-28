@@ -1,6 +1,7 @@
 @using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @using Domain.Models
+@using Domain.DTOs
 @inject IRideService rideService
 @inject IReservationService reservationService
 
@@ -71,7 +72,12 @@
     {
         try
         {
-            reservationService.acceptPassenger(reservationId, true);
+            reservationService.acceptPassenger(
+                new AcceptReservationDto()
+                {
+                    ReservationId = reservationId,
+                    didAccept = true
+                });
         }
         catch (Exception e)
         {
@@ -83,7 +89,12 @@
     {
         try
         {
-            reservationService.acceptPassenger(reservationId, false);
+            reservationService.acceptPassenger(
+                new AcceptReservationDto()
+                {
+                    ReservationId = reservationId,
+                    didAccept = false
+                });
         }
         catch (Exception e)
         {
