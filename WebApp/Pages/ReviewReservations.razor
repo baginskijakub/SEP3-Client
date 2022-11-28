@@ -6,24 +6,28 @@
 @using HttpClients.ClientInterfaces
 @using System.ComponentModel.Design
 @using WebApp.Shared.Components.Reservation
-@inject IRideService reservation;
+@using Reservation = Domain.Models.Reservation
+@inject IReservationService ReservationService;
 
 <div class="review-reservations-wrapper">
+    @reservations
+    @foreach (Reservation reservation in reservations)
+    {
+        <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" isAccepted="@reservation.isAccepted"></Reservation>
+    }
     <Reservation passengerName="Tomasz" startLocation="Horsens" endLocation="Copenhagen" Time="Tomorrow 15:00" didAccept="true"></Reservation>
 </div>
 
 @code {
-    [Parameter]
-    public int rideId { get; set; }
-    private Ride? ride { get; set; }
-    List<Ride> rides = new List<Ride>();
+    
+    List<Reservation> reservations = new List<Reservation>();
     
     protected override async Task OnInitializedAsync()
     {
 
         try
         {
-            ride = await rideService.GetRideById(rideId);
+            reservations = await ReservationService.getReservationsToAccept();
 
         }
         catch (Exception e)
@@ -33,4 +37,4 @@
         }
     
     }
-}
+};

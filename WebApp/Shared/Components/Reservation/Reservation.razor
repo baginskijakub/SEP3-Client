@@ -1,14 +1,18 @@
 @using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Domain.Models
+@inject IRideService rideService
+@inject IReservationService reservationService
 
 <div class="reservation-wrapper">
     <div class="reservation-left">
         <h3>@passengerName</h3>
         <div class="ride-destination">
-            <h5>@startLocation</h5>
+            <h5>@ride.StartLocation.City</h5>
             <img src="icons/arrow.svg"/>
-            <h5>@endLocation</h5>
+            <h5>@ride.Destination.City</h5>
         </div>
-        <p>@Time</p>
+        <p>@ride.StartDate.GetDateString()</p>
     </div>
     <div class="reservation-right">
         <img src="icons/map-placeholder.png">
@@ -32,19 +36,59 @@
 
 @code 
 {
+
+    public Ride ride { get; set; }
+    
     [Parameter]
     public String passengerName { get; set; }
-    [Parameter]
-    public String startLocation { get; set; }
-    [Parameter]
-    public String endLocation { get; set; }
-    [Parameter]
-    public String Time { get; set; }
+
     [Parameter]
     public bool? didAccept { get; set; }
+    
+    [Parameter] public int rideId { get; set; }
+    
+    [Parameter]
+    public int reservationId { get; set; }
 
-    [Parameter] public int id { get; set; }
     
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            ride = await rideService.GetRideById(rideId);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
     
+    }
+    
+    private async void AcceptReservation()
+    {
+        try
+        {
+            reservationService.acceptPassenger(reservationId, true);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private async void RejectReservation()
+    {
+        try
+        {
+            reservationService.acceptPassenger(reservationId, false);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
 
 }
