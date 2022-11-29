@@ -92,6 +92,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -199,7 +200,9 @@
       <workItem from="1667806333739" duration="4376000" />
       <workItem from="1667831807415" duration="3442000" />
       <workItem from="1667839748777" duration="1403000" />
-      <workItem from="1667904021784" duration="1040000" />
+      <workItem from="1667904021784" duration="1383000" />
+      <workItem from="1667905649050" duration="570000" />
+      <workItem from="1667913292062" duration="349000" />
     </task>
     <servers />
   </component>
