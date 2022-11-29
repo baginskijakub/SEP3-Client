@@ -1,10 +1,16 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 
 namespace Domain.Models;
 
 public class DateTime
 {
+<<<<<<< HEAD
     private long epoch { get; set; }
+=======
+    public long Epoch { get; set; }
+>>>>>>> 9377c377bd76b5d36a5e260c7978fc3642f4f8b5
     private int year { get; set; }
     private int month { get; set; }
     private int day { get; set; }
@@ -20,6 +26,7 @@ public class DateTime
         this.hour = hour;
         this.minute = minute;
         this.second = second;
+        
     }
 
     public DateTime(int month, int day, int year)
@@ -29,13 +36,20 @@ public class DateTime
         this.day = day;
     }
 
-    public DateTime(long epoch)
+    public DateTime()
     {
-        this.epoch = epoch;
     }
 
-    public string getTimeString()
+    public DateTime(long epoch)
     {
+        this.Epoch = epoch;
+        epoch2string(Epoch);
+
+    }
+
+    public string GetTimeString()
+    {
+        epoch2string(Epoch);
         string s = "";
 
         if (hour < 10)
@@ -56,17 +70,18 @@ public class DateTime
 
     }
 
-    public string getDateString()
+    public string GetDateString()
     {
+        epoch2string(Epoch);
         return month + "/" + day + "/" + year;
     }
 
-    public string fullDateAndTimeString()
+    public string FullDateAndTimeString()
     {
-        return getTimeString() + getDateString();
+        return GetTimeString() + GetDateString();
     }
 
-    public string getFormattedString()
+    public string GetFormattedString()
     {
         return null;
         
@@ -74,5 +89,15 @@ public class DateTime
         //Therefore cannot compare those two dates. Only through the DateTime that is 
         //built in can you access various methods, such as "DayOfWeek", "Week number" etc.
         //This should be rethought on how to make, cuz I havent figured out a work around.
+    }
+    
+    private  void epoch2string(long epoch) {
+        System.DateTime date = new System.DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(epoch);
+        year = date.Year;
+        month = date.Month;
+        day = date.Day;
+        hour = date.Hour;
+        minute = date.Minute;
+        second = date.Second;
     }
 }

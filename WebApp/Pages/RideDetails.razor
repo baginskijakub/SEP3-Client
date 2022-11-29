@@ -1,4 +1,5 @@
 @page "/RideDetails/{rideId:int}"
+@inject NavigationManager navigationManager
 //not sure if ^ works
 
 @using WebApp.Shared.Components.Ride
@@ -16,13 +17,20 @@
         <h5 class="title-secondary">Please make sure that details of the ride work for you.</h5>
     </div>
     <div>
+<<<<<<< HEAD
         <RideDetailed Time="@ride.StartDate.ToString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+=======
+        @if (ride != null)
+        {
+                    <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+        }
+>>>>>>> 9377c377bd76b5d36a5e260c7978fc3642f4f8b5
     </div>
     <div class="outro-container">
         <h3>Everything all right?</h3>
         <div class="buttons-container">
-            <TeritaryButton Text="Back to rides" hasArrow="true" arrowSide="Left"></TeritaryButton>
-            <SecondaryButton Text="Proceed" hasArrow="true" arrowSide="Right"></SecondaryButton>
+            <TeritaryButton Text="Back to rides" hasArrow="true" arrowSide="Left" OnClickFunction="@InvokeOnClickBack"></TeritaryButton>
+            <SecondaryButton Text="Proceed" hasArrow="true" arrowSide="Right" OnClickFunction="@InvokeOnClick"></SecondaryButton>
         </div>
     </div>
 </div>
@@ -30,11 +38,29 @@
 @code {
     [Parameter]
     public int RideId { get; set; }
-    public Ride ride { get; set; }
+    public Ride? ride { get; set; }
     
-    protected override async void OnParametersSet()
+    protected override async Task OnInitializedAsync()
     {
-
+        try
+        {
         ride = await rideService.GetRideById(RideId);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
     }
+    
+    public void InvokeOnClick()
+    {
+        navigationManager.NavigateTo($"/RideCompletion/{RideId}");
+    }
+    
+    public void InvokeOnClickBack()
+    {
+        navigationManager.NavigateTo($"/FindRides");
+    }
+
 }
