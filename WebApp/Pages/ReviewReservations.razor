@@ -1,0 +1,39 @@
+@page "/ReviewReservations"
+@using WebApp.Shared.Components.Ride
+@using Ride = Domain.Models.Ride
+@using Domain.Models
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using System.ComponentModel.Design
+@using WebApp.Shared.Components.Reservation
+@using Reservation = Domain.Models.Reservation
+@inject IReservationService ReservationService;
+
+<div class="review-reservations-wrapper">
+    @foreach (Reservation reservation in reservations)
+    {
+        <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted"></Reservation>
+    }
+</div>
+
+@code {
+    
+    List<Reservation> reservations = new List<Reservation>();
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+            reservations = await ReservationService.getReservationsToAccept();
+            Console.WriteLine(reservations.Count);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+    
+    }
+};

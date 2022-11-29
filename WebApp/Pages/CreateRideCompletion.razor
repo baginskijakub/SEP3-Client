@@ -1,0 +1,43 @@
+@page "/CreateRide/{rideId:int}"
+@using Domain.Models
+@using WebApp.Shared.Components
+@using HttpClients.ClientInterfaces
+@inject IRideService rideService;
+@using WebApp.Shared.Components.Ride
+@using Ride = Domain.Models.Ride
+
+<div class="createRideCompletion-wrapper">
+    <div class="createRideCompletion-titles-container">
+        <div class="primary-title-container">
+            <h1 class="primary-title">Users will contact you</h1>
+            <h1 class="primary-title">to reserve a spot in your car</h1>
+        </div>
+        <h5 class="secondary-title">Insert your ride's information</h5>
+    </div>
+    @if (ride != null)
+    {
+        <Ride Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int rideId { get; set; }
+    private Ride? ride { get; set; }
+    
+    protected override async Task OnInitializedAsync()
+    {
+
+        try
+        {
+        ride = await rideService.GetRideById(rideId);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+    
+    }
+}

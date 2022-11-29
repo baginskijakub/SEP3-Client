@@ -11,6 +11,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<IRideService, RideHttpClient>();
+builder.Services.AddScoped<IReservationService, ReservationHttpClient>();
 
 builder.Services.AddScoped(sp => new HttpClient { });
 

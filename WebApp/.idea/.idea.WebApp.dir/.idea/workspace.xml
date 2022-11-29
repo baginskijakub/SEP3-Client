@@ -5,9 +5,7 @@
     <projectFile profileName="WebApp">WebApp.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="19907c39-5620-445a-8532-ee275311e244" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApp.dir/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="19907c39-5620-445a-8532-ee275311e244" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +79,7 @@
       <workItem from="1667808709724" duration="16000" />
       <workItem from="1667810870888" duration="4919000" />
       <workItem from="1667831770671" duration="26000" />
+      <workItem from="1669299342402" duration="37000" />
     </task>
     <servers />
   </component>
