@@ -10,7 +10,6 @@
 @inject IReservationService ReservationService;
 
 <div class="review-reservations-wrapper">
-    @reservations
     @foreach (Reservation reservation in reservations)
     {
         <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted"></Reservation>
@@ -27,6 +26,7 @@
         try
         {
             reservations = await ReservationService.getReservationsToAccept();
+            Console.WriteLine(reservations.Count);
 
         }
         catch (Exception e)

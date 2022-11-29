@@ -8,20 +8,24 @@
 <div class="reservation-wrapper">
     <div class="reservation-left">
         <h3>@passengerName</h3>
-        <div class="ride-destination">
-            <h5>@ride.StartLocation.City</h5>
-            <img src="icons/arrow.svg"/>
-            <h5>@ride.Destination.City</h5>
-        </div>
-        <p>@ride.StartDate.GetDateString()</p>
+        @if (ride != null)
+        {
+            <div class="ride-destination">
+                        <h5>@ride.StartLocation.City</h5>
+                        <img src="icons/arrow.svg"/>
+                        <h5>@ride.Destination.City</h5>
+                    </div>
+                    <p>@ride.StartDate.GetDateString()</p>
+        }
+        
     </div>
     <div class="reservation-right">
         <img src="icons/map-placeholder.png">
         <div class="buttons-container">
             @if (didAccept == null)
             {
-                <SecondaryButton Text="Reject"></SecondaryButton>
-                <SecondaryButton Text="Accept"> </SecondaryButton>
+                <SecondaryButton Text="Reject" OnClickFunction="@RejectReservation"></SecondaryButton>
+                <SecondaryButton Text="Accept" OnClickFunction="@AcceptReservation"> </SecondaryButton>
             }
             else if(didAccept == true)
             {
@@ -38,7 +42,7 @@
 @code 
 {
 
-    public Ride ride { get; set; }
+    public Ride? ride { get; set; }
     
     [Parameter]
     public String passengerName { get; set; }
@@ -72,7 +76,7 @@
     {
         try
         {
-            reservationService.acceptPassenger(
+            await reservationService.acceptPassenger(
                 new AcceptReservationDto()
                 {
                     ReservationId = reservationId,
@@ -89,7 +93,7 @@
     {
         try
         {
-            reservationService.acceptPassenger(
+            await reservationService.acceptPassenger(
                 new AcceptReservationDto()
                 {
                     ReservationId = reservationId,
