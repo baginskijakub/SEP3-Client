@@ -6,6 +6,7 @@
 @using WebApp.Shared.Components.Ride
 @using Ride = Domain.Models.Ride
 
+
 <div class="createRideCompletion-wrapper">
     <div class="createRideCompletion-titles-container">
         <div class="primary-title-container">
@@ -16,7 +17,7 @@
     </div>
     @if (ride != null)
     {
-        <Ride Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
+        <Ride Time="@ride.StartDate.GetDateString()" DriverId="@ride.DriverId" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
     }
 </div>
 
@@ -24,13 +25,14 @@
     [Parameter]
     public int rideId { get; set; }
     private Ride? ride { get; set; }
+
     
     protected override async Task OnInitializedAsync()
     {
 
         try
         {
-        ride = await rideService.GetRideById(rideId);
+            ride = await rideService.GetRideById(rideId);
 
         }
         catch (Exception e)

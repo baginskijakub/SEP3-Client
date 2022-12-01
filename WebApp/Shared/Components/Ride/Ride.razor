@@ -1,4 +1,8 @@
+@using Domain.Models
+@using HttpClients.ClientInterfaces
 @inject NavigationManager navigationManager
+@inject ILoginService loginService;
+
 
 <div class="ride-wrapper">
     <div class="ride-inner">
@@ -8,7 +12,7 @@
             <img src="icons/arrow.svg"/>
             <h5>@EndLocation</h5>
         </div>
-        <p class="caption">@Driver</p>
+        <p class="caption">@Driver.Name</p>
     </div>
     <img class="" src="icons/map-placeholder.png"/>
     <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg"/></button>
@@ -25,16 +29,23 @@
     public string Time { get; set; } = "Time";
     
     [Parameter]
-    public string Driver { get; set; } = "Driver";
+    public int DriverId { get; set; }
     
     [Parameter]
     public int RideId { get; set; }
+    
+    public Driver? Driver { get; set; }
     
     public void InvokeOnClick()
     {
         navigationManager.NavigateTo($"/RideDetails/{RideId}");
     }
-    
-    
+
+    protected override async Task OnInitializedAsync()
+    {
+        Driver = await loginService.GetDriverByIdAsync(DriverId);    
+    }
+
+
 
 }

@@ -2,12 +2,15 @@
 @using WebApp.Shared.Components
 
 @inject NavigationManager navigationManager
+@inject ILoginService loginService;
+
 //not sure if ^ works
 
 @using WebApp.Shared.Components.Ride
 @using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
+@using Domain.Models
 @inject IRideService rideService
 
 <div class="find-rides-page-wrapper">
@@ -20,8 +23,7 @@
     </div>
     <div>
 
-        
-            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+        <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
         
     </div>
     <div class="outro-container">
@@ -38,12 +40,20 @@
     public int RideId { get; set; }
 
     public Ride? ride { get; set; }
+    public Driver? driver { get; set; }
+
     
     protected override async Task OnInitializedAsync()
     {
         try
         {
         ride = await rideService.GetRideById(RideId);
+            if (ride != null)
+            {
+               int driverId = ride.DriverId;
+                driver = await loginService.GetDriverByIdAsync(driverId); 
+            }
+            
 
         }
         catch (Exception e)

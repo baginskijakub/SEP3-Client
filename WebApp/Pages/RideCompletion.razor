@@ -6,7 +6,9 @@
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
 @using Domain.DTOs
+@using Domain.Models
 @inject IRideService rideService
+@inject ILoginService loginService;
 
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
@@ -26,9 +28,9 @@
         <SecondaryButton Text="Send to driver" hasArrow="true" OnClickFunction="OnCompletion"></SecondaryButton>
     </div>
     <div>
-        @if (ride != null)
+        @if (ride != null && driver != null)
         {
-            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@ride.Driver" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
         }
     </div>
 
@@ -38,6 +40,7 @@
     [Parameter]
     public int RideId { get; set; }
     public Ride? ride { get; set; }
+    public Driver? driver { get; set; }
     public String name { get; set; }
     public String telNo  { get; set; }
     
@@ -45,6 +48,8 @@
     {
 
         ride = await rideService.GetRideById(RideId);
+        int driverId = ride.DriverId;
+        driver = await loginService.GetDriverByIdAsync(driverId);
     }
     
     public void OnCompletion()

@@ -4,6 +4,7 @@
 @using Domain.Models
 @using WebApp.Pages
 @using DateTime = System.DateTime
+@using System.Security.Claims
 @inject IRideService rideService;
 @inject NavigationManager navigationManager;
 
@@ -14,10 +15,6 @@
             @switch (State)
             {
                 case "Ride information":
-                    <div class="input-wrapper">
-                        <label class="input-label" for="name">Name</label>
-                        <input class="input" id="name" type="text" placeholder="Insert your name" @bind="name"/>
-                    </div>
                     <div class="input-wrapper">
                         <label class="input-label" for="date">Date</label>
                         <input class="input" id="date" type="text" placeholder="01/12/2022" @bind="date"/>
@@ -84,10 +81,17 @@
 </div>
 
 @code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    
     [Parameter] 
     public string State { get; set; }
 
-    private string? name;
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+
+    private string driverId;
     private string? date;
     private string? time;
     private string? capacity;
@@ -102,12 +106,24 @@
     private string? destinationStreet;
     private string? destinationZip;
 
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        
+        if (!isLoggedIn) return;
+        
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;    
+    }
+
     private void Reset(string state)
     {
         switch (state)
         {
             case "Ride information":
-                name = null;
                 date = null;
                 time = null;
                 capacity = null;
@@ -134,8 +150,7 @@
             switch (State)
                     {
                         case "Ride information":
-                            if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time) ||
-                                String.IsNullOrEmpty(name) || Int32.Parse(capacity) <= 0)
+                            if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time) || Int32.Parse(capacity) <= 0)
                             {
                                 Reset(State);
                                 throw new Exception("Fill correctly form");
@@ -202,7 +217,7 @@
                             RideCreationDto dto = new RideCreationDto()
                             {
                                 Capacity = Int32.Parse(capacity), Date = date
-                                , StartLocation = startLocation, Destination =destination, DriversName = name, Time = time
+                                , StartLocation = startLocation, Destination =destination, DriverId = Int32.Parse(driverId), Time = time
                             };
                             Console.WriteLine(dto.StartLocation.ZipCode);
                             Domain.Models.Ride ride = await rideService.CreateRide(dto);
