@@ -1,12 +1,13 @@
 @page "/CreateRide"
 @using WebApp.Shared.Components.Ride
 @using WebApp.Shared.Components
-
+@* @inject JSRuntime JsRuntime *@
 
 <div class="createRide-wrapper">
     <div class="createRide-titles-container">
         <div class="primary-title-container">
             <h1 class="primary-title">Let our users know</h1>
+            @* <input class="primary-title" id="autocomplete" oninput="@ShowAlertWindow" placeholder="Enter a place" type="text"/> *@
             <h1 class="primary-title">that you are taking a ride</h1>
         </div>
         <h5 class="secondary-title">Insert your ride's information</h5>
@@ -15,5 +16,15 @@
     </div>
 </div>
 @code {
-    
+    //
+    // [Inject]
+    // public IJSRuntime JSRuntime { get; set; }
+    // private async void ShowAlertWindow()
+    // {
+    //     await JSRuntime.InvokeVoidAsync("mapss");
+    // }
+    // private async void ShowAlertMap()
+    // {
+    //     await JSRuntime.InvokeVoidAsync("initMap");
+    // }
 }

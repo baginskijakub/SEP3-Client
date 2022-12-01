@@ -6,11 +6,15 @@
 @using DateTime = System.DateTime
 @inject IRideService rideService;
 @inject NavigationManager navigationManager;
+@inject IJSRuntime _jsRuntime;
 
 <div class="rideCreation-wrapper">
     <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
         <div class="form-wrapper">
+        <div id="map">
+                                
+                            </div>
             @switch (State)
             {
                 case "Ride information":
@@ -32,22 +36,25 @@
                     </div>
                     break;
                 case "Start location":
-                    <div class="input-wrapper">
-                        <label class="input-label" for="country">Country</label>
-                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="city">City</label>
-                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="startCity"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="street">Street</label>
-                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="startStreet"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="zip">Zip code</label>
-                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="startZip"/>
-                    </div>
+                    
+                    
+                    
+                    @* <div class="input-wrapper"> *@
+                    @*     <label class="input-label" for="country">Country</label> *@
+                    @*     <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/> *@
+                    @* </div> *@
+                    @* <div class="input-wrapper"> *@
+                    @*     <label class="input-label" for="city">City</label> *@
+                    @*     <input class="input" id="city" type="text" placeholder="Insert city" @bind="startCity"/> *@
+                    @* </div> *@
+                    @* <div class="input-wrapper"> *@
+                    @*     <label class="input-label" for="street">Street</label> *@
+                    @*     <input class="input" id="street" type="text" placeholder="Insert street" @bind="startStreet"/> *@
+                    @* </div> *@
+                    @* <div class="input-wrapper"> *@
+                    @*     <label class="input-label" for="zip">Zip code</label> *@
+                    @*     <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="startZip"/> *@
+                    @* </div> *@
                     break;
                 case "Destination":
                     <div class="input-wrapper">
@@ -86,6 +93,9 @@
 @code {
     [Parameter] 
     public string State { get; set; }
+    
+    // [Inject]
+    // // public IJSRuntime JSRuntime { get; set; }
 
     private string? name;
     private string? date;
@@ -101,6 +111,22 @@
     private string? destinationCity;
     private string? destinationStreet;
     private string? destinationZip;
+    
+    private IJSObjectReference _jsModule;
+    
+     protected override async Task OnInitializedAsync()
+     {
+         // _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Scripts/jsTest.js");
+     }
+    
+    protected override async Task OnAfterRenderAsync(bool render)
+    {
+        if (render)
+        {
+            _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Scripts/jsTest.js");
+            await _jsModule.InvokeVoidAsync("initialize");
+        }
+    }
 
     private void Reset(string state)
     {
@@ -219,7 +245,4 @@
         }
         
     }
-
-    
-
 }

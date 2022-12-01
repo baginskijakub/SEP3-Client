@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>WebApp</title>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-cO1aJ57goozwmRTrvfpQIZsq1ULp0iI"></script>
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
     <link href="WebApp.styles.css" rel="stylesheet" />
@@ -18,7 +19,76 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    
+    <script src="_framework/blazor.webassembly.js">
+    </script>
+    
+<!--    <script>-->
+<!--        var searchInput = 'search_input';-->
+
+<!--        function mapss() {-->
+<!--            var autocomplete;-->
+<!--            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {-->
+<!--                types: ['geocode'],-->
+<!--                /*componentRestrictions: {-->
+<!--                 country: "USA"-->
+<!--                }*/-->
+<!--            });-->
+
+<!--            google.maps.event.addListener(autocomplete, 'place_changed', function () {-->
+<!--                var near_place = autocomplete.getPlace();-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
+    
+<!--    <script>-->
+<!--        let autocomplete;-->
+<!--        -->
+<!--        function initAutocomplete() {-->
+<!--            autocomplete = new google.maps.places.Autocomplete(-->
+<!--                document.getElementById('autocomplete'),-->
+<!--                {-->
+<!--                    types: ['establishment'],-->
+<!--                    componentRestrictions: {'country' : ['AU']},-->
+<!--                    fields: ['place_id', 'geometry', 'name']-->
+<!--                });-->
+<!--            -->
+<!--            autocomplete.addListener('place_changed', onPlaceChanged);-->
+<!--        }-->
+<!--        -->
+<!--        function onPlaceChanged() {-->
+<!--            var place = autocomplete.getPlace();-->
+<!--            -->
+<!--            if(!place.geometry) {-->
+<!--                document.getElementById('autocomplete').placeholder =-->
+<!--                    'Enter a place';-->
+<!--            } else {-->
+<!--                document.getElementById('details').innerHTML = place.name;-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
+<!--    <script>-->
+<!--        let map;-->
+
+<!--        function initMap() {-->
+<!--            map = new google.maps.Map(document.getElementById("map"), {-->
+<!--                center: { lat: 55.858878010245995, lng: 9.847167046457235 },-->
+<!--                zoom: 8,-->
+<!--            });-->
+<!--        }-->
+
+<!--        window.initMap = initMap;-->
+<!--    </script>-->
+    
+<!--<script src="C:\Users\Bartek\RiderProjects\SEP3\SEP3-Client\WebApp\Scripts\jsTest.js"></script>-->
+
 </body>
 
 </html>
