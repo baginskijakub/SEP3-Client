@@ -6,6 +6,7 @@
 
 **/bin/
 **/obj/
+/obj
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
