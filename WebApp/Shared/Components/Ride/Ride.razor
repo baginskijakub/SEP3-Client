@@ -12,10 +12,16 @@
             <img src="icons/arrow.svg"/>
             <h5>@EndLocation</h5>
         </div>
-        <p class="caption">@Driver.Name</p>
+        @if (Driver != null)
+        {
+                    <p class="caption">@Driver.Name</p>
+        }
     </div>
     <img class="" src="icons/map-placeholder.png"/>
-    <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg"/></button>
+    @if (Detailed)
+    {
+        <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg" alt="arrow"/></button>
+    }
 </div>
 
 @code {
@@ -33,6 +39,9 @@
     
     [Parameter]
     public int RideId { get; set; }
+
+    [Parameter]
+    public bool Detailed { get; set; } = true;
     
     public Driver? Driver { get; set; }
     

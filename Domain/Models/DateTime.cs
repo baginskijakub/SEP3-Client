@@ -23,6 +23,10 @@ public class DateTime
         this.Minute = minute;
         this.Second = second;
         
+        var dateTime = new System.DateTime(Year, Month, Day, Hour, Minute, Second, DateTimeKind.Utc);
+        var dateWithOffset = new DateTimeOffset(dateTime).ToUniversalTime();
+        Epoch = dateWithOffset.ToUnixTimeSeconds();
+        
     }
 
     public DateTime(int month, int day, int year)

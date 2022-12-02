@@ -22,8 +22,10 @@
         <h5 class="title-secondary">Please make sure that details of the ride work for you.</h5>
     </div>
     <div>
-
-        <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+        @if (driver != null && ride != null)
+        {
+            <RideDetailed Time="@ride.StartDate.GetTimeString()" Date="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+        }
         
     </div>
     <div class="outro-container">

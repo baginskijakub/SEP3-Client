@@ -17,13 +17,13 @@
     </div>
     @if (ride != null)
     {
-        <Ride Time="@ride.StartDate.GetDateString()" DriverId="@ride.DriverId" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
+        <Ride Detailed="false" Time="@ride.StartDate.GetDateString()" DriverId="@ride.DriverId" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
     }
 </div>
 
 @code {
     [Parameter]
-    public int rideId { get; set; }
+    public int RideId { get; set; }
     private Ride? ride { get; set; }
 
     
@@ -32,7 +32,7 @@
 
         try
         {
-            ride = await rideService.GetRideById(rideId);
+            ride = await rideService.GetRideById(RideId);
 
         }
         catch (Exception e)

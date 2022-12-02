@@ -17,7 +17,7 @@
         <div class="ride-details-small">
             <div class="ride-details-small-inner">
                 <h3>Time</h3>
-                <p>@Time</p>
+                <p>@Date</p>
             </div>
             <div class="ride-details-small-inner">
                 <h4>@Time</h4>
@@ -46,7 +46,10 @@
     public string Time { get; set; } = "Time";
     
     [Parameter]
-    public string Driver { get; set; } = "Driver";
+    public string Date { get; set; } = "Date";
+    
+    [Parameter]
+    public string? Driver { get; set; } = "Driver";
     
     [Parameter]
     public int RideId { get; set; }

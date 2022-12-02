@@ -219,7 +219,7 @@
                                 Capacity = Int32.Parse(capacity), Date = date
                                 , StartLocation = startLocation, Destination =destination, DriverId = Int32.Parse(driverId), Time = time
                             };
-                            Console.WriteLine(dto.StartLocation.ZipCode);
+                            Console.WriteLine(driverId);
                             Domain.Models.Ride ride = await rideService.CreateRide(dto);
                              navigationManager.NavigateTo($"/CreateRide/{ride.Id}");
                             break;
