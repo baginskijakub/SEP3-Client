@@ -8,6 +8,7 @@
 @using WebApp.Shared.Components.Reservation
 @using Reservation = Domain.Models.Reservation
 @inject IReservationService ReservationService;
+@attribute [Authorize]
 
 <div class="review-reservations-wrapper">
     @foreach (Reservation reservation in reservations)
