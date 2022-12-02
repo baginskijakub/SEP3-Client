@@ -12,9 +12,8 @@
     <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
         <div class="form-wrapper">
-            <h3>@AddressLine</h3>
-            <div id="map"></div>
-
+            <h3 id="AddressLine">@AddressLine</h3>
+            <div id="map"  @onclick="() => StateHasChanged()"></div>
             @switch (State)
             {
                 case "Ride information":
@@ -36,43 +35,8 @@
                     </div>
                     break;
                 case "Start location":
-
-
-
-                    @* <div class="input-wrapper"> *@
-                    @*     <label class="input-label" for="country">Country</label> *@
-                    @*     <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/> *@
-                    @* </div> *@
-                    @* <div class="input-wrapper"> *@
-                    @*     <label class="input-label" for="city">City</label> *@
-                    @*     <input class="input" id="city" type="text" placeholder="Insert city" @bind="startCity"/> *@
-                    @* </div> *@
-                    @* <div class="input-wrapper"> *@
-                    @*     <label class="input-label" for="street">Street</label> *@
-                    @*     <input class="input" id="street" type="text" placeholder="Insert street" @bind="startStreet"/> *@
-                    @* </div> *@
-                    @* <div class="input-wrapper"> *@
-                    @*     <label class="input-label" for="zip">Zip code</label> *@
-                    @*     <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="startZip"/> *@
-                    @* </div> *@
                     break;
                 case "Destination":
-                    <div class="input-wrapper">
-                        <label class="input-label" for="country">Country</label>
-                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="destinationCountry"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="city">City</label>
-                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="destinationCity"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="street">Street</label>
-                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="destinationStreet"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="zip">Zip code</label>
-                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="destinationZip"/>
-                    </div>
                     break;
             }
 
@@ -91,26 +55,29 @@
 </div>
 
 @code {
-    [Parameter] 
-    public string State { get; set; }
+
+    public static string State { get; set; } = "Ride information";
 
     private string? name;
     private string? date;
     private string? time;
     private string? capacity;
     
-    private string? startCountry;
-    private string? startCity;
-    private string? startStreet;
-    private string? startZip;
+    private static string? startCountry { get; set; }
+    private static string? startCity { get; set; }
+    private static string? startStreet { get; set; }
+    private static string? startZip { get; set; }
 
-    public static double Lat { get; set; }
-    public static double Lng { get; set; }
+    public static double startLat { get; set; }
+    public static double startLng { get; set; }
     
-    private string? destinationCountry;
-    private string? destinationCity;
-    private string? destinationStreet;
-    private string? destinationZip;
+    public static double destinationLat { get; set; }
+    public static double destinationLng { get; set; }
+    
+    private static string? destinationCountry{ get; set; }
+    private static string? destinationCity{ get; set; }
+    private static string? destinationStreet{ get; set; }
+    private static string? destinationZip{ get; set; }
     
     public static string AddressLine { get; set; }
 
@@ -118,18 +85,24 @@
     {
         if (firstRender)
         {
-            
             await JsRuntime.InvokeVoidAsync("initialize");
+            await JsRuntime.InvokeVoidAsync("toggleMap", false);
         }
     }
 
     [JSInvokable]
     public static void setCoordinates(double lat, double lng)
     {
-        Lat = lat;
-        Lng = lng;
-        Console.WriteLine(Lat);
-        Console.WriteLine(Lng);
+        if (State == "Start location")
+        {
+            startLat = lat;
+            startLng = lng;
+        }
+        if (State == "Destination")
+        {
+            destinationLat = lat;
+            destinationLng = lng;
+        }
     }
     
     [JSInvokable]
@@ -137,6 +110,38 @@
     {
         AddressLine = address;
         Console.WriteLine(AddressLine);
+        
+    }
+
+    [JSInvokable]
+    public static void setLocation(string country, string city, string street, 
+        string zip, double coordinatesX, double coordinatesY)
+    {
+
+        if (State == "Start location")
+        {
+            startCountry = country;
+            startCity = city;
+            startStreet = street;
+            startZip = zip;
+            startLat = coordinatesX;
+            startLng = coordinatesY;
+        }
+        if (State == "Destination")
+        {
+            destinationCountry = country;
+            destinationCity = city;
+            destinationStreet = street;
+            destinationZip = zip;
+            destinationLat = coordinatesX;
+            destinationLng = coordinatesY;
+            Console.WriteLine(street);
+        }
+    }
+
+    public async void getLatTemp()
+    {
+        await JsRuntime.InvokeVoidAsync("getLatTemp");
     }
 
     private void Reset(string state)
@@ -207,8 +212,10 @@
 
                             }
                             State = "Start location";
+                            await JsRuntime.InvokeVoidAsync("toggleMap", true);
                             break;
                         case "Start location":
+                            Console.WriteLine(startCountry + startCity + startStreet + startZip);
                             if (String.IsNullOrEmpty(startCity) || String.IsNullOrEmpty(startCountry) ||
                                 String.IsNullOrEmpty(startStreet) || String.IsNullOrEmpty(startZip))
                             {
@@ -217,6 +224,7 @@
                                 throw new Exception("Fill correctly form");
                             }
                             State = "Destination";
+                            await JsRuntime.InvokeVoidAsync("clearAddress");
                             break;
                         case "Destination":
                             if (String.IsNullOrEmpty(destinationCity) || String.IsNullOrEmpty(destinationCountry) ||
