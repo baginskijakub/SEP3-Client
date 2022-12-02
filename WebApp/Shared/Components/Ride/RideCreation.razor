@@ -6,15 +6,15 @@
 @using DateTime = System.DateTime
 @inject IRideService rideService;
 @inject NavigationManager navigationManager;
-@inject IJSRuntime _jsRuntime;
+@inject IJSRuntime JsRuntime
 
 <div class="rideCreation-wrapper">
     <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
         <div class="form-wrapper">
-        <div id="map">
-                                
-                            </div>
+            <h3>@AddressLine</h3>
+            <div id="map"></div>
+
             @switch (State)
             {
                 case "Ride information":
@@ -36,9 +36,9 @@
                     </div>
                     break;
                 case "Start location":
-                    
-                    
-                    
+
+
+
                     @* <div class="input-wrapper"> *@
                     @*     <label class="input-label" for="country">Country</label> *@
                     @*     <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/> *@
@@ -75,7 +75,7 @@
                     </div>
                     break;
             }
-            
+
 
         </div>
         @if (State == "Destination")
@@ -93,9 +93,6 @@
 @code {
     [Parameter] 
     public string State { get; set; }
-    
-    // [Inject]
-    // // public IJSRuntime JSRuntime { get; set; }
 
     private string? name;
     private string? date;
@@ -106,26 +103,40 @@
     private string? startCity;
     private string? startStreet;
     private string? startZip;
+
+    public static double Lat { get; set; }
+    public static double Lng { get; set; }
     
     private string? destinationCountry;
     private string? destinationCity;
     private string? destinationStreet;
     private string? destinationZip;
     
-    private IJSObjectReference _jsModule;
-    
-     protected override async Task OnInitializedAsync()
-     {
-         // _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Scripts/jsTest.js");
-     }
-    
-    protected override async Task OnAfterRenderAsync(bool render)
+    public static string AddressLine { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (render)
+        if (firstRender)
         {
-            _jsModule = await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Scripts/jsTest.js");
-            await _jsModule.InvokeVoidAsync("initialize");
+            
+            await JsRuntime.InvokeVoidAsync("initialize");
         }
+    }
+
+    [JSInvokable]
+    public static void setCoordinates(double lat, double lng)
+    {
+        Lat = lat;
+        Lng = lng;
+        Console.WriteLine(Lat);
+        Console.WriteLine(Lng);
+    }
+    
+    [JSInvokable]
+    public static void setAddressLine(string address)
+    {
+        AddressLine = address;
+        Console.WriteLine(AddressLine);
     }
 
     private void Reset(string state)
