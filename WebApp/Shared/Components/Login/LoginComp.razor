@@ -1,0 +1,171 @@
+@using WebApp.Shared.Components.Buttons
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@inject NavigationManager navigationManager
+@inject ILoginService loginService
+
+<div class="login-comp-wrapper">
+    <div class="login-title-wrapper">
+        @switch (State)
+        {
+            case "login":
+                <p class="login-title">Login</p>
+                break;
+            case "register":
+                <p class="login-title">Sign up</p>
+                break;
+            case "created":
+                <p class="login-title">Account created</p>
+                break;
+        }
+    </div>
+    @switch (State)
+    {
+        case "register":
+            <div class="form-button-wrapper">
+                <div class="form-wrapper">
+                    <div class="form-inner-wrapper">
+                        <div class="field-wrapper">
+                            <label class="input-label" for="name">Full name</label>
+                            <input class="input" type="text" id="name" @bind="name" placeholder="Insert your name"  />
+                            <div class="error-label">@error</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="license">Driver's license number</label>
+                            <input class="input" id="license" @bind="licenseNo" type="text" placeholder="Insert your driver's license number"/>
+                            <div class="error-label">@error</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="phone">Phone number</label>
+                            <input class="input" id="phone" @bind="phone" type="text" placeholder="Insert your phone"/>
+                            <div class="error-label">@error</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="email">Email</label>
+                            <input class="input" id="email" @bind="email" type="text" placeholder="Insert your email"/>
+                            <div class="error-label">@error</div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label class="input-label" for="password">Password</label>
+                            <input class="input" id="password" @bind="password" type="password" placeholder="Insert your password"/>
+                            <div class="error-label">@error</div>
+                        </div>
+                
+                    </div>
+                </div>
+                <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
+                <p class="login-footer-text">Alrady have an account? <a href="auth/login">Log in here</a></p>
+            </div>
+            break;
+            case "login":
+                <div class="form-button-wrapper">
+                    <div class="form-wrapper">
+                        <div class="form-inner-wrapper">
+                            <div class="field-wrapper">
+                                <label class="input-label" for="email">Email</label>
+                                <input class="input" type="text" id="email" @bind="email" placeholder="Insert your email" />
+                                <div class="error-label">@error</div>
+                            </div>
+                            <div class="field-wrapper">
+                                <label class="input-label" for="password">Password</label>
+                                <input class="input" id="password" type="password" @bind="password" placeholder="Insert your password"/>
+                                <div class="error-label">@error</div>
+                            </div>
+                        </div>
+                    </div>
+                    <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
+                    <p class="login-footer-text">Don't have account? <a href="auth/register">Create an account</a></p>
+                </div>
+                break;
+                case "created":
+                    <p class="login-text">We have successfully created your account</p>
+                    <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
+                    break;
+    }
+    
+</div>
+
+@code {
+    [Parameter] 
+    public string State { get; set; }
+
+    private string? name;
+    private string? email;
+    private string? licenseNo;
+    private string? phone;
+    private string? password;
+    private string? error = "";
+
+    private void reset()
+    {
+        error = "";
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        reset();
+        if (State == "login" || State == "register")
+        {
+            email = null;
+            password = null;
+        }
+        
+    }
+
+
+    private async Task ChangeState()
+    {
+        try
+        {
+            reset();
+            switch (State)
+                    {
+                        case "register":
+                            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) ||
+                                String.IsNullOrEmpty(name) || String.IsNullOrEmpty(licenseNo) || String.IsNullOrEmpty(phone)
+                            || Int32.Parse(licenseNo) <= 0 || Int32.Parse(phone) <= 0)
+                            {
+                                throw new Exception("Fill correctly form");
+                            }
+                            RegisterDto registerDto = new RegisterDto()
+                            {
+                                Email = email,
+                                Password = password,
+                                Name = name,
+                                LicenseNumber = licenseNo,
+                                Phone = phone
+                            };
+
+                            await loginService.RegisterAsync(registerDto);
+                            await loginService.LoginAsync(new LoginDto() { Email = email, Password = password });
+                            State = "created";
+                            break;
+                        case "login":
+                            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password) )
+                            {
+                                throw new Exception("Fill correctly form");
+                            }
+                            LoginDto dto = new LoginDto()
+                            {
+                                Email = email,
+                                Password = password
+                            };
+                            await loginService.LoginAsync(dto);
+                            navigationManager.NavigateTo("/DriverView");
+                            break;
+                        case "created":
+                            navigationManager.NavigateTo("/DriverView");
+                            break;
+                    }
+            StateHasChanged();
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            error = e.Message;
+            StateHasChanged();
+        }
+        
+    }
+}

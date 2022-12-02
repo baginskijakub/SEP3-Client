@@ -1,0 +1,33 @@
+@page "/auth/{state}"
+@using HttpClients.ClientInterfaces
+@using Domain.DTOs
+@using WebApp.Shared.Components.Login
+@inject ILoginService LoginService
+
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="login-wrapper">
+            <div class="login-title-container">
+                <div class="primary-title-container">
+                    @if (state == "register")
+                    {
+                        <div class="primary-title">Create an account</div>
+
+                    }
+                    else if(state == "login")
+                    {
+                        <div class="primary-title">Log in</div>
+                    }
+                </div>
+            </div>
+            <LoginComp State="@state"></LoginComp>
+
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [Parameter]
+    public string state { get; set; }
+    
+}

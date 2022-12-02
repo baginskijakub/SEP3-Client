@@ -1,4 +1,6 @@
 @using WebApp.Shared.Components.Buttons
+@inject NavigationManager navigationManager
+
 <div class="nav-wrapper-outer">
     <div class="nav-wrapper">
         <div class="nav-inner">
@@ -6,12 +8,16 @@
             <NavButton Text="How does it work?"></NavButton>
         </div>
         <div class="nav-inner">
-            <NavButton Text="Login"></NavButton>
-            <PrimaryButton Text="Get Started" Size="Small"></PrimaryButton>
+            <NavButton Text="Login" Path="/auth/login"></NavButton>
+            <PrimaryButton Text="Get Started" Size="Small" OnClickFunction="@navigateToRegister"></PrimaryButton>
         </div>
     </div>
 </div>
 
 @code {
-    
+
+    private void navigateToRegister()
+    {
+        navigationManager.NavigateTo("/auth/register");
+    }
 }
