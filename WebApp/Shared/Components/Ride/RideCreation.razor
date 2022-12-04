@@ -12,7 +12,7 @@
     <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
         <div class="form-wrapper">
-            <h3 id="AddressLine">@AddressLine</h3>
+            <h3 id="AddressLine" class="address-label">@AddressLine</h3>
             <div id="map"  @onclick="() => StateHasChanged()"></div>
             @switch (State)
             {
@@ -33,6 +33,7 @@
                         <label class="input-label" for="capacity">Capacity</label>
                         <input class="input" id="capacity" type="text" placeholder="Insert capacity of the car" @bind="capacity"/>
                     </div>
+                    <p class="error-label">@errorLabel</p>
                     break;
                 case "Start location":
                     break;
@@ -57,6 +58,7 @@
 @code {
 
     public static string State { get; set; } = "Ride information";
+    public string errorLabel { get; set; } = "";
 
     private string? name;
     private string? date;
@@ -139,11 +141,7 @@
         }
     }
 
-    public async void getLatTemp()
-    {
-        await JsRuntime.InvokeVoidAsync("getLatTemp");
-    }
-
+    //why the fuck d we do that?
     private void Reset(string state)
     {
         switch (state)
@@ -179,14 +177,15 @@
                             if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time) ||
                                 String.IsNullOrEmpty(name) || Int32.Parse(capacity) <= 0)
                             {
-                                Reset(State);
+                                // Reset(State);
+                                errorLabel = "Please fill every input field";
                                 throw new Exception("Fill correctly form");
                             }
                             string[] dateArr = date.Split('/');
                             if (dateArr.Length != 3)
                             {
-                                Reset(State);
-
+                                //Reset(State);
+                                errorLabel = "Incorrect date";
                                 throw new Exception("Incorrect date");
 
                             }
@@ -195,8 +194,8 @@
 
                             if (timeArr.Length != 2)
                             {
-                                Reset(State);
-
+                                //Reset(State);
+                                errorLabel = "Incorrect time";
                                 throw new Exception("Incorrect time");
 
                             }
@@ -207,7 +206,8 @@
                             if (DateTime.Compare(userDate, today) <= 0)
                             {
 
-                                Reset(State);
+                                //Reset(State);
+                                errorLabel = "Incorrect date and time";
                                 throw new Exception("Incorrect date and time");
 
                             }
@@ -219,7 +219,7 @@
                             if (String.IsNullOrEmpty(startCity) || String.IsNullOrEmpty(startCountry) ||
                                 String.IsNullOrEmpty(startStreet) || String.IsNullOrEmpty(startZip))
                             {
-                                Reset(State);
+                                //Reset(State);
 
                                 throw new Exception("Fill correctly form");
                             }
@@ -230,7 +230,7 @@
                             if (String.IsNullOrEmpty(destinationCity) || String.IsNullOrEmpty(destinationCountry) ||
                                 String.IsNullOrEmpty(destinationStreet) || String.IsNullOrEmpty(destinationZip))
                             {
-                                Reset(State);
+                                //Reset(State);
 
                                 throw new Exception("Fill correctly form");
                             }
