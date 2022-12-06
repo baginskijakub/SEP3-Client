@@ -1,5 +1,6 @@
 @page "/"
 @using WebApp.Shared.Components.Buttons
+@using System.Security.Claims
 @inject NavigationManager navigationManager
 
 <div class="home-page-wrapper">
@@ -15,15 +16,47 @@
 
 
 @code {
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string name;
+    string? hasLicenseNumber;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
+    }
 
     private void navigateToRides()
     {
-        navigationManager.NavigateTo("/FindRides");
+        navigationManager.NavigateTo(isLoggedIn ? "/FindRides" : "/auth/register?type=passenger");
     }
 
     private void navigateToDriver()
     {
-        navigationManager.NavigateTo("/auth/login");
-        ;
+        if (isLoggedIn)
+        {
+            if (Boolean.Parse(hasLicenseNumber))
+            {
+                navigationManager.NavigateTo("/auth/register?type=driver");
+            }
+            else
+            {
+                navigationManager.NavigateTo("/auth/updateLicense");
+            }
+        }
+        else
+        {
+            navigationManager.NavigateTo("/auth/register?type=driver");
+        }
+        
     }
 }

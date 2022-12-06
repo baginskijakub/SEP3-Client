@@ -6,6 +6,8 @@
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
 @inject IRideService rideService
+@attribute [Authorize]
+
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
         <h1 class="title-primary">Your ride starts here</h1>

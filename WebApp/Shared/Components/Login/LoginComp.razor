@@ -2,6 +2,7 @@
 @using HttpClients.ClientInterfaces
 @using Domain.DTOs
 @using System.ComponentModel
+@using System.Security.Claims
 @inject NavigationManager navigationManager
 @inject ILoginService loginService
 
@@ -18,6 +19,10 @@
             case "created":
                 <p class="login-title">Account created</p>
                 break;
+            case "updateLicense":
+                <p class="login-title">Driver's License Number</p>
+                break;
+                    
         }
     </div>
     @switch (State)
@@ -31,11 +36,15 @@
                             <input class="input" type="text" id="name" @bind="name" placeholder="Insert your name"  />
                             <div class="error-label">@error</div>
                         </div>
-                        <div class="field-wrapper">
-                            <label class="input-label" for="license">Driver's license number</label>
-                            <input class="input" id="license" @bind="licenseNo" type="text" placeholder="Insert your driver's license number"/>
-                            <div class="error-label">@error</div>
-                        </div>
+                        @if (UserType == "driver")
+                        {
+                           <div class="field-wrapper">
+                               <label class="input-label" for="license">Driver's license number</label>
+                               <input class="input" id="license" @bind="licenseNo" type="text" placeholder="Insert your driver's license number"/>
+                               <div class="error-label">@error</div>
+                               </div> 
+                        }
+                        
                         <div class="field-wrapper">
                             <label class="input-label" for="phone">Phone number</label>
                             <input class="input" id="phone" @bind="phone" type="text" placeholder="Insert your phone"/>
@@ -82,14 +91,40 @@
                     <p class="login-text">We have successfully created your account</p>
                     <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
                     break;
+                case "updateLicense":
+                    <div class="form-button-wrapper">
+                        <div class="form-wrapper">
+                            <div class="form-inner-wrapper">
+                                <div class="field-wrapper">
+                                    <label class="input-label" for="license">Driver's license number</label>
+                                    <input class="input" id="license" type="text" @bind="updatedLicenseNo" placeholder="Insert your driver's license number"/>
+                                    <div class="error-label">@error</div>
+                                </div>
+                            </div>
+                        </div>
+                        <SecondaryButton Text="Continue" OnClickFunction="@ChangeState"></SecondaryButton>
+                        <p class="login-footer-text">We need your license number before you start creating a ride.</p>
+                    </div>
+                    break;
     }
     
 </div>
 
 @code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
     [Parameter] 
     public string State { get; set; }
+    
+    [Parameter] 
+    public string UserType { get; set; }= "passenger";
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
 
+
+    private string? updatedLicenseNo;
     private string? name;
     private string? emailRegister;
     private string? licenseNo;
@@ -149,9 +184,41 @@
                                 Password = password
                             };  
                             await loginService.LoginAsync(dto);
-                            navigationManager.NavigateTo("/DriverView");
+                            AuthenticationState authState = await AuthState;
+                            ClaimsPrincipal user = authState.User;
+                            isLoggedIn = user.Identity != null;
+        
+                            if (!isLoggedIn) return;
+                            
+                            userClaims = user.Claims;
+                            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                            string hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
+                            if (UserType == "passenger")
+                            {
+                                navigationManager.NavigateTo("/FindRides");
+                            }
+                            else if (Boolean.Parse("False") && UserType == "driver")
+                            {
+                                navigationManager.NavigateTo("/DriverView");
+                            }
+                            else
+                            {
+                                State = "updateLicense";
+
+                            }
                             break;
                         case "created":
+                            navigationManager.NavigateTo(UserType == "driver" ? "/DriverView" : "/FindRides");
+                            break;
+                        case "updateLicense":
+                            enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                            string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+                            UpdateLicenseDto updateLicenseDto = new UpdateLicenseDto()
+                            {
+                                LicenseNo = Int32.Parse(updatedLicenseNo),
+                                UserId = Int32.Parse("1")
+                            };
+                            await loginService.UpdateUserLicense(updateLicenseDto);
                             navigationManager.NavigateTo("/DriverView");
                             break;
                     }

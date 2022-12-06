@@ -9,6 +9,8 @@
 @using Domain.Models
 @inject IRideService rideService
 @inject ILoginService loginService;
+@attribute [Authorize]
+
 
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
