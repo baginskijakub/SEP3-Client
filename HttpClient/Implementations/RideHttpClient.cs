@@ -19,9 +19,9 @@ public class RideHttpClient : IRideService
         this.client = client;
     }
 
-    public async Task<List<Ride>> GetAllRidesAsync()
+    public async Task<List<Ride>> GetAllRidesAsync(string startDate, string endDate)
     {
-        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/rides");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides?startDate={startDate}&endDate={endDate}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {

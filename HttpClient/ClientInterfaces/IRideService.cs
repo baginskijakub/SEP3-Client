@@ -7,7 +7,7 @@ namespace HttpClients.ClientInterfaces;
 
 public interface IRideService
 {
-    Task<List<Ride>> GetAllRidesAsync();
+    Task<List<Ride>> GetAllRidesAsync(string startDate, string endDate);
 
     Task JoinRide(JoinRideDto dto);
 
