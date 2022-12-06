@@ -12,6 +12,19 @@ public class LoginHttpClient : ILoginService
     private readonly HttpClient client;
     
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
+    public async Task UpdateUserLicense(UpdateLicenseDto dto)
+    {
+        string jsonDto = JsonSerializer.Serialize(dto);
+        StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
+        //check endpoint, it says drivers but it should probably be changed to user(s)
+        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/drivers/login", content);
+        string responseContent = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(responseContent);
+        }
+    }
 
 
     public LoginHttpClient(HttpClient client)
@@ -41,7 +54,8 @@ public class LoginHttpClient : ILoginService
 
         ClaimsPrincipal principal = CreateClaimsPrincipal();
 
-        OnAuthStateChanged.Invoke(principal);    }
+        OnAuthStateChanged.Invoke(principal);    
+    }
 
     public Task LogoutAsync()
     {

@@ -14,4 +14,6 @@ public interface ILoginService
     public Task<ClaimsPrincipal> GetAuthAsync();
 
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
+
+    public Task UpdateUserLicense(UpdateLicenseDto dto);
 }
