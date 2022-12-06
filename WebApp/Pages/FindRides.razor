@@ -2,6 +2,7 @@
 @using WebApp.Shared.Components.Ride
 @using Domain.Models
 @using WebApp.Shared.Components
+@using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
 @inject IRideService rideService
@@ -11,29 +12,62 @@
         <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
     </div>
     <div class="find-rides-rides-container">
-            @foreach (Ride ride in rides)
-            {
+        
+        <div class="filters-container">
+            <div class="input-container">
+                <label for="startDate" class="filter-label">Start date</label>
+                <input id="startDate" type="text" class="filter-input" @bind="startDate" placeholder="20/02/2023"/>
+            </div>
+            <div class="line"></div>
+            <div class="input-container">
+                <label for="endDate" class="filter-label">End date</label>
+                <input id="endDate" type="text" class="filter-input" @bind="endDate" placeholder="20/02/2023"/>
+                </div>
+            <SecondaryButton Text="Find a ride" OnClickFunction="filterRides"></SecondaryButton>
+            <SecondaryButton Text="Reset filters" OnClickFunction="resetFilters"></SecondaryButton>
 
-                
-                <Ride Time="@ride.StartDate.GetDateString()" DriverId="@ride.DriverId" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
-            }
+        </div>
+        @foreach (Ride ride in rides)
+        {
+
+
+            <Ride Time="@ride.StartDate.GetDateString()" DriverId="@ride.DriverId" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></Ride>
+        }
     </div>
 </div>
 
 @code {
+
+    private string? endDate = null;
+    private string? startDate = null;
+
     List<Ride> rides = new List<Ride>();
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            rides = await rideService.GetAllRidesAsync();
+            rides = await rideService.GetAllRidesAsync(startDate,endDate);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
         }
     }
+
+    private async Task filterRides()
+    {
+       
+        rides = await rideService.GetAllRidesAsync(startDate, endDate);
+        StateHasChanged();
+    }
     
-    
-    
+    private async Task resetFilters()
+    {
+        startDate = null;
+        endDate = null;
+        rides = await rideService.GetAllRidesAsync(startDate, endDate);
+        StateHasChanged();
+    }
+
+
 }
