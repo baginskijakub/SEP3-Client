@@ -7,11 +7,14 @@
 @using System.Security.Claims
 @inject IRideService rideService;
 @inject NavigationManager navigationManager;
+@inject IJSRuntime JsRuntime
 
 <div class="rideCreation-wrapper">
     <p class="rideCreation-title">@State</p>
     <div class="form-button-wrapper">
         <div class="form-wrapper">
+            <h3 id="AddressLine" class="address-label">@AddressLine</h3>
+            <div id="map"  @onclick="() => StateHasChanged()"></div>
             @switch (State)
             {
                 case "Ride information":
@@ -27,45 +30,14 @@
                         <label class="input-label" for="capacity">Capacity</label>
                         <input class="input" id="capacity" type="text" placeholder="Insert capacity of the car" @bind="capacity"/>
                     </div>
+                    <p class="error-label">@errorLabel</p>
                     break;
                 case "Start location":
-                    <div class="input-wrapper">
-                        <label class="input-label" for="country">Country</label>
-                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="startCountry"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="city">City</label>
-                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="startCity"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="street">Street</label>
-                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="startStreet"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="zip">Zip code</label>
-                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="startZip"/>
-                    </div>
                     break;
                 case "Destination":
-                    <div class="input-wrapper">
-                        <label class="input-label" for="country">Country</label>
-                        <input class="input" id="country" type="text" placeholder="Insert country" @bind="destinationCountry"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="city">City</label>
-                        <input class="input" id="city" type="text" placeholder="Insert city" @bind="destinationCity"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="street">Street</label>
-                        <input class="input" id="street" type="text" placeholder="Insert street" @bind="destinationStreet"/>
-                    </div>
-                    <div class="input-wrapper">
-                        <label class="input-label" for="zip">Zip code</label>
-                        <input class="input" id="zip" type="text" placeholder="Insert zip code" @bind="destinationZip"/>
-                    </div>
                     break;
             }
-            
+
 
         </div>
         @if (State == "Destination")
@@ -81,10 +53,6 @@
 </div>
 
 @code {
-    [CascadingParameter]
-    public Task<AuthenticationState> AuthState { get; set; } = null!;
-    
-    
     [Parameter] 
     public string State { get; set; }
 
@@ -96,16 +64,23 @@
     private string? time;
     private string? capacity;
     
-    private string? startCountry;
-    private string? startCity;
-    private string? startStreet;
-    private string? startZip;
-    
-    private string? destinationCountry;
-    private string? destinationCity;
-    private string? destinationStreet;
-    private string? destinationZip;
+    private static string? startCountry { get; set; }
+    private static string? startCity { get; set; }
+    private static string? startStreet { get; set; }
+    private static string? startZip { get; set; }
 
+    public static double startLat { get; set; }
+    public static double startLng { get; set; }
+    
+    public static double destinationLat { get; set; }
+    public static double destinationLng { get; set; }
+    
+    private static string? destinationCountry{ get; set; }
+    private static string? destinationCity{ get; set; }
+    private static string? destinationStreet{ get; set; }
+    private static string? destinationZip{ get; set; }
+    
+    public static string AddressLine { get; set; }
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState authState = await AuthState;
@@ -117,6 +92,63 @@
         userClaims = user.Claims;
         var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
         driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;    
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JsRuntime.InvokeVoidAsync("initialize");
+            await JsRuntime.InvokeVoidAsync("toggleMap", false);
+        }
+    }
+
+    [JSInvokable]
+    public static void setCoordinates(double lat, double lng)
+    {
+        if (State == "Start location")
+        {
+            startLat = lat;
+            startLng = lng;
+        }
+        if (State == "Destination")
+        {
+            destinationLat = lat;
+            destinationLng = lng;
+        }
+    }
+    
+    [JSInvokable]
+    public static void setAddressLine(string address)
+    {
+        AddressLine = address;
+        Console.WriteLine(AddressLine);
+        
+    }
+
+    [JSInvokable]
+    public static void setLocation(string country, string city, string street, 
+        string zip, double coordinatesX, double coordinatesY)
+    {
+
+        if (State == "Start location")
+        {
+            startCountry = country;
+            startCity = city;
+            startStreet = street;
+            startZip = zip;
+            startLat = coordinatesX;
+            startLng = coordinatesY;
+        }
+        if (State == "Destination")
+        {
+            destinationCountry = country;
+            destinationCity = city;
+            destinationStreet = street;
+            destinationZip = zip;
+            destinationLat = coordinatesX;
+            destinationLng = coordinatesY;
+            Console.WriteLine(street);
+        }
     }
 
     private void Reset(string state)
@@ -152,14 +184,15 @@
                         case "Ride information":
                             if (String.IsNullOrEmpty(date) || String.IsNullOrEmpty(time) || Int32.Parse(capacity) <= 0)
                             {
-                                Reset(State);
+                                // Reset(State);
+                                errorLabel = "Please fill every input field";
                                 throw new Exception("Fill correctly form");
                             }
                             string[] dateArr = date.Split('/');
                             if (dateArr.Length != 3)
                             {
-                                Reset(State);
-
+                                //Reset(State);
+                                errorLabel = "Incorrect date";
                                 throw new Exception("Incorrect date");
 
                             }
@@ -168,8 +201,8 @@
 
                             if (timeArr.Length != 2)
                             {
-                                Reset(State);
-
+                                //Reset(State);
+                                errorLabel = "Incorrect time";
                                 throw new Exception("Incorrect time");
 
                             }
@@ -180,27 +213,31 @@
                             if (DateTime.Compare(userDate, today) <= 0)
                             {
 
-                                Reset(State);
+                                //Reset(State);
+                                errorLabel = "Incorrect date and time";
                                 throw new Exception("Incorrect date and time");
 
                             }
                             State = "Start location";
+                            await JsRuntime.InvokeVoidAsync("toggleMap", true);
                             break;
                         case "Start location":
+                            Console.WriteLine(startCountry + startCity + startStreet + startZip);
                             if (String.IsNullOrEmpty(startCity) || String.IsNullOrEmpty(startCountry) ||
                                 String.IsNullOrEmpty(startStreet) || String.IsNullOrEmpty(startZip))
                             {
-                                Reset(State);
+                                //Reset(State);
 
                                 throw new Exception("Fill correctly form");
                             }
                             State = "Destination";
+                            await JsRuntime.InvokeVoidAsync("clearAddress");
                             break;
                         case "Destination":
                             if (String.IsNullOrEmpty(destinationCity) || String.IsNullOrEmpty(destinationCountry) ||
                                 String.IsNullOrEmpty(destinationStreet) || String.IsNullOrEmpty(destinationZip))
                             {
-                                Reset(State);
+                                //Reset(State);
 
                                 throw new Exception("Fill correctly form");
                             }
@@ -234,7 +271,4 @@
         }
         
     }
-
-    
-
 }
