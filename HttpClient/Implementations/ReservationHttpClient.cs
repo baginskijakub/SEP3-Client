@@ -52,4 +52,22 @@ public class ReservationHttpClient : IReservationService
         });
         return reservation;
     }
+    
+    public async Task<List<Reservation>> GetAcceptedReservationsByRideId(int rideId)
+    {
+        //endpoint to be changed as it uses same as getReservationsToAccept, dependent on controller implementation
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/{rideId}");
+        string content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(content);
+        }
+
+        List<Reservation> reservations = JsonSerializer.Deserialize<List<Reservation>>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return reservations;
+    }
 }

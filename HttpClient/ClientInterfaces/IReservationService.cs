@@ -10,4 +10,6 @@ public interface IReservationService
     Task<List<Reservation>> GetReservationsToAccept(int driverId);
 
     Task<Reservation> AcceptPassenger(AcceptReservationDto dto);
+    
+    Task<List<Reservation>> GetAcceptedReservationsByRideId(int rideId);
 }

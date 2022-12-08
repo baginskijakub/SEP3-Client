@@ -15,5 +15,5 @@ public interface IRideService
 
     Task<Ride> CreateRide(RideCreationDto creationDto);
     
-    
+    Task<List<Ride>> GetRidesByDriverId(int driverId);
 }
