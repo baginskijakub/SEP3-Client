@@ -111,5 +111,21 @@ public class RideHttpClient : IRideService
 
         return ride!;
     }
-    
+
+    public async Task<List<Ride>> GetRidesByDriverId(int driverId)
+    {
+        //endpoint to be changed as it uses same as GetAllRidesAsync, dependent on controller implementation
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides/{driverId}");
+        string content = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(content);
+        }
+
+        List<Ride> rides = JsonSerializer.Deserialize<List<Ride>>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return rides;
+    }
 }
