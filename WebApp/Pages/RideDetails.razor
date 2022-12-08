@@ -3,7 +3,7 @@
 
 @inject NavigationManager navigationManager
 @inject ILoginService loginService;
-@attribute [Authorize]
+@* @attribute [Authorize] *@
 
 
 @using WebApp.Shared.Components.Ride
@@ -26,7 +26,7 @@
     <div>
         @if (driver != null && ride != null)
         {
-            <RideDetailed Time="@ride.StartDate.GetTimeString()" Date="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.Address" EndLocation="@ride.Destination.Address"></RideDetailed>
+            <RideDetailed Ride="ride"></RideDetailed>
         }
         
     </div>
@@ -56,26 +56,26 @@
     protected override async Task OnInitializedAsync()
     {
         try
-        {
-        ride = await rideService.GetRideById(RideId);
-            if (ride != null)
             {
-               int driverId = ride.DriverId;
-                driver = await loginService.GetDriverByIdAsync(driverId); 
-            }
-            AuthenticationState authState = await AuthState;
-            ClaimsPrincipal user = authState.User;
-            isLoggedIn = user.Identity != null;
-            userClaims = user.Claims;
-            if (!isLoggedIn) return;
-            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
-            userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+                ride = await rideService.GetRideById(RideId);
+                if (ride != null)
+                {
+                    int driverId = ride.DriverId;
+                    driver = await loginService.GetDriverByIdAsync(driverId);
+                }
+                AuthenticationState authState = await AuthState;
+                ClaimsPrincipal user = authState.User;
+                isLoggedIn = user.Identity != null;
+                userClaims = user.Claims;
+                if (!isLoggedIn) return;
+                var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+                userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
 
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
     }
     
     private async Task InvokeOnClick()

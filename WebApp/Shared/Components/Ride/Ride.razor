@@ -1,23 +1,25 @@
 @using Domain.Models
 @using HttpClients.ClientInterfaces
+@using System.Text.Json
 @inject NavigationManager navigationManager
 @inject ILoginService loginService;
+@inject IJSRuntime JsRuntime
 
 
 <div class="ride-wrapper">
     <div class="ride-inner">
-        <p class="caption">@Time</p>
+        <p class="caption">@ride.StartDate.GetFormattedString()</p>
         <div class="ride-destination">
-            <h5>@StartLocation</h5>
+            <h5>@ride.StartLocation.City</h5>
             <img src="icons/arrow.svg"/>
-            <h5>@EndLocation</h5>
+            <h5>@ride.Destination.City</h5>
         </div>
-        @if (Driver != null)
+        @if (DriverName != null)
         {
-                    <p class="caption">@Driver.Name</p>
+                    <p class="caption">@DriverName</p>
         }
     </div>
-    <img class="" src="icons/map-placeholder.png"/>
+    <div class="map" id="@ride.Id"/>
     @if (Detailed)
     {
         <button class="select-ride-button" @onclick="InvokeOnClick"><img src="icons/arrow.svg" alt="arrow"/></button>
@@ -26,33 +28,41 @@
 
 @code {
     [Parameter]
-    public string StartLocation { get; set; } = "Start";
-    
-    [Parameter]
-    public string EndLocation { get; set; } = "End";
-    
-    [Parameter]
-    public string Time { get; set; } = "Time";
-    
-    [Parameter]
-    public int DriverId { get; set; }
-    
-    [Parameter]
-    public int RideId { get; set; }
+    public Domain.Models.Ride ride { get; set; }
 
     [Parameter]
     public bool Detailed { get; set; } = true;
     
-    public User? Driver { get; set; }
+    public string DriverName { get; set; }
+    public RideMap RideMap { get; set; }
     
     public void InvokeOnClick()
     {
-        navigationManager.NavigateTo($"/RideDetails/{RideId}");
+        navigationManager.NavigateTo($"/RideDetails/{ride.Id}");
     }
 
     protected override async Task OnInitializedAsync()
     {
-        Driver = await loginService.GetDriverByIdAsync(DriverId);    
+        User driver = await loginService.GetDriverByIdAsync(ride.DriverId);
+        DriverName = driver.Name;
+        
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RideMap = new RideMap()
+            {
+                rideId = ride.Id.ToString(),
+                startLat = ride.StartLocation.CoordinatesX,
+                startLng = ride.StartLocation.CoordinatesY,
+                endLat = ride.Destination.CoordinatesX,
+                endLng = ride.Destination.CoordinatesY
+            };
+            await JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
+            StateHasChanged();
+        }
     }
 
 

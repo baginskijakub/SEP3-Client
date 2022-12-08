@@ -1,28 +1,32 @@
 @using Domain.Models
 @using System.Text.Json
+@using HttpClients.ClientInterfaces
+@inject ILoginService _userService
+@inject IJSRuntime JsRuntime
+
 <div class="ride-details-wrapper">
     <div class="ride-details-location-wrapper">
         <div class="ride-details-location-inner">
             <h3>Starting point</h3>
-            <p class="caption">The driver is going from <span style="font-family: 'PP Mori SemiBold'">@StartLocation</span>.</p>
+            <p class="caption">The driver is going from <span style="font-family: 'PP Mori SemiBold'">@Ride.StartLocation.City</span>.</p>
         </div>
-        <img src="icons/map-placeholder.png"/>
+        <div class="map" id="start-@Ride.Id"/>
     </div>
     <div class="ride-details-location-wrapper">
         <div class="ride-details-location-inner">
             <h3>Destination</h3>
-            <p class="caption">The driver is going to <span style="font-family: 'PP Mori SemiBold'">@EndLocation</span>.</p>
+            <p class="caption">The driver is going to <span style="font-family: 'PP Mori SemiBold'">@Ride.Destination.City</span>.</p>
         </div>
-        <img src="icons/map-placeholder.png"/>
+        <div class="map" id="end-@Ride.Id"/>
     </div>
     <div class="ride-details-container">
         <div class="ride-details-small">
             <div class="ride-details-small-inner">
                 <h3>Time</h3>
-                <p>@Date</p>
+                <p>@Ride.StartDate.GetTimeString()</p>
             </div>
             <div class="ride-details-small-inner">
-                <h4>@Time</h4>
+                <h4>@Ride.StartDate.GetDateString()</h4>
             </div>
         </div>
         <div class="ride-details-small">
@@ -31,7 +35,7 @@
                 <p>12 Reviews (4.7)</p>
             </div>
             <div class="ride-details-small-inner">
-                <h4>@Driver</h4>
+                <h4>@DriverName</h4>
             </div>
         </div>
     </div>
@@ -39,23 +43,34 @@
 
 @code {
     [Parameter]
-    public string StartLocation { get; set; } = "Start";
-    
-    [Parameter]
-    public string EndLocation { get; set; } = "End";
-    
-    [Parameter]
-    public string Time { get; set; } = "Time";
-    
-    [Parameter]
-    public string Date { get; set; } = "Date";
-    
-    [Parameter]
-    public string? Driver { get; set; } = "Driver";
-    
-    [Parameter]
-    public int RideId { get; set; }
+    public Domain.Models.Ride Ride { get; set; }
     
     private RideMap RideMap { get; set; }
+
+    public string DriverName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        User driver = await _userService.GetDriverByIdAsync(Ride.DriverId);
+        DriverName = driver.Name;
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RideMap = new RideMap()
+            {
+                rideId = Ride.Id.ToString(),
+                startLat = Ride.StartLocation.CoordinatesX,
+                startLng = Ride.StartLocation.CoordinatesY,
+                endLat = Ride.Destination.CoordinatesX,
+                endLng = Ride.Destination.CoordinatesY
+            };
+            Console.WriteLine(RideMap.rideId.ToString());
+            await JsRuntime.InvokeVoidAsync("initMarkerMap", JsonSerializer.Serialize(RideMap));
+            StateHasChanged();
+        }
+    }
 
 }

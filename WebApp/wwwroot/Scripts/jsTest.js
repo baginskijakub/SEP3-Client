@@ -347,6 +347,36 @@ window.initRideMap = function initRideMap(rideMap){
     });
 }
 
+window.initMarkerMap = function initMarkerMap(rideMap){
+    rideMap = JSON.parse(rideMap)
+    const startLatLng = { lat: rideMap.startLat, lng: rideMap.startLng };
+    const endLatLng = { lat: rideMap.endLat, lng: rideMap.endLng };
+    console.log(rideMap)
+    const map1 = new google.maps.Map(document.getElementById(`start-${rideMap.rideId}`), {
+        zoom: 14,
+        center: startLatLng,
+        styles: style
+    });
+
+    const map2 = new google.maps.Map(document.getElementById(`end-${rideMap.rideId}`), {
+        zoom: 14,
+        center: endLatLng,
+        styles: style
+    });
+
+    const marker1 = new google.maps.Marker({
+        position: startLatLng,
+    });
+    
+    marker1.setMap(map1)
+
+    const marker2 = new google.maps.Marker({
+        position: endLatLng,
+    });
+
+    marker2.setMap(map2)
+}
+
 window.toggleMap = function toggleMap(bool)
 {
     if(bool)

@@ -7,6 +7,11 @@
     gap: 20px;
 }
 
+.map{
+    width: 390px;
+    height: 134px;
+}
+
 .ride-details-location-wrapper{
     display: flex;
     flex-direction: column;

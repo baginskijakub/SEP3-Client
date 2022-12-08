@@ -26,8 +26,14 @@
             <h3>Manage reservations</h3>
             <span class="divider"/>
             <p>Accept or reject rides that other users have requested.</p>
-            <SecondaryButton Text="Manage" OnClickFunction="@navigateToManage"></SecondaryButton>
+            <SecondaryButton Text="View" OnClickFunction="@navigateToManage"></SecondaryButton>
         </div>
+                <div class="driver-container">
+                    <h3>Manage rides</h3>
+                    <span class="divider"/>
+                    <p>Check you upcoming rides and passengers.</p>
+                    <SecondaryButton Text="View" OnClickFunction="@navigateToRides"></SecondaryButton>
+                </div>
     </div>
 </div>
 
@@ -69,6 +75,12 @@
     private void navigateToManage()
     {
         navigationManager.NavigateTo("/ReviewReservations");
+        ;
+    }
+    
+    private void navigateToRides()
+    {
+        navigationManager.NavigateTo("/ManageRides");
         ;
     }
 }
