@@ -156,10 +156,15 @@
                     {
                         case "register":
                             if (String.IsNullOrEmpty(emailRegister) || String.IsNullOrEmpty(passwordRegister) ||
-                                String.IsNullOrEmpty(name) || String.IsNullOrEmpty(licenseNo) || String.IsNullOrEmpty(phone))
+                                String.IsNullOrEmpty(name) || String.IsNullOrEmpty(phone))
                             {
                                 throw new Exception("Fill correctly form");
                             }
+
+                            if (UserType == "driver" && String.IsNullOrEmpty(licenseNo) )
+                        {
+                            throw new Exception("Fill correctly form");
+                        }
                             RegisterDto registerDto = new RegisterDto()
                             {
                                 Email = emailRegister,
@@ -197,7 +202,7 @@
                             {
                                 navigationManager.NavigateTo("/FindRides");
                             }
-                            else if (Boolean.Parse("False") && UserType == "driver")
+                            else if (Boolean.Parse(hasLicenseNumber) && UserType == "driver")
                             {
                                 navigationManager.NavigateTo("/DriverView");
                             }
@@ -216,7 +221,7 @@
                             UpdateLicenseDto updateLicenseDto = new UpdateLicenseDto()
                             {
                                 LicenseNo = Int32.Parse(updatedLicenseNo),
-                                UserId = Int32.Parse("1")
+                                UserId = Int32.Parse(userId)
                             };
                             await loginService.UpdateUserLicense(updateLicenseDto);
                             navigationManager.NavigateTo("/DriverView");

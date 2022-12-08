@@ -4,7 +4,7 @@ function consoleLog(text){
     console.log(text)
 }
  
-function initialize() {
+window.initialize = function initialize() {
     var mapStyle = [
         {
             "elementType": "geometry",
@@ -317,7 +317,7 @@ function initialize() {
     });
 }
 
-function toggleMap(bool)
+window.toggleMap = function toggleMap(bool)
 {
     if(bool)
     {

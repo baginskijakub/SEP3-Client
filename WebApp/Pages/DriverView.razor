@@ -23,7 +23,7 @@
             <SecondaryButton Text="Create" OnClickFunction="@navigateToCreate"></SecondaryButton>
         </div>
         <div class="driver-container">
-            <h3>Manage rides</h3>
+            <h3>Manage reservations</h3>
             <span class="divider"/>
             <p>Accept or reject rides that other users have requested.</p>
             <SecondaryButton Text="Manage" OnClickFunction="@navigateToManage"></SecondaryButton>
@@ -39,7 +39,13 @@
     private bool isLoggedIn;
     private IEnumerable<Claim>? userClaims;
     private string name;
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
     
+
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState authState = await AuthState;

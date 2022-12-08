@@ -28,6 +28,7 @@ public class RideHttpClient : IRideService
         {
             DateTime today = DateTime.Now;
             string todayString = today.ToString("dd/MM/yyyy");
+            todayString = todayString.Replace(".", "/");
 
             query = $"?startDate={todayString}&endDate={endDate}";
         }
@@ -83,13 +84,13 @@ public class RideHttpClient : IRideService
     {
         
         HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", dto);
-        Console.WriteLine(response);
-        if (!response.IsSuccessStatusCode)
+        string content = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode || content.Contains("There is no"))
         {
-            string content = await response.Content.ReadAsStringAsync();
             Console.WriteLine(content);
             throw new Exception(content);
         }
+
         
     }
     

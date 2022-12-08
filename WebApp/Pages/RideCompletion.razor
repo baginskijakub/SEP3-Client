@@ -14,25 +14,14 @@
 
 <div class="find-rides-page-wrapper">
     <div class="home-page-titles">
-        <h1 class="title-primary">You’re almost there</h1>
-        <h5 class="title-secondary">Please insert your data so the driver can contact you.</h5>
+        <h1 class="title-primary">Your request has been sent</h1>
+        <h5 class="title-secondary">If necessary the driver will contact you.</h5>
     </div>
-
-    <div class="ride-completion-input-wrapper">
-        <div class="ride-completion-input-inner">
-            <p class="caption">Name</p>
-            <input class="ride-completion-input" type="text" placeholder="Insert your name" autocomplete="off" @bind="name"/>
-        </div>
-        <div class="ride-completion-input-inner">
-            <p class="caption">Phone number</p>
-            <input class="ride-completion-input" type="text" placeholder="Insert your phone number" autocomplete="off" @bind="telNo"/>
-        </div>
-        <SecondaryButton Text="Send to driver" hasArrow="true" OnClickFunction="OnCompletion"></SecondaryButton>
-    </div>
+    
     <div>
         @if (ride != null && driver != null)
         {
-            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.Address" EndLocation="@ride.Destination.Address"></RideDetailed>
         }
     </div>
 
@@ -42,9 +31,8 @@
     [Parameter]
     public int RideId { get; set; }
     public Ride? ride { get; set; }
-    public Driver? driver { get; set; }
-    public String name { get; set; }
-    public String telNo  { get; set; }
+    public User? driver { get; set; }
+    
     
     protected override async Task OnInitializedAsync()
     {
@@ -54,8 +42,5 @@
         driver = await loginService.GetDriverByIdAsync(driverId);
     }
     
-    public void OnCompletion()
-    {
-         rideService.JoinRide(new JoinRideDto() { RideId = RideId, Name = name, Phone = telNo });
-    }
+    
 }

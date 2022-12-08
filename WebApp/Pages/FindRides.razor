@@ -58,17 +58,33 @@
 
     private async Task filterRides()
     {
-       
+        try
+        {
         rides = await rideService.GetAllRidesAsync(startDate, endDate);
         StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
     }
     
     private async Task resetFilters()
     {
-        startDate = null;
-        endDate = null;
-        rides = await rideService.GetAllRidesAsync(startDate, endDate);
-        StateHasChanged();
+        try
+        {
+            startDate = null;
+            endDate = null;
+            rides = await rideService.GetAllRidesAsync(startDate, endDate);
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            
+        }
+        
     }
 
 

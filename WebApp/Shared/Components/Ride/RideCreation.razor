@@ -53,9 +53,12 @@
 </div>
 
 @code {
-    [Parameter] 
-    public string State { get; set; }
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
 
+    public static string State { get; set; } = "Ride information";
+    public string errorLabel { get; set; } = "";
     private bool isLoggedIn;
     private IEnumerable<Claim>? userClaims;
 
@@ -81,6 +84,7 @@
     private static string? destinationZip{ get; set; }
     
     public static string AddressLine { get; set; }
+    
     protected override async Task OnInitializedAsync()
     {
         AuthenticationState authState = await AuthState;
@@ -91,7 +95,10 @@
         
         userClaims = user.Claims;
         var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
-        driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;    
+        driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+        State = "Ride information";
+        AddressLine = "";
+
     }
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -243,13 +250,13 @@
                             }
                             Location startLocation = new Location()
                             {
-                                City = startCity, CoordinatesX = 22,
-                                CoordinatesY = 33, Country = startCountry, StreetName = startStreet, ZipCode =startZip
+                                City = startCity, CoordinatesX = (long) startLat,
+                                CoordinatesY = (long) startLng, Country = startCountry, StreetName = startStreet, ZipCode =startZip
                             };
                             Location destination = new Location()
                             {
-                                City = destinationCity, CoordinatesX = 22,
-                                CoordinatesY = 33, Country = destinationCountry, StreetName = destinationStreet, ZipCode = destinationZip
+                                City = destinationCity, CoordinatesX = (long) destinationLat,
+                                CoordinatesY = (long) destinationLng, Country = destinationCountry, StreetName = destinationStreet, ZipCode = destinationZip
                             };
                             RideCreationDto dto = new RideCreationDto()
                             {
@@ -258,6 +265,7 @@
                             };
                             Console.WriteLine(driverId);
                             Domain.Models.Ride ride = await rideService.CreateRide(dto);
+                            State = "Ride information";
                              navigationManager.NavigateTo($"/CreateRide/{ride.Id}");
                             break;
                     }

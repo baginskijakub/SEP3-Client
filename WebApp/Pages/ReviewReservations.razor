@@ -5,28 +5,49 @@
 @using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @using System.ComponentModel.Design
+@using System.Security.Claims
 @using WebApp.Shared.Components.Reservation
 @using Reservation = Domain.Models.Reservation
-@inject IReservationService ReservationService;
+@inject IReservationService reservationService;
 @attribute [Authorize]
 
 <div class="review-reservations-wrapper">
-    @foreach (Reservation reservation in reservations)
+    @if (reservations != null)
     {
-        <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted"></Reservation>
+        @foreach (Reservation reservation in reservations)
+            {
+                <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted"></Reservation>
+            }
+        if (reservations.Count == 0)
+        {
+            <h1>No reservations to be managed available</h1>
+        }
     }
 </div>
 
 @code {
     
-    List<Reservation> reservations = new List<Reservation>();
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+
+    List<Reservation>? reservations;
     
     protected override async Task OnInitializedAsync()
     {
 
         try
         {
-            reservations = await ReservationService.getReservationsToAccept();
+            AuthenticationState authState = await AuthState;
+            ClaimsPrincipal user = authState.User;
+            isLoggedIn = user.Identity != null;
+            userClaims = user.Claims;
+            if (!isLoggedIn) return;
+            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+            string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+            reservations = await reservationService.GetReservationsToAccept(Int32.Parse(userId));
             Console.WriteLine(reservations.Count);
 
         }
@@ -37,4 +58,4 @@
         }
     
     }
-};
+}

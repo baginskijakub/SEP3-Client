@@ -7,7 +7,7 @@ namespace HttpClients.ClientInterfaces;
 
 public interface IReservationService
 {
-    Task<List<Reservation>> getReservationsToAccept();
+    Task<List<Reservation>> GetReservationsToAccept(int driverId);
 
-    Task<Reservation> acceptPassenger(AcceptReservationDto dto);
+    Task<Reservation> AcceptPassenger(AcceptReservationDto dto);
 }

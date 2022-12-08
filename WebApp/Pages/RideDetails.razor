@@ -11,6 +11,8 @@
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
 @using Domain.Models
+@using Domain.DTOs
+@using System.Security.Claims
 @inject IRideService rideService
 
 <div class="find-rides-page-wrapper">
@@ -24,25 +26,31 @@
     <div>
         @if (driver != null && ride != null)
         {
-            <RideDetailed Time="@ride.StartDate.GetTimeString()" Date="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.City" EndLocation="@ride.Destination.City"></RideDetailed>
+            <RideDetailed Time="@ride.StartDate.GetTimeString()" Date="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.Address" EndLocation="@ride.Destination.Address"></RideDetailed>
         }
         
     </div>
     <div class="outro-container">
         <h3>Everything all right?</h3>
         <div class="buttons-container">
-            <TeritaryButton Text="Back to rides" hasArrow="true" arrowSide="Left" OnClickFunction="@InvokeOnClickBack"></TeritaryButton>
+            <TertiaryButton Text="Back to rides" hasArrow="true" arrowSide="Left" OnClickFunction="@InvokeOnClickBack"></TertiaryButton>
             <SecondaryButton Text="Proceed" hasArrow="true" arrowSide="Right" OnClickFunction="@InvokeOnClick"></SecondaryButton>
         </div>
     </div>
 </div>
 @code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
 
     [Parameter]
     public int RideId { get; set; }
 
     public Ride? ride { get; set; }
-    public Driver? driver { get; set; }
+    public User? driver { get; set; }
+    private string userId;
 
     
     protected override async Task OnInitializedAsync()
@@ -55,7 +63,13 @@
                int driverId = ride.DriverId;
                 driver = await loginService.GetDriverByIdAsync(driverId); 
             }
-            
+            AuthenticationState authState = await AuthState;
+            ClaimsPrincipal user = authState.User;
+            isLoggedIn = user.Identity != null;
+            userClaims = user.Claims;
+            if (!isLoggedIn) return;
+            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+            userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
 
         }
         catch (Exception e)
@@ -64,12 +78,22 @@
         }
     }
     
-    public void InvokeOnClick()
+    private async Task InvokeOnClick()
     {
-        navigationManager.NavigateTo($"/RideCompletion/{RideId}");
+        try
+        {
+            await rideService.JoinRide(new JoinRideDto() { RideId = RideId, UserId = Int32.Parse(userId)});
+            navigationManager.NavigateTo($"/RideCompletion/{RideId}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        
+        
     }
     
-    public void InvokeOnClickBack()
+    private void InvokeOnClickBack()
     {
         navigationManager.NavigateTo($"/FindRides");
     }

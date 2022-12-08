@@ -31,8 +31,10 @@
         ClaimsPrincipal user = authState.User;
         isLoggedIn = user.Identity != null;
         userClaims = user.Claims;
+        if (!isLoggedIn) return;
         var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
         hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
+        Console.WriteLine(hasLicenseNumber);
     }
 
     private void navigateToRides()
@@ -46,7 +48,7 @@
         {
             if (Boolean.Parse(hasLicenseNumber))
             {
-                navigationManager.NavigateTo("/auth/register?type=driver");
+                navigationManager.NavigateTo("/DriverView");
             }
             else
             {

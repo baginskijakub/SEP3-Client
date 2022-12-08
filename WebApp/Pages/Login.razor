@@ -5,33 +5,30 @@
 @using System.Collections.Specialized
 @inject NavigationManager navigationManager
 
-<AuthorizeView>
-    <NotAuthorized>
-        <div class="login-wrapper">
-            <div class="login-title-container">
-                <div class="primary-title-container">
-                    @if (state == "register")
-                    {
-                        <div class="primary-title">Create an account</div>
 
-                    }
-                    else if(state == "login")
-                    {
-                        <div class="primary-title">Log in</div>
-                    }
-                    else if(state == "updateLicense")
-                    {
-                        <div class="primary-title">Update license number</div>
-                    }
-                </div>
+    <div class="login-wrapper">
+        <div class="login-title-container">
+            <div class="primary-title-container">
+                @if (state == "register")
+                {
+                    <div class="primary-title">Create an account</div>
+
+                }
+                else if(state == "login")
+                {
+                    <div class="primary-title">Log in</div>
+                }
+                else if(state == "updateLicense")
+                {
+                    <div class="primary-title">Update license number</div>
+                }
             </div>
-            <LoginComp State="@state" UserType="@userType"></LoginComp>
-
         </div>
-    </NotAuthorized>
-</AuthorizeView>
+        <LoginComp State="@state" UserType="@userType"></LoginComp>
 
-@code {
+    </div>
+
+    @code {
     [Parameter]
     public string state { get; set; }
     

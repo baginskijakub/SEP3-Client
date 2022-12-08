@@ -10,4 +10,6 @@ public class Location
 
     public long CoordinatesX { get; set; }
     public long CoordinatesY { get; set; }
+
+    public string Address => $"{StreetName}, {City}";
 }

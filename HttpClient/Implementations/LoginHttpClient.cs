@@ -24,6 +24,13 @@ public class LoginHttpClient : ILoginService
         {
             throw new Exception(responseContent);
         }
+
+        string token = responseContent;
+        Jwt = token;
+
+        ClaimsPrincipal principal = CreateClaimsPrincipal();
+
+        OnAuthStateChanged.Invoke(principal);    
     }
 
 
@@ -64,7 +71,7 @@ public class LoginHttpClient : ILoginService
         OnAuthStateChanged.Invoke(principal);
         return Task.CompletedTask;    }
 
-    public async Task<Driver?> GetDriverByIdAsync(int id)
+    public async Task<User> GetDriverByIdAsync(int id)
     {
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/users/{id}");
         string content = await response.Content.ReadAsStringAsync();
@@ -73,11 +80,11 @@ public class LoginHttpClient : ILoginService
             throw new Exception(content);
         }
 
-        Driver? driver = JsonSerializer.Deserialize<Driver?>(content, new JsonSerializerOptions
+        User user = JsonSerializer.Deserialize<User>(content, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         })!;
-        return driver;
+        return user;
     }
 
     public async Task RegisterAsync(RegisterDto dto)

@@ -19,9 +19,9 @@ public class ReservationHttpClient : IReservationService
         this.client = client;
     }
     
-    public async Task<List<Reservation>> getReservationsToAccept()
+    public async Task<List<Reservation>> GetReservationsToAccept(int driverId)
     {
-        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/reservations");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/driver/{driverId}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
@@ -36,7 +36,7 @@ public class ReservationHttpClient : IReservationService
         
     }
 
-    public async Task<Reservation> acceptPassenger(AcceptReservationDto dto)
+    public async Task<Reservation> AcceptPassenger(AcceptReservationDto dto)
     {
         
         HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/reservations", dto);

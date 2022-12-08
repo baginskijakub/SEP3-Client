@@ -9,7 +9,7 @@ public interface ILoginService
     public Task LoginAsync(LoginDto dto);
     public Task LogoutAsync();
 
-    public Task<Driver?> GetDriverByIdAsync(int id);
+    public Task<User> GetDriverByIdAsync(int id);
     public Task RegisterAsync(RegisterDto dto);
     public Task<ClaimsPrincipal> GetAuthAsync();
 
