@@ -1,0 +1,70 @@
+@page "/ManageRides"
+@using WebApp.Shared.Components.Ride
+@using HttpClients.ClientInterfaces
+@inject IRideService rideService
+@using System.Security.Claims
+@using Domain.Models
+@using Ride = Domain.Models.Ride
+ @* @attribute [Authorize]  *@
+
+<div class="page-wrapper">
+    <h1>Your rides</h1>
+        <div class="rides-container">
+            @foreach (var ride in rides)
+            {
+                <RideManager Ride="ride" DriverName="@userName"/> 
+            }
+        </div>
+</div>
+
+
+@code {
+    public List<Domain.Models.Ride> rides { get; set; }
+    private IEnumerable<Claim>? userClaims;
+    private bool isLoggedIn;
+    private int driverId;
+    public string userName;
+    
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+
+
+    protected override void OnInitialized()
+    {
+
+        rides = new List<Ride>();
+        Location startLocation = new Location()
+        {
+            City = "Horsens",
+            CoordinatesX = 55.863400,
+            CoordinatesY = 9.847532,
+        };
+        
+        Location desitnation = new Location()
+        {
+            City = "Aarhus",
+            CoordinatesX = 56.164285,
+            CoordinatesY =  10.175607,
+        };
+        rides.Add(new Ride(desitnation, new Domain.Models.DateTime(328094780), startLocation, 3, 12));
+    }
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     AuthenticationState authState = await AuthState;
+    //     ClaimsPrincipal user = authState.User;
+    //     isLoggedIn = user.Identity != null;
+    //     
+    //     if (!isLoggedIn) return;
+    //     
+    //     userClaims = user.Claims;
+    //     var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+    //     
+    //     //to check
+    //     driverId = Int32.Parse(enumerable.First(claim => claim.Type.Equals("Id")).Value);
+    //     userName = enumerable.First(claim => claim.Type.Equals("Name")).Value;
+    //
+    //     rides = await rideService.GetRidesByDriverId(driverId);
+    // }
+
+}

@@ -8,8 +8,8 @@ public class Location
 
     public string ZipCode { get; set; }
 
-    public long CoordinatesX { get; set; }
-    public long CoordinatesY { get; set; }
+    public double CoordinatesX { get; set; }
+    public double CoordinatesY { get; set; }
 
     public string Address => $"{StreetName}, {City}";
 }

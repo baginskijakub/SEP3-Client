@@ -1,3 +1,5 @@
+@using Domain.Models
+@using System.Text.Json
 <div class="ride-details-wrapper">
     <div class="ride-details-location-wrapper">
         <div class="ride-details-location-inner">
@@ -54,4 +56,6 @@
     [Parameter]
     public int RideId { get; set; }
     
+    private RideMap RideMap { get; set; }
+
 }

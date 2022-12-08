@@ -1,0 +1,96 @@
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using System.Text.Json
+@inject IReservationService reservationService
+@inject IJSRuntime JsRuntime
+
+<div class="ride-wrapper">
+    <div class="ride-inner">
+        <div class="ride-head">
+            <p>@Ride.StartDate.GetFormattedString()</p>
+            <div class="ride-head-inner">
+                <h3>@Ride.StartLocation.City</h3>
+                <img src="icons/arrow.svg"/>
+                <h3>@Ride.Destination.City</h3>
+            </div>
+            <div class="ride-driver">
+                <img src="icons/user.svg"/>
+                <p>@DriverName</p>
+            </div>
+        </div>
+        @* <img class="map" src="icons/map-placeholder.png"/> *@
+        <div id="@Ride.Id.ToString()" class="map"></div>
+        <button class="expand-button" onclick="@OnButtonClick">
+            <img src="icons/arrow.svg"/>
+        </button>
+    </div>
+    @if (state == "open")
+    {
+        <div class="ride-passengers-wrapper">
+            <h4>Accepted passengers</h4>
+            <div class="ride-passengers-container">
+                @foreach (var reservation in reservations)
+                {
+                    <div class="passanger-container">
+                        <img src="icons/user.svg"/>
+                        <p>@reservation.passengerName</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+</div>
+
+
+
+@code {
+    [Parameter]
+    public Domain.Models.Ride Ride { get; set; }
+    
+    [Parameter]
+    public string DriverName { get; set; }
+
+    public List<Reservation> reservations;
+    
+    public RideMap RideMap { get; set; }
+    
+    
+    
+    public string state { get; set; }
+
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     reservations = await reservationService.GetAcceptedReservationsByRideId(Ride.Id);
+    // }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            RideMap = new RideMap()
+            {
+                rideId = Ride.Id.ToString(),
+                startLat = Ride.StartLocation.CoordinatesX,
+                startLng = Ride.StartLocation.CoordinatesY,
+                endLat = Ride.Destination.CoordinatesX,
+                endLng = Ride.Destination.CoordinatesY
+            };
+            await JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
+            StateHasChanged();
+        }
+    }
+
+    public void OnButtonClick()
+    {
+        if (state == "open")
+        {
+            state = "closed";
+        }
+        else
+        {
+            state = "open";
+        }
+        StateHasChanged();
+    }
+}
