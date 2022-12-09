@@ -122,6 +122,7 @@
             destinationLat = lat;
             destinationLng = lng;
         }
+        Console.WriteLine(startLng);
     }
     
     [JSInvokable]
@@ -154,7 +155,6 @@
             destinationZip = zip;
             destinationLat = coordinatesX;
             destinationLng = coordinatesY;
-            Console.WriteLine(street);
         }
     }
 
@@ -229,7 +229,6 @@
                             await JsRuntime.InvokeVoidAsync("toggleMap", true);
                             break;
                         case "Start location":
-                            Console.WriteLine(startCountry + startCity + startStreet + startZip);
                             if (String.IsNullOrEmpty(startCity) || String.IsNullOrEmpty(startCountry) ||
                                 String.IsNullOrEmpty(startStreet) || String.IsNullOrEmpty(startZip))
                             {
@@ -250,13 +249,13 @@
                             }
                             Location startLocation = new Location()
                             {
-                                City = startCity, CoordinatesX = (long) startLat,
-                                CoordinatesY = (long) startLng, Country = startCountry, StreetName = startStreet, ZipCode =startZip
+                                City = startCity, CoordinatesX = startLat,
+                                CoordinatesY =  startLng, Country = startCountry, StreetName = startStreet, ZipCode =startZip
                             };
                             Location destination = new Location()
                             {
-                                City = destinationCity, CoordinatesX = (long) destinationLat,
-                                CoordinatesY = (long) destinationLng, Country = destinationCountry, StreetName = destinationStreet, ZipCode = destinationZip
+                                City = destinationCity, CoordinatesX =  destinationLat,
+                                CoordinatesY =  destinationLng, Country = destinationCountry, StreetName = destinationStreet, ZipCode = destinationZip
                             };
                             RideCreationDto dto = new RideCreationDto()
                             {

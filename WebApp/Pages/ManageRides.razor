@@ -2,6 +2,7 @@
 @using WebApp.Shared.Components.Ride
 @using HttpClients.ClientInterfaces
 @inject IRideService rideService
+@inject ILoginService loginService
 @using System.Security.Claims
 @using Domain.Models
 @using Ride = Domain.Models.Ride
@@ -19,8 +20,8 @@
 
 
 @code {
-    
-    public List<Domain.Models.Ride> rides { get; set; }
+
+    public List<Domain.Models.Ride> rides { get; set; } = new List<Ride>();
     private IEnumerable<Claim>? userClaims;
     private bool isLoggedIn;
     private int driverId;
@@ -42,7 +43,9 @@
         
         //to check
         driverId = Int32.Parse(enumerable.First(claim => claim.Type.Equals("Id")).Value);
-        userName = enumerable.First(claim => claim.Type.Equals("Name")).Value;
+
+        userName = (await loginService.GetDriverByIdAsync(driverId)).Name;
+        
     
         rides = await rideService.GetRidesByDriverId(driverId);
     }

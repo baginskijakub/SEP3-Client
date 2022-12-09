@@ -83,12 +83,31 @@ public class DateTime
 
     public string GetFormattedString()
     {
-        return null;
+        double seconds = Epoch - DateTimeOffset.Now.ToUnixTimeSeconds();
+
+        double interval = seconds / 31536000;
+
+        if (interval > 1) {
+            return "in " + Math.Round(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return "in " + Math.Round(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return "in " + Math.Round(interval) +  " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return "in " + Math.Round(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return "in " + Math.Round(interval) + " minutes";
+        }
+        return "in " + Math.Round(seconds) + " seconds";        
         
-        //cannot compare this DateTime class to the DateTime class that is in C#
-        //Therefore cannot compare those two dates. Only through the DateTime that is 
-        //built in can you access various methods, such as "DayOfWeek", "Week number" etc.
-        //This should be rethought on how to make, cuz I havent figured out a work around.
     }
     
     private  void Epoch2String(long epoch) {

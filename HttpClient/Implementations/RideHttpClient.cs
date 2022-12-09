@@ -116,7 +116,7 @@ public class RideHttpClient : IRideService
     public async Task<List<Ride>> GetRidesByDriverId(int driverId)
     {
         //endpoint to be changed as it uses same as GetAllRidesAsync, dependent on controller implementation
-        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides/{driverId}");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides/driver/{driverId}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {

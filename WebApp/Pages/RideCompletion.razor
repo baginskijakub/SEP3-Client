@@ -21,7 +21,7 @@
     <div>
         @if (ride != null && driver != null)
         {
-            <RideDetailed Time="@ride.StartDate.GetDateString()" Driver="@driver.Name" RideId="@ride.Id" StartLocation="@ride.StartLocation.Address" EndLocation="@ride.Destination.Address"></RideDetailed>
+            <RideDetailed Ride="ride"></RideDetailed>
         }
     </div>
 

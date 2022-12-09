@@ -146,6 +146,13 @@
 
     }
 
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        userClaims = user.Claims;    
+    }
 
     private async Task ChangeState()
     {
@@ -218,6 +225,8 @@
                         case "updateLicense":
                             enumerable = userClaims as Claim[] ?? userClaims.ToArray();
                             string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+                            Console.WriteLine(userId);
+                            Console.WriteLine(updatedLicenseNo);
                             UpdateLicenseDto updateLicenseDto = new UpdateLicenseDto()
                             {
                                 LicenseNo = Int32.Parse(updatedLicenseNo),

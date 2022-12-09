@@ -43,6 +43,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine(ride.StartDate.GetFormattedString());
         User driver = await loginService.GetDriverByIdAsync(ride.DriverId);
         DriverName = driver.Name;
         

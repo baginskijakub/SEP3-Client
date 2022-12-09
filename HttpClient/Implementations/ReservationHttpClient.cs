@@ -56,7 +56,7 @@ public class ReservationHttpClient : IReservationService
     public async Task<List<Reservation>> GetAcceptedReservationsByRideId(int rideId)
     {
         //endpoint to be changed as it uses same as getReservationsToAccept, dependent on controller implementation
-        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/{rideId}");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/ride/{rideId}");
         string content = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)

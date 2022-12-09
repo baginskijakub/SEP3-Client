@@ -59,10 +59,10 @@
     
     public string state { get; set; }
 
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     reservations = await reservationService.GetAcceptedReservationsByRideId(Ride.Id);
-    // }
+    protected override async Task OnInitializedAsync()
+    {
+        reservations = await reservationService.GetAcceptedReservationsByRideId(Ride.Id);
+    }
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
