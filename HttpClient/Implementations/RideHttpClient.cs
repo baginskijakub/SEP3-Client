@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
@@ -23,6 +24,8 @@ public class RideHttpClient : IRideService
 
     public async Task<List<Ride>> GetAllRidesAsync(string? startDate, string? endDate)
     {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         string query = "";
         if (String.IsNullOrEmpty(startDate) && !String.IsNullOrEmpty(endDate))
         {
@@ -53,7 +56,8 @@ public class RideHttpClient : IRideService
     }
     
     public async Task<Ride?> GetRideById(int id)
-    {
+    {        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.GetAsync("https://localhost:7013/rides");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -82,7 +86,7 @@ public class RideHttpClient : IRideService
 
     public async Task JoinRide(JoinRideDto dto)
     {
-        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
         HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", dto);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode || content.Contains("There is no"))
@@ -96,6 +100,9 @@ public class RideHttpClient : IRideService
     
     public async Task<Ride> CreateRide(RideCreationDto creationDto)
     {
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides/create", creationDto);
         string result = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -115,7 +122,9 @@ public class RideHttpClient : IRideService
     
     public async Task<List<Ride>> GetRidesByDriverId(int driverId)
     {
-        //endpoint to be changed as it uses same as GetAllRidesAsync, dependent on controller implementation
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides/driver/{driverId}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)

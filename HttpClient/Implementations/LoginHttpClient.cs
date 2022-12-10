@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
@@ -14,6 +15,8 @@ public class LoginHttpClient : ILoginService
     public Action<ClaimsPrincipal> OnAuthStateChanged { get; set; }
     public async Task UpdateUserLicense(UpdateLicenseDto dto)
     {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Jwt);
+
         string jsonDto = JsonSerializer.Serialize(dto);
         StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
         //check endpoint, it says drivers but it should probably be changed to user(s)
@@ -73,6 +76,9 @@ public class LoginHttpClient : ILoginService
 
     public async Task<User> GetDriverByIdAsync(int id)
     {
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",Jwt);
+
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/users/{id}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -16,11 +17,16 @@ public class ReservationHttpClient : IReservationService
 
     public ReservationHttpClient(HttpClient client)
     {
+        
+        
         this.client = client;
     }
     
     public async Task<List<Reservation>> GetReservationsToAccept(int driverId)
     {
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/driver/{driverId}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -39,6 +45,9 @@ public class ReservationHttpClient : IReservationService
     public async Task<Reservation> AcceptPassenger(AcceptReservationDto dto)
     {
         
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/reservations", dto);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
@@ -55,7 +64,9 @@ public class ReservationHttpClient : IReservationService
     
     public async Task<List<Reservation>> GetAcceptedReservationsByRideId(int rideId)
     {
-        //endpoint to be changed as it uses same as getReservationsToAccept, dependent on controller implementation
+        
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/ride/{rideId}");
         string content = await response.Content.ReadAsStringAsync();
 
