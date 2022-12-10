@@ -22,23 +22,23 @@ public class RideHttpClient : IRideService
         this.client = client;
     }
 
-    public async Task<List<Ride>> GetAllRidesAsync(string? startDate, string? endDate)
+    public async Task<List<Ride>> GetAllRidesAsync(string? startDate, string? endDate, string userId)
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
 
-        string query = "";
+        string query = $"?userId={userId}";
         if (String.IsNullOrEmpty(startDate) && !String.IsNullOrEmpty(endDate))
         {
             DateTime today = DateTime.Now;
             string todayString = today.ToString("dd/MM/yyyy");
             todayString = todayString.Replace(".", "/");
 
-            query = $"?startDate={todayString}&endDate={endDate}";
+            query = $"&startDate={todayString}&endDate={endDate}";
         }
 
         if (!String.IsNullOrEmpty(endDate) && !String.IsNullOrEmpty(startDate))
         {
-            query = $"?startDate={startDate}&endDate={endDate}";
+            query = $"&startDate={startDate}&endDate={endDate}";
 
         }
         HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides{query}");

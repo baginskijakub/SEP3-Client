@@ -5,6 +5,7 @@
 @using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @using Ride = Domain.Models.Ride
+@using System.Security.Claims
 @inject IRideService rideService
 @attribute [Authorize]
 
@@ -40,15 +41,30 @@
 
 @code {
 
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
     private string? endDate = null;
     private string? startDate = null;
+    string userId;
 
     List<Ride> rides = new List<Ride>();
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            rides = await rideService.GetAllRidesAsync(startDate,endDate);
+            AuthenticationState authState = await AuthState;
+            ClaimsPrincipal user = authState.User;
+            isLoggedIn = user.Identity != null;
+        
+            if (!isLoggedIn) return;
+        
+            userClaims = user.Claims;
+            var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+             userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+            rides = await rideService.GetAllRidesAsync(startDate,endDate, userId);
         }
         catch (Exception e)
         {
@@ -60,7 +76,7 @@
     {
         try
         {
-        rides = await rideService.GetAllRidesAsync(startDate, endDate);
+        rides = await rideService.GetAllRidesAsync(startDate, endDate, userId);
         StateHasChanged();
         }
         catch (Exception e)
@@ -76,7 +92,7 @@
         {
             startDate = null;
             endDate = null;
-            rides = await rideService.GetAllRidesAsync(startDate, endDate);
+            rides = await rideService.GetAllRidesAsync(startDate, endDate, userId);
             StateHasChanged();
         }
         catch (Exception e)
