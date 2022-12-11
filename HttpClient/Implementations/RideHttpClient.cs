@@ -58,28 +58,19 @@ public class RideHttpClient : IRideService
     public async Task<Ride?> GetRideById(int id)
     {        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
 
-        HttpResponseMessage response = await client.GetAsync("https://localhost:7013/rides");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/rides/{id}");
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
             throw new Exception(content);
         }
 
-        List<Ride?> rides = JsonSerializer.Deserialize<List<Ride?>>(content, new JsonSerializerOptions
+        Ride ride = JsonSerializer.Deserialize<Ride?>(content, new JsonSerializerOptions
         {
             PropertyNameCaseInsensitive = true
         })!;
-        
-        foreach (var ride in rides)
-        {
-            if (ride.Id == id)
-            {
-                Console.WriteLine("es");
-                return ride;
-            }
-        }
 
-        throw new ArgumentException();
+        return ride;
     }
     
     
