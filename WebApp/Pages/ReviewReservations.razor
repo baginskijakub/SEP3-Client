@@ -16,7 +16,7 @@
     {
         @foreach (Reservation reservation in reservations)
             {
-                <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted"></Reservation>
+                <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted" callback="refreshReservations"></Reservation>
             }
         if (reservations.Count == 0)
         {
@@ -34,6 +34,7 @@
     private IEnumerable<Claim>? userClaims;
 
     List<Reservation>? reservations;
+    string? userId;
     
     protected override async Task OnInitializedAsync()
     {
@@ -46,9 +47,8 @@
             userClaims = user.Claims;
             if (!isLoggedIn) return;
             var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
-            string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+            userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
             reservations = await reservationService.GetReservationsToAccept(Int32.Parse(userId));
-            Console.WriteLine(reservations.Count);
 
         }
         catch (Exception e)
@@ -58,4 +58,24 @@
         }
     
     }
+
+
+    private async Task refreshReservations()
+    {
+        try
+        {
+            if (userId != null)
+            {
+               reservations = await reservationService.GetReservationsToAccept(Int32.Parse(userId));
+                StateHasChanged();
+            }
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+
+        }
+    }
+
 }
