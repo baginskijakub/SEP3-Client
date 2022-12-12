@@ -1,17 +1,36 @@
 @using WebApp.Shared.Components.Buttons
+@using System.Security.Claims
+@using HttpClients.ClientInterfaces
+@using WebApp.auth
 @inject NavigationManager navigationManager
+@inject ILoginService loginService
 
 <div class="nav-wrapper-outer">
     <div class="nav-wrapper">
         <h4 class="nav-logo"><a href="/">Lift</a></h4>
+        <div class="buttons-container">
             <NavButton Text="How does it work?"></NavButton>
+            <AuthorizeView>
+                            @if (context.User.Identity != null)
+                            {
+                                <PrimaryButton Text="Logout" OnClickFunction="@logout" Size="small"></PrimaryButton>
+                            }
+            </AuthorizeView>
+            
+        </div>
     </div>
 </div>
 
 @code {
 
-    private void navigateToRegister()
+    
+    
+    private async Task logout()
     {
-        navigationManager.NavigateTo("/auth/register");
+        await loginService.LogoutAsync();
+        navigationManager.NavigateTo("/");
     }
+
+    
+
 }
