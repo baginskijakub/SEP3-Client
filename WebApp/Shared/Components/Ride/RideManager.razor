@@ -1,7 +1,10 @@
 @using Domain.Models
 @using HttpClients.ClientInterfaces
 @using System.Text.Json
+@using WebApp.Shared.Components.Buttons
+@using Domain.DTOs
 @inject IReservationService reservationService
+@inject IRideService rideService
 @inject IJSRuntime JsRuntime
 
 <div class="ride-wrapper">
@@ -18,11 +21,20 @@
                 <p>@DriverName</p>
             </div>
         </div>
-        @* <img class="map" src="icons/map-placeholder.png"/> *@
         <div id="@Ride.Id.ToString()" class="map"></div>
-        <button class="expand-button" onclick="@OnButtonClick">
-            <img src="icons/arrow.svg"/>
-        </button>
+        <div class="buttons-container">
+            @if (Ride.Status == "Cancelled")
+            {
+                <StatusIndicator status="Cancelled"/>
+            }
+            else
+            {
+                <TertiaryButton Text="Cancel" OnClickFunction="CancelRide" Size="Small"></TertiaryButton>
+            }
+            <button class="expand-button" onclick="@OnButtonClick">
+                <img src="icons/arrow.svg"/>
+            </button>
+        </div>
     </div>
     @if (state == "open")
     {
@@ -81,6 +93,17 @@
         }
     }
 
+    public async void CancelRide()
+    {
+        ChangeRideStatus dto = new ChangeRideStatus()
+        {
+            RideId = Ride.Id,
+            Status = "Cancelled"
+        };
+        await rideService.ChangeRideStatus(dto);
+        
+    }
+
     public void OnButtonClick()
     {
         if (state == "open")
@@ -93,4 +116,6 @@
         }
         StateHasChanged();
     }
+    
+    
 }

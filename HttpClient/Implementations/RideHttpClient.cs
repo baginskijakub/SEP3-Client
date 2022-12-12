@@ -129,5 +129,21 @@ public class RideHttpClient : IRideService
         })!;
         return rides;
     }
-    
+
+    public async Task<bool> ChangeRideStatus(ChangeRideStatus dto)
+    {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+        
+        //url to change
+        HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7013/rides/status/", dto);
+        string result = await response.Content.ReadAsStringAsync();
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine(result);
+            throw new Exception(result);
+        }
+
+        return true;
+    }
 }

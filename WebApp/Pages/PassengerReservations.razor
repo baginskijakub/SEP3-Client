@@ -1,0 +1,49 @@
+@page "/PassengerReservations"
+@using WebApp.Shared.Components.Reservation
+@using WebApp.Shared.Components.Ride
+@using Domain.Models
+@using HttpClients.ClientInterfaces
+@using DateTime = Domain.Models.DateTime
+@using System.Security.Claims
+@inject IReservationService reservationService
+
+@attribute [Authorize]
+
+<div class="page-wrapper">
+    <h2>Your reservations</h2>
+
+    <div class="reservations-container">
+        @foreach (var reservation in Reservations)
+        {
+            <PassengerReservation reservationId="@reservation.reservationId" rideId="@reservation.rideId"/>
+        }
+    </div>
+</div>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState> AuthState { get; set; } = null!;
+    
+    public List<Domain.Models.Reservation> Reservations { get; set; }
+    
+    private bool isLoggedIn;
+    private IEnumerable<Claim>? userClaims;
+    private string name;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthenticationState authState = await AuthState;
+        ClaimsPrincipal user = authState.User;
+        isLoggedIn = user.Identity != null;
+        
+        if (!isLoggedIn) return;
+        
+        userClaims = user.Claims;
+        var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
+        string userId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+
+        Reservations = await reservationService.GetReservationsByUserId(Int32.Parse(userId));
+    }
+
+
+}

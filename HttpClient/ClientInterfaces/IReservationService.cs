@@ -12,4 +12,8 @@ public interface IReservationService
     Task<Reservation> AcceptPassenger(AcceptReservationDto dto);
     
     Task<List<Reservation>> GetAcceptedReservationsByRideId(int rideId);
+    
+    Task<List<Reservation>> GetReservationsByUserId(int userId);
+
+    Task<bool> ChangeReservationStatus(ChangeReservationStatusDto dto);
 }

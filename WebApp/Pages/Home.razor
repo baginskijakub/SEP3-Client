@@ -9,7 +9,7 @@
         <h5 class="title-secondary">Some placeholder text so that the thing doesn’t look wierd</h5>
     </div>
     <div class="buttons-container">
-        <SecondaryButton Text="Find a ride" OnClickFunction="@navigateToRides"></SecondaryButton>
+        <SecondaryButton Text="I’m a passenger" OnClickFunction="@navigateToPassenger"></SecondaryButton>
         <PrimaryButton Text="I'm a driver" OnClickFunction="@navigateToDriver"></PrimaryButton>
     </div>
 </div>
@@ -37,7 +37,7 @@
         Console.WriteLine(hasLicenseNumber);
     }
 
-    private void navigateToRides()
+    private void navigateToPassenger()
     {
         navigationManager.NavigateTo(isLoggedIn ? "/FindRides" : "/auth/register?type=passenger");
     }

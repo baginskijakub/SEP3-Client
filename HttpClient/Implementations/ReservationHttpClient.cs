@@ -81,4 +81,42 @@ public class ReservationHttpClient : IReservationService
         })!;
         return reservations;
     }
+
+    public async Task<List<Reservation>> GetReservationsByUserId(int userId)
+    {
+                
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+
+        //url ot change
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/ride/user/{userId}");
+        string content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(content);
+        }
+
+        List<Reservation> reservations = JsonSerializer.Deserialize<List<Reservation>>(content, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return reservations;
+    }
+
+    public async Task<bool> ChangeReservationStatus(ChangeReservationStatusDto dto)
+    {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
+        
+        //url to change
+        HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7013/reservations/ride/user/", dto);
+        string result = await response.Content.ReadAsStringAsync();
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine(result);
+            throw new Exception(result);
+        }
+
+        return true;
+    }
 }

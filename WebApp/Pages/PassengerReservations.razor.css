@@ -1,0 +1,16 @@
+.page-wrapper{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 96px;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservations-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 200px;
+}
