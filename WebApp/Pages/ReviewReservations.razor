@@ -12,12 +12,15 @@
 @attribute [Authorize]
 
 <div class="review-reservations-wrapper">
+    <div class="back-button-container">
+                <BackButton Url="/DriverView"></BackButton>
+        </div>
     @if (reservations != null)
     {
         @foreach (Reservation reservation in reservations)
-            {
-                <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted" callback="refreshReservations"></Reservation>
-            }
+        {
+            <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted" callback="refreshReservations"></Reservation>
+        }
         if (reservations.Count == 0)
         {
             <h1>No reservations to be managed available</h1>

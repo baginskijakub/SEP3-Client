@@ -122,3 +122,12 @@
     border: 1px solid #2A2D53;
     transform: rotate(90deg);   
 }
+
+.back-button-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+
+}

@@ -25,11 +25,15 @@
             <div class="input-container">
                 <label for="endDate" class="filter-label">End date</label>
                 <input id="endDate" type="text" class="filter-input" @bind="endDate" placeholder="20/02/2023"/>
-                </div>
+            </div>
             <SecondaryButton Text="Find a ride" OnClickFunction="filterRides"></SecondaryButton>
             <SecondaryButton Text="Reset filters" OnClickFunction="resetFilters"></SecondaryButton>
 
         </div>
+        
+        <div class="back-button-container">
+                    <BackButton Url="/PassengerView"></BackButton>
+            </div>
         @foreach (Ride ride in rides)
         {
 

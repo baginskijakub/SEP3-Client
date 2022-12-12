@@ -1,27 +1,32 @@
 @page "/ManageRides"
 @using WebApp.Shared.Components.Ride
+@using WebApp.Shared.Components.Buttons
 @using HttpClients.ClientInterfaces
 @inject IRideService rideService
 @inject ILoginService loginService
 @using System.Security.Claims
 @using Domain.Models
 @using Ride = Domain.Models.Ride
- @* @attribute [Authorize]  *@
+ @attribute [Authorize]
 
 <div class="page-wrapper">
+    
     <h1>Your rides</h1>
-        <div class="rides-container">
-            @foreach (var ride in rides)
-            {
-                <RideManager Ride="ride" DriverName="@userName"/> 
-            }
+    <div class="back-button-container">
+                <BackButton Url="/DriverView"></BackButton>
         </div>
+    <div class="rides-container">
+        @foreach (var ride in rides)
+        {
+            <RideManager Ride="ride" DriverName="@userName"/>
+        }
+    </div>
 </div>
 
 
 @code {
 
-    public List<Domain.Models.Ride> rides { get; set; } = new List<Ride>();
+    public List<Ride> rides { get; set; } = new List<Ride>();
     private IEnumerable<Claim>? userClaims;
     private bool isLoggedIn;
     private int driverId;

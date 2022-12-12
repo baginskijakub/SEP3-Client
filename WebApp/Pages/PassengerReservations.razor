@@ -1,6 +1,6 @@
 @page "/PassengerReservations"
 @using WebApp.Shared.Components.Reservation
-@using WebApp.Shared.Components.Ride
+@using WebApp.Shared.Components.Buttons
 @using Domain.Models
 @using HttpClients.ClientInterfaces
 @using DateTime = Domain.Models.DateTime
@@ -10,8 +10,11 @@
 @attribute [Authorize]
 
 <div class="page-wrapper">
+    
     <h2>Your reservations</h2>
-
+<div class="back-button-container">
+            <BackButton Url="/PassengerView"></BackButton>
+    </div>
     <div class="reservations-container">
         @foreach (var reservation in Reservations)
         {
