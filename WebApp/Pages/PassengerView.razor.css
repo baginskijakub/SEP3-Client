@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 52px;
+    gap: 22px;
     height: calc(100vh - 80px);
 }
 
@@ -39,5 +39,14 @@
 .divider{
     border: 1px solid #2A2D53;
     width: 100%;
+}
+
+.back-button-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    
 }
 

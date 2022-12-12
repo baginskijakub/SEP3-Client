@@ -207,7 +207,7 @@
                             string hasLicenseNumber = enumerable.First(claim => claim.Type.Equals("hasLicenseNumber")).Value;
                             if (UserType == "passenger")
                             {
-                                navigationManager.NavigateTo("/FindRides");
+                                navigationManager.NavigateTo("/PassengerView");
                             }
                             else if (Boolean.Parse(hasLicenseNumber) && UserType == "driver")
                             {
@@ -220,7 +220,7 @@
                             }
                             break;
                         case "created":
-                            navigationManager.NavigateTo(UserType == "driver" ? "/DriverView" : "/FindRides");
+                            navigationManager.NavigateTo(UserType == "driver" ? "/DriverView" : "/PassengerView");
                             break;
                         case "updateLicense":
                             enumerable = userClaims as Claim[] ?? userClaims.ToArray();

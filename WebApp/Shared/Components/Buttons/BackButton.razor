@@ -1,0 +1,14 @@
+@inject NavigationManager navigationManager
+<button class="button-wrapper" @onclick="OnClick">
+     <img class="left-arrow" src="icons/arrow.svg" alt="arrow"/>
+     <p>Back</p>
+</button>
+@code {
+
+    [Parameter] public string Url { get; set; }= "/";
+
+     private void OnClick()
+     {
+               navigationManager.NavigateTo(Url);
+     }
+}

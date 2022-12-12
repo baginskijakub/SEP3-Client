@@ -1,0 +1,42 @@
+.button-wrapper
+{
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 20px 8px 13px;
+    gap: 16px;
+
+    background: linear-gradient(180deg, rgba(17, 19, 38, 0.4) 0%, #111326 100%);
+    border: 1px solid #2A2D53;
+    border-radius: 8px;
+}
+
+p
+{
+    font-family: 'PP Mori Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 17px;
+    /* identical to box height */
+
+
+    color: #EEEFFB;
+}
+
+.left-arrow{
+    transform: rotate(180deg);
+    margin-left: -8px;
+}
+
+.button-wrapper:hover{
+    opacity: 0.7;
+}
+
+img{
+    width: 20px;
+    height: 20px;
+}

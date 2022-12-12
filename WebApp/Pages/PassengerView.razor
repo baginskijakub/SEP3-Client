@@ -7,14 +7,17 @@
 @attribute [Authorize]
 
 <div class="home-page-wrapper">
+    <div class="back-button-container">
+            <BackButton></BackButton>
+    </div>
     <div class="driver-wrapper">
         <div class="driver-container">
             <div class="driver-profile">
                 <img src="icons/user.svg"/>
                 <h3>@name</h3>
             </div>
-                            <span class="divider"/>
-                            <p>More functionalities to come</p>
+            <span class="divider"/>
+            <p>More functionalities to come</p>
         </div>
         <div class="driver-container">
             <h3>Find rides</h3>
@@ -51,9 +54,9 @@
         
         userClaims = user.Claims;
         var enumerable = userClaims as Claim[] ?? userClaims.ToArray();
-        string driverId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
-        var driver = await loginService.GetDriverByIdAsync(Int32.Parse(driverId));
-        name = driver!.Name;
+        string passengerId = enumerable.First(claim => claim.Type.Equals("Id")).Value;
+        var passenger = await loginService.GetDriverByIdAsync(Int32.Parse(passengerId));
+        name = passenger!.Name;
     }
     
     private void navigateToFindRides()
