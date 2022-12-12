@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Domain.DTOs;
@@ -78,7 +79,7 @@ public class RideHttpClient : IRideService
     public async Task JoinRide(JoinRideDto dto)
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
-        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", dto);
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides/reservation", dto);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode || content.Contains("There is no"))
         {
@@ -94,7 +95,7 @@ public class RideHttpClient : IRideService
         
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
 
-        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides/create", creationDto);
+        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/rides", creationDto);
         string result = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
@@ -134,8 +135,11 @@ public class RideHttpClient : IRideService
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
         
-        //url to change
-        HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7013/rides/status/", dto);
+        
+        string jsonDto = JsonSerializer.Serialize(dto);
+        StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
+        
+        HttpResponseMessage response = await client.PatchAsync($"https://localhost:7013/rides/", content);
         string result = await response.Content.ReadAsStringAsync();
         
         if (!response.IsSuccessStatusCode)

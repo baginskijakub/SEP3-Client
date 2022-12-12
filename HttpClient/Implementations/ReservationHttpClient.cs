@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Domain.DTOs;
@@ -48,7 +49,10 @@ public class ReservationHttpClient : IReservationService
         
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
 
-        HttpResponseMessage response = await client.PostAsJsonAsync("https://localhost:7013/reservations", dto);
+        string jsonDto = JsonSerializer.Serialize(dto);
+        StringContent request = new(jsonDto, Encoding.UTF8, "application/json");
+        
+        HttpResponseMessage response = await client.PatchAsync("https://localhost:7013/reservations", request);
         string content = await response.Content.ReadAsStringAsync();
         if (!response.IsSuccessStatusCode)
         {
@@ -88,7 +92,7 @@ public class ReservationHttpClient : IReservationService
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
 
         //url ot change
-        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/ride/user/{userId}");
+        HttpResponseMessage response = await client.GetAsync($"https://localhost:7013/reservations/user/{userId}");
         string content = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)
@@ -107,8 +111,10 @@ public class ReservationHttpClient : IReservationService
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
         
-        //url to change
-        HttpResponseMessage response = await client.PostAsJsonAsync($"https://localhost:7013/reservations/ride/user/", dto);
+        string jsonDto = JsonSerializer.Serialize(dto);
+        StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
+        
+        HttpResponseMessage response = await client.PatchAsync($"https://localhost:7013/reservations/status", content);
         string result = await response.Content.ReadAsStringAsync();
         
         if (!response.IsSuccessStatusCode)

@@ -20,7 +20,7 @@ public class LoginHttpClient : ILoginService
         string jsonDto = JsonSerializer.Serialize(dto);
         StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
         //check endpoint, it says drivers but it should probably be changed to user(s)
-        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/users/license", content);
+        HttpResponseMessage response = await client.PatchAsync("https://localhost:7013/users/license", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)
@@ -51,7 +51,7 @@ public class LoginHttpClient : ILoginService
         string userAsJson = JsonSerializer.Serialize(dto);
         StringContent content = new(userAsJson, Encoding.UTF8, "application/json");
 
-        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/users/login", content);
+        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/users/authentication", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)
@@ -97,7 +97,7 @@ public class LoginHttpClient : ILoginService
     {
         string userAsJson = JsonSerializer.Serialize(dto);
         StringContent content = new(userAsJson, Encoding.UTF8, "application/json");
-        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/users/register", content);
+        HttpResponseMessage response = await client.PostAsync("https://localhost:7013/users", content);
         string responseContent = await response.Content.ReadAsStringAsync();
 
         if (!response.IsSuccessStatusCode)
