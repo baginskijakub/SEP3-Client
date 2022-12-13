@@ -316,12 +316,13 @@ window.initialize = function initialize() {
         DotNet.invokeMethodAsync("WebApp", "setCoordinates", lat, lng)
         ConvertCoordinatesToAddress(geocoder, map, lat, lng)
         
+        if(marker && marker.setMap){
+            marker.setMap(null)
+        }
         marker = new google.maps.Marker({
            position: mapsMouseEvent.latLng,
             map: map
         });
-        
-         marker.setMap(map)
 
     });
 }
