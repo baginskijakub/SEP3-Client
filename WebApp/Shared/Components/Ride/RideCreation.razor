@@ -238,6 +238,7 @@
                             }
                             State = "Destination";
                             await JsRuntime.InvokeVoidAsync("clearAddress");
+                            await JsRuntime.InvokeVoidAsync("resetMarker");
                             break;
                         case "Destination":
                             if (String.IsNullOrEmpty(destinationCity) || String.IsNullOrEmpty(destinationCountry) ||

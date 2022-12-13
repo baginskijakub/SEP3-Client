@@ -34,37 +34,37 @@
                         <div class="field-wrapper">
                             <label class="input-label" for="name">Full name</label>
                             <input class="input" type="text" id="name" @bind="name" placeholder="Insert your name"  />
-                            <div class="error-label">@error</div>
+                            <div class="error-label">@errorRegister</div>
                         </div>
                         @if (UserType == "driver")
                         {
                            <div class="field-wrapper">
                                <label class="input-label" for="license">Driver's license number</label>
                                <input class="input" id="license" @bind="licenseNo" type="text" placeholder="Insert your driver's license number"/>
-                               <div class="error-label">@error</div>
+                               <div class="error-label">@errorRegister</div>
                                </div> 
                         }
                         
                         <div class="field-wrapper">
                             <label class="input-label" for="phone">Phone number</label>
                             <input class="input" id="phone" @bind="phone" type="text" placeholder="Insert your phone"/>
-                            <div class="error-label">@error</div>
+                            <div class="error-label">@errorRegister</div>
                         </div>
                         <div class="field-wrapper">
                             <label class="input-label" for="email">Email</label>
                             <input class="input" id="email" @bind="emailRegister" type="text" placeholder="Insert your email"/>
-                            <div class="error-label">@error</div>
+                            <div class="error-label">@errorRegister</div>
                         </div>
                         <div class="field-wrapper">
                             <label class="input-label" for="password">Password</label>
                             <input class="input" id="password" @bind="passwordRegister" type="password" placeholder="Insert your password"/>
-                            <div class="error-label">@error</div>
+                            <div class="error-label">@errorRegister</div>
                         </div>
                 
                     </div>
                 </div>
                 <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
-                <p class="login-footer-text">Alrady have an account? <a href="auth/login">Log in here</a></p>
+                <p class="login-footer-text">Already have an account? <a href="auth/login">Log in here</a></p>
             </div>
             break;
             case "login":
@@ -74,17 +74,17 @@
                             <div class="field-wrapper">
                                 <label class="input-label" for="email">Email</label>
                                 <input class="input" type="text" id="email" @bind="email" placeholder="Insert your email" />
-                                <div class="error-label">@error</div>
+                                <div class="error-label">@errorLogin</div>
                             </div>
                             <div class="field-wrapper">
                                 <label class="input-label" for="password">Password</label>
                                 <input class="input" id="password" type="password" @bind="password" placeholder="Insert your password"/>
-                                <div class="error-label">@error</div>
+                                <div class="error-label">@errorLogin</div>
                             </div>
                         </div>
                     </div>
                     <SecondaryButton Text="Sign up" OnClickFunction="@ChangeState"></SecondaryButton>
-                    <p class="login-footer-text">Don't have account? <a href="auth/register">Create an account</a></p>
+                    <p class="login-footer-text">Don't have account? <a href="auth/register" >Create an account</a></p>
                 </div>
                 break;
                 case "created":
@@ -130,21 +130,13 @@
     private string? licenseNo;
     private string? phone;
     private string? passwordRegister;
+    private string? errorRegister = "";
+    private string? errorLogin = "";
     private string? error = "";
     private string? email;
     private string? password;
 
-
-    private void reset()
-    {
-        error = "";
-    }
-
-    protected override void OnAfterRender(bool firstRender)
-    {
-        reset();
-
-    }
+    
 
     protected override async Task OnInitializedAsync()
     {
@@ -158,7 +150,6 @@
     {
         try
         {
-            reset();
             switch (State)
                     {
                         case "register":
@@ -241,8 +232,19 @@
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            error = e.Message;
+            if (State == "login")
+            {
+                            errorLogin = "Wrong credentials";
+
+            }
+            if(State == "register")
+            {
+                errorRegister = "Invalid data";
+            }
+            if (State == "updateLicense")
+            {
+                error= "Error with saving license";
+            }
             StateHasChanged();
         }
         

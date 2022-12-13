@@ -289,6 +289,8 @@ function consoleLog(text){
     console.log(text)
 }
  
+let marker;
+
 window.initialize = function initialize() {
     var mapStyle = style;
     var latlng = new google.maps.LatLng(55.86355730782513, 9.837627727189913);
@@ -308,7 +310,6 @@ window.initialize = function initialize() {
     const geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById ("map"), options);
     
-    let marker;
 
     map.addListener("click", (mapsMouseEvent) => {
         let lat = mapsMouseEvent.latLng.lat()
@@ -327,6 +328,13 @@ window.initialize = function initialize() {
     });
 }
 
+window.resetMarker = function resetMarker()
+{
+
+     if(marker && marker.setMap){
+         marker.setMap(null)  
+}           
+     }                           
 window.initRideMap = function initRideMap(rideMap){
     console.log(rideMap)
     rideMap = JSON.parse(rideMap)
