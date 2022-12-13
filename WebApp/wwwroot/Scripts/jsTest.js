@@ -291,7 +291,6 @@ function consoleLog(text){
  
 window.initialize = function initialize() {
     var mapStyle = style;
-    consoleLog("1")
     var latlng = new google.maps.LatLng(55.86355730782513, 9.837627727189913);
     var options = {
         zoom: 12, center: latlng,
@@ -308,13 +307,22 @@ window.initialize = function initialize() {
     consoleLog(document.getElementById ("map"))
     const geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById ("map"), options);
+    
+    let marker;
 
     map.addListener("click", (mapsMouseEvent) => {
         let lat = mapsMouseEvent.latLng.lat()
         let lng = mapsMouseEvent.latLng.lng()
         DotNet.invokeMethodAsync("WebApp", "setCoordinates", lat, lng)
         ConvertCoordinatesToAddress(geocoder, map, lat, lng)
-        consoleLog("CHUI");
+        
+        marker = new google.maps.Marker({
+           position: mapsMouseEvent.latLng,
+            map: map
+        });
+        
+         marker.setMap(map)
+
     });
 }
 

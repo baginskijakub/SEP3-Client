@@ -5,6 +5,7 @@
 @using Domain.DTOs
 @inject IRideService _rideService
 @inject IReservationService _reservationService
+@inject ILoginService _loginService
 @inject IJSRuntime _JsRuntime
 
 <div class="wrapper">
@@ -17,7 +18,7 @@
                     <img src="icons/arrow.svg"/>
                     <h3>@ride.Destination.City</h3>
                 </div>
-                <p class="caption">@ride.StartDate.GetFormattedString() | @ride.DriverId</p>
+                <p class="caption">@ride.StartDate.GetFormattedString() | @driverName</p>
             </div>
             
     }
@@ -42,9 +43,11 @@
     
     [Parameter]
     public int reservationId { get; set; }
-    
+
     [Parameter]
     public string status { get; set; }
+    
+    public string driverName { get; set; }
 
     private bool mapRendered = false;
     
@@ -53,6 +56,8 @@
     protected override async Task OnInitializedAsync()
     {
         ride = await _rideService.GetRideById(rideId);
+        var res = await _loginService.GetDriverByIdAsync(ride.DriverId);
+        driverName = res.Name;
     }
 
     public async void OnCancelReservation()
