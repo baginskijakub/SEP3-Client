@@ -61,13 +61,13 @@
         {
             RideMap = new RideMap()
             {
-                rideId = Ride.Id.ToString(),
-                startLat = Ride.StartLocation.CoordinatesX,
-                startLng = Ride.StartLocation.CoordinatesY,
-                endLat = Ride.Destination.CoordinatesX,
-                endLng = Ride.Destination.CoordinatesY
+                RideId = Ride.Id.ToString(),
+                StartLat = Ride.StartLocation.CoordinatesX,
+                StartLng = Ride.StartLocation.CoordinatesY,
+                EndLat = Ride.Destination.CoordinatesX,
+                EndLng = Ride.Destination.CoordinatesY
             };
-            Console.WriteLine(RideMap.rideId.ToString());
+            Console.WriteLine(RideMap.RideId.ToString());
             await JsRuntime.InvokeVoidAsync("initMarkerMap", JsonSerializer.Serialize(RideMap));
             StateHasChanged();
         }

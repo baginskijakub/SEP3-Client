@@ -2,11 +2,14 @@ namespace Domain.Models;
 
 public class Reservation
 {
-    public string passengerName { get; set; }
+    public string PassengerName { get; set; }
     
-    public int rideId { get; set; }
+    public int RideId { get; set; }
     
-    public int reservationId { get; set; }
+    public int ReservationId { get; set; }
     
-    public bool? isAccepted { get; set; }
+    public bool? IsAccepted { get; set; }
+    
+    public string Status { get; set; }
+
 }

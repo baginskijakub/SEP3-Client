@@ -107,10 +107,10 @@ public class ReservationHttpClient : IReservationService
         return reservations;
     }
 
-    public async Task<bool> ChangeReservationStatus(ChangeReservationStatusDto dto)
+    public async Task<bool> ChangeReservationStatus(ChangeStatusDto dto)
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
-        
+
         string jsonDto = JsonSerializer.Serialize(dto);
         StringContent content = new(jsonDto, Encoding.UTF8, "application/json");
         
@@ -120,7 +120,7 @@ public class ReservationHttpClient : IReservationService
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine(result);
-            throw new Exception(result);
+            return false;
         }
 
         return true;

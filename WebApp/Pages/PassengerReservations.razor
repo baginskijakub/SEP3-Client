@@ -5,6 +5,7 @@
 @using HttpClients.ClientInterfaces
 @using DateTime = Domain.Models.DateTime
 @using System.Security.Claims
+@using Reservation = Domain.Models.Reservation
 @inject IReservationService reservationService
 
 @attribute [Authorize]
@@ -18,7 +19,7 @@
     <div class="reservations-container">
         @foreach (var reservation in Reservations)
         {
-            <PassengerReservation reservationId="@reservation.reservationId" rideId="@reservation.rideId"/>
+            <PassengerReservation status="@reservation.Status" reservationId="@reservation.ReservationId" rideId="@reservation.RideId"/>
         }
     </div>
 </div>
@@ -26,8 +27,8 @@
 @code {
     [CascadingParameter]
     public Task<AuthenticationState> AuthState { get; set; } = null!;
-    
-    public List<Domain.Models.Reservation> Reservations { get; set; }
+
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
     
     private bool isLoggedIn;
     private IEnumerable<Claim>? userClaims;

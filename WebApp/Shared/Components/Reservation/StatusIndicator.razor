@@ -1,4 +1,4 @@
-<div class="container @dynamicClass">
+<div class="container @(status == "Accepted" ? "accepted" : status == "Pending" ? "pending" : "rejected")">
     <p class="content">@status</p>
 </div>
 
@@ -6,23 +6,6 @@
     [Parameter]
     public string status { get; set; }
 
-    public string dynamicClass { get; set; } = "rejected";
-
-    protected override void OnInitialized()
-    {
-        if (status == "Accepted")
-        {
-            dynamicClass = "accepted";
-        }
-        else if (status == "Pending")
-        {
-            dynamicClass = "pending";
-        }
-        else
-        {
-            dynamicClass = "rejected";
-        }
-        
-    }
+    
 
 }

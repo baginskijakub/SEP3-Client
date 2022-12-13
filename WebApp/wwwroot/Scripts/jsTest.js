@@ -325,9 +325,10 @@ window.initRideMap = function initRideMap(rideMap){
     const directionsRenderer = new google.maps.DirectionsRenderer();
     const directionsService = new google.maps.DirectionsService();
     var latlng = new google.maps.LatLng(55.86355730782513, 9.837627727189913);
-    console.log(document.getElementById(rideMap.rideId))
+    console.log(document.getElementById(rideMap.RideId))
+
     const map = new google.maps.Map(
-        document.getElementById(rideMap.rideId),
+        document.getElementById(rideMap.RideId),
         {
             zoom: 7,
             center: latlng,
@@ -336,8 +337,8 @@ window.initRideMap = function initRideMap(rideMap){
         });
     directionsRenderer.setMap(map);
     var request = {
-        origin: new google.maps.LatLng(rideMap.startLat, rideMap.startLng),
-        destination: new google.maps.LatLng(rideMap.endLat, rideMap.endLng),
+        origin: new google.maps.LatLng(rideMap.StartLat, rideMap.StartLng),
+        destination: new google.maps.LatLng(rideMap.EndLat, rideMap.EndLng),
         travelMode: 'DRIVING'
     };
     directionsService.route(request, function(response, status) {
@@ -349,16 +350,16 @@ window.initRideMap = function initRideMap(rideMap){
 
 window.initMarkerMap = function initMarkerMap(rideMap){
     rideMap = JSON.parse(rideMap)
-    const startLatLng = { lat: rideMap.startLat, lng: rideMap.startLng };
-    const endLatLng = { lat: rideMap.endLat, lng: rideMap.endLng };
+    const startLatLng = { lat: rideMap.StartLat, lng: rideMap.StartLng };
+    const endLatLng = { lat: rideMap.EndLat, lng: rideMap.EndLng };
     console.log(rideMap)
-    const map1 = new google.maps.Map(document.getElementById(`start-${rideMap.rideId}`), {
+    const map1 = new google.maps.Map(document.getElementById(`start-${rideMap.RideId}`), {
         zoom: 14,
         center: startLatLng,
         styles: style
     });
 
-    const map2 = new google.maps.Map(document.getElementById(`end-${rideMap.rideId}`), {
+    const map2 = new google.maps.Map(document.getElementById(`end-${rideMap.RideId}`), {
         zoom: 14,
         center: endLatLng,
         styles: style

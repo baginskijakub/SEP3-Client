@@ -15,5 +15,5 @@ public interface IReservationService
     
     Task<List<Reservation>> GetReservationsByUserId(int userId);
 
-    Task<bool> ChangeReservationStatus(ChangeReservationStatusDto dto);
+    Task<bool> ChangeReservationStatus(ChangeStatusDto dto);
 }

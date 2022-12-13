@@ -19,7 +19,7 @@
     {
         @foreach (Reservation reservation in reservations)
         {
-            <Reservation passengerName="@reservation.passengerName" rideId="@reservation.rideId" reservationId="@reservation.reservationId" didAccept="@reservation.isAccepted" callback="refreshReservations"></Reservation>
+            <Reservation passengerName="@reservation.PassengerName" rideId="@reservation.RideId" reservationId="@reservation.ReservationId" didAccept="@reservation.IsAccepted" callback="refreshReservations"></Reservation>
         }
         if (reservations.Count == 0)
         {

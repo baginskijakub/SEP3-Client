@@ -83,7 +83,7 @@
                 new AcceptReservationDto()
                 {
                     ReservationId = reservationId,
-                    didAccept = true
+                    DidAccept = true
                 });
             await callback.InvokeAsync();
         }
@@ -101,7 +101,7 @@
                 new AcceptReservationDto()
                 {
                     ReservationId = reservationId,
-                    didAccept = false
+                    DidAccept = false
                 });
             await callback.InvokeAsync();
 

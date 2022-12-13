@@ -2,6 +2,8 @@
 @using HttpClients.ClientInterfaces
 @using System.Text.Json
 @using WebApp.Shared.Components.Buttons
+@using WebApp.Shared.Components.Reservation
+
 @using Domain.DTOs
 @inject IReservationService reservationService
 @inject IRideService rideService
@@ -45,7 +47,7 @@
                 {
                     <div class="passanger-container">
                         <img src="icons/user.svg"/>
-                        <p>@reservation.passengerName</p>
+                        <p>@reservation.PassengerName</p>
                     </div>
                 }
 
@@ -63,7 +65,7 @@
     [Parameter]
     public string DriverName { get; set; }
 
-    public List<Reservation> reservations;
+    public List<Domain.Models.Reservation> reservations;
     
     public RideMap RideMap { get; set; }
     
@@ -82,11 +84,11 @@
         {
             RideMap = new RideMap()
             {
-                rideId = Ride.Id.ToString(),
-                startLat = Ride.StartLocation.CoordinatesX,
-                startLng = Ride.StartLocation.CoordinatesY,
-                endLat = Ride.Destination.CoordinatesX,
-                endLng = Ride.Destination.CoordinatesY
+                RideId = Ride.Id.ToString(),
+                StartLat = Ride.StartLocation.CoordinatesX,
+                StartLng = Ride.StartLocation.CoordinatesY,
+                EndLat = Ride.Destination.CoordinatesX,
+                EndLng = Ride.Destination.CoordinatesY
             };
             await JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
             StateHasChanged();
@@ -95,13 +97,15 @@
 
     public async void CancelRide()
     {
-        ChangeRideStatus dto = new ChangeRideStatus()
+        ChangeStatusDto dto = new ChangeStatusDto()
         {
-            RideId = Ride.Id,
+            Id = Ride.Id,
             Status = "Cancelled"
         };
         await rideService.ChangeRideStatus(dto);
-        
+        Ride.Status = "Cancelled";
+        StateHasChanged();
+
     }
 
     public void OnButtonClick()

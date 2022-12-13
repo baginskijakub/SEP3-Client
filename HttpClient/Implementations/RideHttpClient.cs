@@ -131,7 +131,7 @@ public class RideHttpClient : IRideService
         return rides;
     }
 
-    public async Task<bool> ChangeRideStatus(ChangeRideStatus dto)
+    public async Task<bool> ChangeRideStatus(ChangeStatusDto dto)
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",LoginHttpClient.Jwt);
         

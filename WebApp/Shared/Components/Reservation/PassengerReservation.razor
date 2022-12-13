@@ -8,35 +8,49 @@
 @inject IJSRuntime _JsRuntime
 
 <div class="wrapper">
-    <div class="head">
-        <StatusIndicator status="Accepted"/>
-        <div class="head-inner">
-            <h3>@ride.StartLocation.City</h3>
-            <img src="icons/arrow.svg"/>
-            <h3>@ride.Destination.City</h3>
-        </div>
-        <p class="caption">@ride.StartDate.GetFormattedString() | @ride.DriverId</p>
-    </div>
-    <div class="map-container">
-        <div id="@ride.Id.ToString()" class="map"/>
-        <TertiaryButton Text="Cancel" OnClickFunction="OnCancelReservation"/>
-    </div>
+    @if (ride != null)
+    {
+        <div class="head">
+                <StatusIndicator status="@status"/>
+                <div class="head-inner">
+                    <h3>@ride.StartLocation.City</h3>
+                    <img src="icons/arrow.svg"/>
+                    <h3>@ride.Destination.City</h3>
+                </div>
+                <p class="caption">@ride.StartDate.GetFormattedString() | @ride.DriverId</p>
+            </div>
+            
+    }
+    
+            <div class="map-container">
+                <div id="@rideId" class="map" ></div>
+                @if (status.Equals("Accepted"))
+                {
+                    <TertiaryButton Text="Cancel" OnClickFunction="OnCancelReservation"/>
+                }
+                </div>
+    
 </div>
 
 @code {
     [Parameter]
     public int rideId { get; set; }
     
-    public Ride ride { get; set; }
+    [Parameter]
+    public Ride? ride { get; set; }
+    
     
     [Parameter]
     public int reservationId { get; set; }
+    
+    [Parameter]
+    public string status { get; set; }
 
-    private string status { get; set; }
+    private bool mapRendered = false;
     
     public RideMap RideMap { get; set; }
     
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         ride = await _rideService.GetRideById(rideId);
     }
@@ -44,9 +58,9 @@
     public async void OnCancelReservation()
     {
         
-        bool result  = await _reservationService.ChangeReservationStatus(new ChangeReservationStatusDto()
+        bool result  = await _reservationService.ChangeReservationStatus(new ChangeStatusDto()
         {
-            ReservationId = reservationId,
+            Id = reservationId,
             Status = "Cancelled by passenger"
         });
         if (result)
@@ -57,21 +71,23 @@
         {
             status = "Error, please try again";
         }
+        StateHasChanged();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if (!mapRendered && ride != null)
         {
             RideMap = new RideMap()
             {
-                rideId = ride.Id.ToString(),
-                startLat = ride.StartLocation.CoordinatesX,
-                startLng = ride.StartLocation.CoordinatesY,
-                endLat = ride.Destination.CoordinatesX,
-                endLng = ride.Destination.CoordinatesY
+                RideId = ride.Id.ToString(),
+                StartLat = ride.StartLocation.CoordinatesX,
+                StartLng = ride.StartLocation.CoordinatesY,
+                EndLat = ride.Destination.CoordinatesX,
+                EndLng = ride.Destination.CoordinatesY
             };
             await _JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
+            mapRendered = true;
             StateHasChanged();
         }
     }

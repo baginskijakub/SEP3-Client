@@ -55,11 +55,11 @@
         {
             RideMap = new RideMap()
             {
-                rideId = ride.Id.ToString(),
-                startLat = ride.StartLocation.CoordinatesX,
-                startLng = ride.StartLocation.CoordinatesY,
-                endLat = ride.Destination.CoordinatesX,
-                endLng = ride.Destination.CoordinatesY
+                RideId = ride.Id.ToString(),
+                StartLat = ride.StartLocation.CoordinatesX,
+                StartLng = ride.StartLocation.CoordinatesY,
+                EndLat = ride.Destination.CoordinatesX,
+                EndLng = ride.Destination.CoordinatesY
             };
             await JsRuntime.InvokeVoidAsync("initRideMap", JsonSerializer.Serialize(RideMap));
             StateHasChanged();

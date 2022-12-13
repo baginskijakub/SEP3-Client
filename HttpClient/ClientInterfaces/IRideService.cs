@@ -17,5 +17,5 @@ public interface IRideService
     
     Task<List<Ride>> GetRidesByDriverId(int driverId);
 
-    Task<bool> ChangeRideStatus(ChangeRideStatus dto);
+    Task<bool> ChangeRideStatus(ChangeStatusDto dto);
 }
